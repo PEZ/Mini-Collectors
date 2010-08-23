@@ -90,6 +90,9 @@
 		32BEAAB71221EF31003B0278 /* 2-15-250.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BEAA771221EF31003B0278 /* 2-15-250.png */; };
 		32BEAAB81221EF31003B0278 /* 2-16-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BEAA781221EF31003B0278 /* 2-16-57.png */; };
 		32BEAAB91221EF31003B0278 /* 2-16-250.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BEAA791221EF31003B0278 /* 2-16-250.png */; };
+		32BEAAE412223C38003B0278 /* FigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEAAE312223C38003B0278 /* FigureViewController.m */; };
+		32BEABCA12232B3C003B0278 /* Figure.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEABC712232B3C003B0278 /* Figure.m */; };
+		32BEABCB12232B3C003B0278 /* Barcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEABC912232B3C003B0278 /* Barcode.m */; };
 		6E37974911B9BDCB0011C497 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E37972511B9BDB60011C497 /* libThree20Core.a */; };
 		6E37974A11B9BDCB0011C497 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E37972B11B9BDB60011C497 /* libThree20Network.a */; };
 		6E37974B11B9BDCC0011C497 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E37973111B9BDB60011C497 /* libThree20Style.a */; };
@@ -359,6 +362,12 @@
 		32BEAA771221EF31003B0278 /* 2-15-250.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "2-15-250.png"; path = "Images/2-15-250.png"; sourceTree = "<group>"; };
 		32BEAA781221EF31003B0278 /* 2-16-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "2-16-57.png"; path = "Images/2-16-57.png"; sourceTree = "<group>"; };
 		32BEAA791221EF31003B0278 /* 2-16-250.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "2-16-250.png"; path = "Images/2-16-250.png"; sourceTree = "<group>"; };
+		32BEAAE212223C38003B0278 /* FigureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FigureViewController.h; sourceTree = "<group>"; };
+		32BEAAE312223C38003B0278 /* FigureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FigureViewController.m; sourceTree = "<group>"; };
+		32BEABC612232B3C003B0278 /* Figure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Figure.h; sourceTree = "<group>"; };
+		32BEABC712232B3C003B0278 /* Figure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Figure.m; sourceTree = "<group>"; };
+		32BEABC812232B3C003B0278 /* Barcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Barcode.h; sourceTree = "<group>"; };
+		32BEABC912232B3C003B0278 /* Barcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Barcode.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Mini_Collector_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mini_Collector_Prefix.pch; sourceTree = "<group>"; };
 		6E37971011B9BDB60011C497 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../three20/src/Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E37971311B9BDB60011C497 /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../three20/src/Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -415,6 +424,8 @@
 				324BBCEF12211A3A008631B0 /* LauncherView.m */,
 				324BBDA01221B122008631B0 /* DefaultStyleSheet.h */,
 				324BBDA11221B122008631B0 /* DefaultStyleSheet.m */,
+				32BEAAE212223C38003B0278 /* FigureViewController.h */,
+				32BEAAE312223C38003B0278 /* FigureViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -454,6 +465,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				32BEABC612232B3C003B0278 /* Figure.h */,
+				32BEABC712232B3C003B0278 /* Figure.m */,
+				32BEABC812232B3C003B0278 /* Barcode.h */,
+				32BEABC912232B3C003B0278 /* Barcode.m */,
 				EB383D1010BBFC630000B2D2 /* Three20.bundle */,
 				28C3AD890F43EF2300507BA6 /* Mini_Collector.xcdatamodel */,
 				8D1107310486CEB800E47090 /* Mini_Collector-Info.plist */,
@@ -969,6 +984,9 @@
 				324BBC6F12201D49008631B0 /* MainViewController.m in Sources */,
 				324BBCF012211A3A008631B0 /* LauncherView.m in Sources */,
 				324BBDA21221B122008631B0 /* DefaultStyleSheet.m in Sources */,
+				32BEAAE412223C38003B0278 /* FigureViewController.m in Sources */,
+				32BEABCA12232B3C003B0278 /* Figure.m in Sources */,
+				32BEABCB12232B3C003B0278 /* Barcode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

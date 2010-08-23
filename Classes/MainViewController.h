@@ -4,6 +4,7 @@
 @interface MainViewController : TTViewController <TTLauncherViewDelegate, ZBarReaderDelegate> {
 	LauncherView *_launcherView;
   NSArray *_launcherItems;
+  NSDictionary *_barcodes;
 }
 
 @end

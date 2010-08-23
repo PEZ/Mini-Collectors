@@ -38,12 +38,13 @@
   navigator.persistenceMode = TTNavigatorPersistenceModeNone;
 
   [TTStyleSheet setGlobalStyleSheet:[[[DefaultStyleSheet 
-                                       alloc] init] autorelease]]; 
-
+                                       alloc] init] autorelease]];
+  
   TTURLMap* map = navigator.URLMap;
 
   [map from:@"*" toViewController:[TTWebController class]];
   [map from:@"mc://main" toViewController:[MainViewController class]];
+  [map from:@"mc://figure/(initWithKey:)/" toViewController:[FigureViewController class]];
   //[map from:@"series://(initWithSeries:)" toViewController:[ReaderSampleViewController class]];
   
   if (![navigator restoreViewControllers]) {
@@ -191,6 +192,10 @@
       // Something is terribly wrong here.
     }
   }
+  
+  FigureViewController *figureViewController = [[[FigureViewController alloc] init] autorelease];
+  figureViewController.managedObjectContext = _managedObjectContext;
+
 
   return _persistentStoreCoordinator;
 }

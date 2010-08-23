@@ -19,7 +19,7 @@
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
                                                initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
                                                target:self
-                                               action:@selector(scanButtonTapped)] autorelease];    
+                                               action:@selector(scanButtonTapped)] autorelease];
   }
   return self;
 }
@@ -40,7 +40,8 @@
   for (int i = 1; i <= 16; i++) {
     NSString *name = [NSString stringWithFormat:@"%d-%d", series, i];
     NSString *image = [NSString stringWithFormat:@"bundle://%@-57.png", name];
-    TTLauncherItem *item = [[[TTLauncherItem alloc] initWithTitle:name image:image URL:nil] autorelease];
+    NSString *url = [NSString stringWithFormat:@"mc://figure/%@", name];
+    TTLauncherItem *item = [[[TTLauncherItem alloc] initWithTitle:name image:image URL:url] autorelease];
     [items addObject:item];
   }
   return items;
