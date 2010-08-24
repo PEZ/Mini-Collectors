@@ -11,8 +11,9 @@
 
 @implementation Figure 
 
+@dynamic series;
 @dynamic key;
 @dynamic count;
-@dynamic series;
+@dynamic name;
 
 @end

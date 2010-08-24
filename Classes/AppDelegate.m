@@ -28,6 +28,18 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation AppDelegate
 
+static AppDelegate *_instance;
+
++ (AppDelegate *) instance {
+  return _instance;
+}
+
+- (id)init {
+  if (self = [super init]) {
+    _instance = self;
+  }
+  return self;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
@@ -192,10 +204,6 @@
       // Something is terribly wrong here.
     }
   }
-  
-  FigureViewController *figureViewController = [[[FigureViewController alloc] init] autorelease];
-  figureViewController.managedObjectContext = _managedObjectContext;
-
 
   return _persistentStoreCoordinator;
 }

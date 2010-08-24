@@ -7,7 +7,6 @@
 //
 
 #import "FigureViewController.h"
-#import "AppDelegate.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,16 +16,17 @@
 
 @synthesize key = _key;
 @synthesize imageView = _imageView;
-@synthesize managedObjectContext = _managedObjectContext;
 
 - (id)initWithKey:(NSString*)key {
   if (self = [self init]) {
     self.key = key;
     self.title = key;
     self.imageView.urlPath = [NSString stringWithFormat:@"bundle://%@-250.png", self.key];
-    if (_managedObjectContext != NULL) {
-      Figure *figure = (Figure *)[NSEntityDescription insertNewObjectForEntityForName:@"Figure" inManagedObjectContext:_managedObjectContext];
-    }
+//    NSManagedObjectContext *context = [AppDelegate instance].managedObjectContext;
+//    if (context != NULL) {
+//      Figure *figure = (Figure *)[NSEntityDescription insertNewObjectForEntityForName:@"Figure" inManagedObjectContext:context];
+//    }
+//    [context release];
   }
   return self;
 }

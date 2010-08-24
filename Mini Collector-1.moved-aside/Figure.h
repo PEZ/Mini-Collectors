@@ -13,10 +13,9 @@
 {
 }
 
-@property (nonatomic, retain) NSNumber * series;
 @property (nonatomic, retain) NSString * key;
 @property (nonatomic, retain) NSNumber * count;
-@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * series;
 
 @end
 

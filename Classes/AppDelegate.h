@@ -26,6 +26,6 @@
 @property (nonatomic, retain, readonly) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic, readonly)         NSString*               applicationDocumentsDirectory;
 
-
++(AppDelegate *) instance;
 @end
 

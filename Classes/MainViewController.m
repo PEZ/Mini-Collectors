@@ -8,6 +8,9 @@
 #import "MainViewController.h"
 
 @interface MainViewController (Private)
+
+static NSDictionary *_barcodes;
+
 @end
 
 
@@ -24,15 +27,20 @@
   return self;
 }
 
+
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
+  [_barcodes release];
+  _barcodes = nil;
 }
 
 - (void)viewDidUnload {
+  [_barcodes release];
 }
 
 - (void)dealloc {
   [super dealloc];
+  
 }
 
 - (NSArray *) launcherItemsForSeries:(int) series {
@@ -125,10 +133,91 @@
   [reader release];
 }
 
+- (NSDictionary *) barcodes {
+  if (_barcodes == nil) {
+    _barcodes = [[NSDictionary alloc] initWithObjectsAndKeys:
+                 @"2-1", @"673419146791",
+                 @"2-2", @"673419146807",
+                 @"2-3", @"673419146814",
+                 @"2-4", @"673419146821",
+                 @"2-5", @"673419146838",
+                 @"2-6", @"673419146845",
+                 @"2-7", @"673419146852",
+                 @"2-8", @"673419146869",
+                 @"2-9", @"673419146876",
+                 @"2-10", @"673419146883",
+                 @"2-11", @"673419146890",
+                 @"2-12", @"673419147064",
+                 @"2-13", @"673419147071",
+                 @"2-14", @"673419147088",
+                 @"2-15", @"673419147095",
+                 @"2-16", @"67341947101",
+                 @"2-1", @"673419146951",
+                 @"2-2", @"673419146968",
+                 @"2-3", @"673419146975",
+                 @"2-4", @"673419146982",
+                 @"2-5", @"673419146999",
+                 @"2-6", @"67341947002",
+                 @"2-7", @"673419147019",
+                 @"2-8", @"673419147026",
+                 @"2-9", @"673419147033",
+                 @"2-10", @"673419147040",
+                 @"2-11", @"673419147057",
+                 @"2-12", @"673419146906",
+                 @"2-13", @"673419146913",
+                 @"2-14", @"673419146920",
+                 @"2-15", @"673419146937",
+                 @"2-16", @"673419146944",
+                 @"1-1", @"673419133760",
+                 @"1-2", @"673419133777",
+                 @"1-3", @"673419133784",
+                 @"1-4", @"673419133791",
+                 @"1-5", @"673419133807",
+                 @"1-6", @"673419133814",
+                 @"1-7", @"673419133821",
+                 @"1-8", @"673419133838",
+                 @"1-9", @"673419133845",
+                 @"1-10", @"673419133852",
+                 @"1-11", @"673419133869",
+                 @"1-12", @"673419133876",
+                 @"1-13", @"673419133883",
+                 @"1-14", @"673419133890",
+                 @"1-15", @"673419133906",
+                 @"1-16", @"673419134071",
+                 @"1-1", @"673419133913",
+                 @"1-2", @"673419133920",
+                 @"1-3", @"673419133944",
+                 @"1-4", @"673419133951",
+                 @"1-5", @"673419133968",
+                 @"1-6", @"673419133975",
+                 @"1-7", @"673419133982",
+                 @"1-8", @"673419133999",
+                 @"1-9", @"673419134002",
+                 @"1-10", @"673419134019",
+                 @"1-11", @"673419134026",
+                 @"1-12", @"673419134033",
+                 @"1-13", @"673419134040",
+                 @"1-14", @"673419134057",
+                 @"1-15", @"673419134064",
+                 @"1-16", @"673419133937",                 
+                 nil];
+  }
+  return _barcodes;
+}
+
+- (NSString *) trimLeadingZeroes:(NSString *) s {
+  NSInteger i = 0;
+  while ([[NSCharacterSet characterSetWithCharactersInString:@"0"] characterIsMember:[s characterAtIndex:i]]) {
+    i++;
+  }
+  return [s substringFromIndex:i];
+}
+
 - (void) imagePickerController: (UIImagePickerController*) reader
  didFinishPickingMediaWithInfo: (NSDictionary*) info
 {
-  // ADD: get the decode results
+  [reader dismissModalViewControllerAnimated: NO];
+
   id<NSFastEnumeration> results =
   [info objectForKey: ZBarReaderControllerResults];
   ZBarSymbol *symbol = nil;
@@ -136,6 +225,23 @@
     // EXAMPLE: just grab the first barcode
     break;
   
+  @try {
+    NSString *code = [self trimLeadingZeroes:symbol.data];    
+    NSString *fig = [[self barcodes] valueForKey:code];
+    if (fig != NULL) {
+      [self openURLAction:[NSString stringWithFormat:@"mc://figure/%@", fig]];
+    }
+    else {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Barcode: %@", code]
+                                                      message:@"That barcode doesn't match a Minifigure. (Tried the other barcode on the bag?)"
+                                                     delegate:self cancelButtonTitle:@"Roger that" otherButtonTitles:nil, nil];
+      [alert show];
+      [alert release];
+    }
+  }
+  @catch (NSException *e) {
+    //log
+  }
   // EXAMPLE: do something useful with the barcode data
   //resultText.text = symbol.data;
   
@@ -143,9 +249,6 @@
   //resultImage.image =
   //[info objectForKey: UIImagePickerControllerOriginalImage];
   
-  // ADD: dismiss the controller (NB dismiss from the *reader*!)
-  [reader dismissModalViewControllerAnimated: NO];
-  [self openURLAction:@"fb://item3"];
 }
 
 @end
