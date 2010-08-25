@@ -48,6 +48,7 @@ static NSDictionary *_barcodes;
   NSMutableArray *items = [NSMutableArray array];
   for (int i = 1; i <= 16; i++) {
     NSString *key = [NSString stringWithFormat:@"%d-%d", series, i];
+    //NSManagedObjectModel model = [[AppDelegate instance] managedObjectModel];
     NSString *name = [[Figure figureNames] valueForKey:key];
     NSString *image = [NSString stringWithFormat:@"bundle://%@-57.png", key];
     NSString *url = [NSString stringWithFormat:@"mc://figure/%@", key];

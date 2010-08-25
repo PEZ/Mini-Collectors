@@ -91,6 +91,7 @@
 		32BEAAB91221EF31003B0278 /* 2-16-250.png in Resources */ = {isa = PBXBuildFile; fileRef = 32BEAA791221EF31003B0278 /* 2-16-250.png */; };
 		32BEAAE412223C38003B0278 /* FigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEAAE312223C38003B0278 /* FigureViewController.m */; };
 		32BEAC8312240E05003B0278 /* Figure.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEAC8212240E05003B0278 /* Figure.m */; };
+		32BEADB01224F69E003B0278 /* ExtendedManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEADAF1224F69E003B0278 /* ExtendedManagedObject.m */; };
 		6E37974911B9BDCB0011C497 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E37972511B9BDB60011C497 /* libThree20Core.a */; };
 		6E37974A11B9BDCB0011C497 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E37972B11B9BDB60011C497 /* libThree20Network.a */; };
 		6E37974B11B9BDCC0011C497 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E37973111B9BDB60011C497 /* libThree20Style.a */; };
@@ -362,6 +363,8 @@
 		32BEAAE312223C38003B0278 /* FigureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FigureViewController.m; sourceTree = "<group>"; };
 		32BEAC8112240E05003B0278 /* Figure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Figure.h; sourceTree = "<group>"; };
 		32BEAC8212240E05003B0278 /* Figure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Figure.m; sourceTree = "<group>"; };
+		32BEADAE1224F69E003B0278 /* ExtendedManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedManagedObject.h; sourceTree = "<group>"; };
+		32BEADAF1224F69E003B0278 /* ExtendedManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendedManagedObject.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Mini_Collector_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mini_Collector_Prefix.pch; sourceTree = "<group>"; };
 		6E37971011B9BDB60011C497 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../three20/src/Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E37971311B9BDB60011C497 /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../three20/src/Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -418,6 +421,8 @@
 				324BBDA11221B122008631B0 /* DefaultStyleSheet.m */,
 				32BEAAE212223C38003B0278 /* FigureViewController.h */,
 				32BEAAE312223C38003B0278 /* FigureViewController.m */,
+				32BEADAE1224F69E003B0278 /* ExtendedManagedObject.h */,
+				32BEADAF1224F69E003B0278 /* ExtendedManagedObject.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -975,6 +980,7 @@
 				324BBDA21221B122008631B0 /* DefaultStyleSheet.m in Sources */,
 				32BEAAE412223C38003B0278 /* FigureViewController.m in Sources */,
 				32BEAC8312240E05003B0278 /* Figure.m in Sources */,
+				32BEADB01224F69E003B0278 /* ExtendedManagedObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

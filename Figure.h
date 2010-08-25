@@ -7,12 +7,13 @@
 //
 
 #import <CoreData/CoreData.h>
+#import "ExtendedManagedObject.h"
 
 
-@interface Figure :  NSManagedObject  {
+@interface Figure :  ExtendedManagedObject  {
 }
 
-+ (NSDictionary *) defaultData;
++ (NSArray *) defaultData;
 + (NSDictionary *) figureNames;
 
 @property (nonatomic, retain) NSNumber * series;

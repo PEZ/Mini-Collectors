@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "DefaultStyleSheet.h"
+#import "ExtendedManagedObject.h"
+#import "Figure.h"
 
 #define kStoreType      NSSQLiteStoreType
 #define kStoreFilename  @"db.sqlite"
@@ -42,23 +44,25 @@ static AppDelegate *_instance;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)storePath {
+  return [[self applicationDocumentsDirectory]
+          stringByAppendingPathComponent: kStoreFilename];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
   // Forcefully removes the model db and recreates it.
   //_resetModel = YES;
-
-  
-  NSManagedObjectContext *context = [self managedObjectContext];
-  NSManagedObject *figure = [NSEntityDescription
-                                     insertNewObjectForEntityForName:@"Figure" 
-                                     inManagedObjectContext:context];
-  [figure setValue:@"Robot" forKey:@"name"];
-  [figure setValue:@"1-1" forKey:@"key"];
-  [figure setValue:[NSNumber numberWithInt:1] forKey:@"series"];
-  [figure setValue:[NSNumber numberWithInt:0] forKey:@"count"];
-  NSError *error;
-  if (![context save:&error]) {
-    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+  BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[self storePath]];
+  if (!exists) {
+    NSManagedObjectContext *context = [self managedObjectContext];  
+    [ExtendedManagedObject managedObjectsFromArray:[Figure defaultData] inContext:context];
+    NSError *error;
+    if (![context save:&error]) {
+      NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
   }
+  
   
   TTNavigator* navigator = [TTNavigator navigator];
   navigator.persistenceMode = TTNavigatorPersistenceModeNone;
@@ -68,10 +72,9 @@ static AppDelegate *_instance;
   
   TTURLMap* map = navigator.URLMap;
 
-  [map from:@"*" toViewController:[TTWebController class]];
+  [map from:@"*" toViewController:[MainViewController class]];
   [map from:@"mc://main" toViewController:[MainViewController class]];
   [map from:@"mc://figure/(initWithKey:)/" toViewController:[FigureViewController class]];
-  //[map from:@"series://(initWithSeries:)" toViewController:[ReaderSampleViewController class]];
   
   if (![navigator restoreViewControllers]) {
     [navigator openURLAction:[TTURLAction actionWithURLPath:@"mc://main"]];
@@ -145,14 +148,6 @@ static AppDelegate *_instance;
   _managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];
   return _managedObjectModel;
 }
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-- (NSString*)storePath {
-  return [[self applicationDocumentsDirectory]
-    stringByAppendingPathComponent: kStoreFilename];
-}
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (NSURL*)storeUrl {
