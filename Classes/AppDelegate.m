@@ -46,6 +46,20 @@ static AppDelegate *_instance;
   // Forcefully removes the model db and recreates it.
   //_resetModel = YES;
 
+  
+  NSManagedObjectContext *context = [self managedObjectContext];
+  NSManagedObject *figure = [NSEntityDescription
+                                     insertNewObjectForEntityForName:@"Figure" 
+                                     inManagedObjectContext:context];
+  [figure setValue:@"Robot" forKey:@"name"];
+  [figure setValue:@"1-1" forKey:@"key"];
+  [figure setValue:[NSNumber numberWithInt:1] forKey:@"series"];
+  [figure setValue:[NSNumber numberWithInt:0] forKey:@"count"];
+  NSError *error;
+  if (![context save:&error]) {
+    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+  }
+  
   TTNavigator* navigator = [TTNavigator navigator];
   navigator.persistenceMode = TTNavigatorPersistenceModeNone;
 

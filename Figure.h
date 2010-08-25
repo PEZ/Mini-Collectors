@@ -9,9 +9,11 @@
 #import <CoreData/CoreData.h>
 
 
-@interface Figure :  NSManagedObject  
-{
+@interface Figure :  NSManagedObject  {
 }
+
++ (NSDictionary *) defaultData;
++ (NSDictionary *) figureNames;
 
 @property (nonatomic, retain) NSNumber * series;
 @property (nonatomic, retain) NSString * key;

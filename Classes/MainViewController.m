@@ -6,6 +6,7 @@
 
 
 #import "MainViewController.h"
+#import "Figure.h"
 
 @interface MainViewController (Private)
 
@@ -46,9 +47,10 @@ static NSDictionary *_barcodes;
 - (NSArray *) launcherItemsForSeries:(int) series {
   NSMutableArray *items = [NSMutableArray array];
   for (int i = 1; i <= 16; i++) {
-    NSString *name = [NSString stringWithFormat:@"%d-%d", series, i];
-    NSString *image = [NSString stringWithFormat:@"bundle://%@-57.png", name];
-    NSString *url = [NSString stringWithFormat:@"mc://figure/%@", name];
+    NSString *key = [NSString stringWithFormat:@"%d-%d", series, i];
+    NSString *name = [[Figure figureNames] valueForKey:key];
+    NSString *image = [NSString stringWithFormat:@"bundle://%@-57.png", key];
+    NSString *url = [NSString stringWithFormat:@"mc://figure/%@", key];
     TTLauncherItem *item = [[[TTLauncherItem alloc] initWithTitle:name image:image URL:url] autorelease];
     [items addObject:item];
   }
@@ -225,30 +227,18 @@ static NSDictionary *_barcodes;
     // EXAMPLE: just grab the first barcode
     break;
   
-  @try {
-    NSString *code = [self trimLeadingZeroes:symbol.data];    
-    NSString *fig = [[self barcodes] valueForKey:code];
-    if (fig != NULL) {
-      [self openURLAction:[NSString stringWithFormat:@"mc://figure/%@", fig]];
-    }
-    else {
-      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Barcode: %@", code]
-                                                      message:@"That barcode doesn't match a Minifigure. (Tried the other barcode on the bag?)"
-                                                     delegate:self cancelButtonTitle:@"Roger that" otherButtonTitles:nil, nil];
-      [alert show];
-      [alert release];
-    }
+  NSString *code = [self trimLeadingZeroes:symbol.data];    
+  NSString *fig = [[self barcodes] valueForKey:code];
+  if (fig != NULL) {
+    [self openURLAction:[NSString stringWithFormat:@"mc://figure/%@", fig]];
   }
-  @catch (NSException *e) {
-    //log
-  }
-  // EXAMPLE: do something useful with the barcode data
-  //resultText.text = symbol.data;
-  
-  //EXAMPLE: do something useful with the barcode image
-  //resultImage.image =
-  //[info objectForKey: UIImagePickerControllerOriginalImage];
-  
+  else {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Barcode: %@", code]
+                                                    message:@"That barcode doesn't match a Minifigure. (Tried the other barcode on the bag?)"
+                                                   delegate:self cancelButtonTitle:@"Roger that" otherButtonTitles:nil, nil];
+    [alert show];
+    [alert release];
+  }  
 }
 
 @end
