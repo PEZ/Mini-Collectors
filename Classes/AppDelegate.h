@@ -25,6 +25,7 @@
 
 @property (nonatomic, retain, readonly) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic, readonly)         NSString*               applicationDocumentsDirectory;
+@property (nonatomic, retain) NSManagedObjectModel* managedObjectModel;
 
 +(AppDelegate *) instance;
 @end

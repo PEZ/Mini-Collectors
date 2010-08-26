@@ -1,8 +1,16 @@
 #import "ExtendedManagedObject.h"
+#import "AppDelegate.h"
 
 @implementation ExtendedManagedObject
 
 @synthesize traversed;
+
+- (void) save {
+  NSError *error;
+  if (![[[AppDelegate instance] managedObjectContext] save:&error]) {
+    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+  }  
+}
 
 #pragma mark -
 #pragma mark Dictionary conversion methods

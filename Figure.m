@@ -19,6 +19,26 @@
 static NSArray *_defaultData;
 static NSDictionary *_figureNames;
 
++ (Figure *) figureFromKey:(NSString *)key {
+  NSManagedObjectModel *model = [AppDelegate instance].managedObjectModel;
+  NSManagedObjectContext *context = [[AppDelegate instance] managedObjectContext];
+  NSDictionary *substitutionDictionary = [NSDictionary dictionaryWithObjectsAndKeys:key, @"FKEY", nil];
+  NSFetchRequest *fetchRequest = [model fetchRequestFromTemplateWithName:@"figureByKey" substitutionVariables:substitutionDictionary];
+  NSError *error;
+  NSArray *results = [context executeFetchRequest:fetchRequest error:&error];
+  if (results != nil) {
+    if ([results count] > 0) {
+      return [results objectAtIndex:0];
+    } else {
+      NSLog(@"Whoops, couldn't fetch: %@", key);
+      return nil;
+    }
+  } else {
+    NSLog(@"Whoops, couldn't fetch: %@", [error localizedDescription]);
+    return nil;
+  }
+}
+
 + (NSArray *) defaultData {
   if (_defaultData == nil) {
     NSNumber *zero = [NSNumber numberWithInt: 0];

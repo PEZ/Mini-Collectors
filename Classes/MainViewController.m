@@ -48,12 +48,14 @@ static NSDictionary *_barcodes;
   NSMutableArray *items = [NSMutableArray array];
   for (int i = 1; i <= 16; i++) {
     NSString *key = [NSString stringWithFormat:@"%d-%d", series, i];
-    //NSManagedObjectModel model = [[AppDelegate instance] managedObjectModel];
-    NSString *name = [[Figure figureNames] valueForKey:key];
-    NSString *image = [NSString stringWithFormat:@"bundle://%@-57.png", key];
-    NSString *url = [NSString stringWithFormat:@"mc://figure/%@", key];
-    TTLauncherItem *item = [[[TTLauncherItem alloc] initWithTitle:name image:image URL:url] autorelease];
-    [items addObject:item];
+    Figure *figure = [Figure figureFromKey:key];
+    if (figure != nil) {
+      NSString *name = [figure name];
+      NSString *image = [NSString stringWithFormat:@"bundle://%@-57.png", key];
+      NSString *url = [NSString stringWithFormat:@"mc://figure/%@", key];
+      TTLauncherItem *item = [[[TTLauncherItem alloc] initWithTitle:name image:image URL:url] autorelease];
+      [items addObject:item];
+    }
   }
   return items;
 }

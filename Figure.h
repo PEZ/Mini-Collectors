@@ -8,11 +8,13 @@
 
 #import <CoreData/CoreData.h>
 #import "ExtendedManagedObject.h"
+#import "AppDelegate.h"
 
 
-@interface Figure :  ExtendedManagedObject  {
+@interface Figure : ExtendedManagedObject  {
 }
 
++ (Figure *) figureFromKey:(NSString *)key;
 + (NSArray *) defaultData;
 + (NSDictionary *) figureNames;
 

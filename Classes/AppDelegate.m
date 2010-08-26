@@ -30,6 +30,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation AppDelegate
 
+@synthesize managedObjectModel = _managedObjectModel;
+
 static AppDelegate *_instance;
 
 + (AppDelegate *) instance {
