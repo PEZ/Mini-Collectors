@@ -50,10 +50,11 @@ static NSDictionary *_barcodes;
     NSString *key = [NSString stringWithFormat:@"%d-%d", series, i];
     Figure *figure = [Figure figureFromKey:key];
     if (figure != nil) {
-      NSString *name = [figure name];
-      NSString *image = [NSString stringWithFormat:@"bundle://%@-57.png", key];
-      NSString *url = [NSString stringWithFormat:@"mc://figure/%@", key];
+      NSString *name = figure.name;
+      NSString *image = [NSString stringWithFormat:@"bundle://%@-57.png", figure.key];
+      NSString *url = [NSString stringWithFormat:@"mc://figure/%@", figure.key];
       TTLauncherItem *item = [[[TTLauncherItem alloc] initWithTitle:name image:image URL:url] autorelease];
+      item.badgeNumber = figure.count;
       [items addObject:item];
     }
   }

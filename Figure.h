@@ -6,24 +6,23 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import <CoreData/CoreData.h>
-#import "ExtendedManagedObject.h"
 #import "AppDelegate.h"
 
 
-@interface Figure : ExtendedManagedObject  {
+@interface Figure : NSObject <NSCoding> {
+  int _series;
+  NSString *_key;
+  int _count;
+  NSString *_name;
 }
+@property (nonatomic) int series;
+@property (nonatomic, retain) NSString *key;
+@property (nonatomic) int count;
+@property (nonatomic, retain) NSString *name;
 
 + (Figure *) figureFromKey:(NSString *)key;
-+ (NSArray *) defaultData;
-+ (NSDictionary *) figureNames;
-
-@property (nonatomic, retain) NSNumber * series;
-@property (nonatomic, retain) NSString * key;
-@property (nonatomic, retain) NSNumber * count;
-@property (nonatomic, retain) NSString * name;
++ (NSDictionary *) figures;
++ (void) saveFigures;
++ (void) loadFigures;
 
 @end
-
-
-

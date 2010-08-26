@@ -13,20 +13,12 @@
 #import "MainViewController.h"
 #import "FigureViewController.h"
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
-  NSManagedObjectModel*         _managedObjectModel;
-  NSManagedObjectContext*       _managedObjectContext;
-  NSPersistentStoreCoordinator* _persistentStoreCoordinator;
-
-  // App State
-  BOOL                          _modelCreated;
-  BOOL                          _resetModel;
 }
+- (NSString *)applicationDocumentsDirectory;
 
-@property (nonatomic, retain, readonly) NSManagedObjectContext* managedObjectContext;
-@property (nonatomic, readonly)         NSString*               applicationDocumentsDirectory;
-@property (nonatomic, retain) NSManagedObjectModel* managedObjectModel;
-
-+(AppDelegate *) instance;
 @end
 
