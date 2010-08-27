@@ -19,7 +19,7 @@ static NSDictionary *_barcodes;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-    self.title = @"Minifigures";
+    self.title = @"Mini Collector";
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
                                                initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
                                                target:self
@@ -55,6 +55,7 @@ static NSDictionary *_barcodes;
       NSString *url = [NSString stringWithFormat:@"mc://figure/%@", figure.key];
       TTLauncherItem *item = [[[TTLauncherItem alloc] initWithTitle:name image:image URL:url] autorelease];
       item.badgeNumber = figure.count;
+      figure.launcherItem = item;
       [items addObject:item];
     }
   }

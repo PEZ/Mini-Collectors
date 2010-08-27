@@ -6,15 +6,19 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import <Three20UI/Three20UI.h>
 #import "Figure.h"
 
 @interface FigureViewController : TTModelViewController {
-  NSString *_key;
+  Figure *_figure;
   TTImageView *_imageView;
+  TTButton *_downButton;
+  TTButton *_upButton;
 }
 
-@property (nonatomic, copy) NSString *key;
+@property (nonatomic, retain) Figure *figure;
 @property (nonatomic, copy) TTImageView *imageView;
+@property (nonatomic, copy) TTButton *downButton;
+@property (nonatomic, copy) TTButton *upButton;
 
 @end
