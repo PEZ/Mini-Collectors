@@ -79,28 +79,6 @@ static NSDictionary *_barcodes;
   _launcherView.columnCount = 4;
   _launcherView.pages = [self launcherPages];
   [self.view addSubview:_launcherView];
-  
-  //TTLauncherItem* item = [_launcherView itemWithURL:@"fb://item3"];
-  //item.badgeNumber = 4;
-  
-  /*
-	_launcherView.delegate = self;
-	_launcherView.columnCount = 4;
-	_launcherView.pages = [NSArray arrayWithObjects:
-                         [NSArray arrayWithObjects:
-                          [[[TTLauncherItem alloc] initWithTitle:@"Search Test"
-                                                           image:@"bundle://Icon.png"
-                                                             URL:@"tt://searchTest" canDelete:YES] autorelease],
-                          [[[TTLauncherItem alloc] initWithTitle:@"Photo Test"
-                                                           image:@"bundle://Icon.png"
-                                                             URL:@"tt://photoTest1" canDelete:YES] autorelease],
-                          [[[TTLauncherItem alloc] initWithTitle:@"Table Item"
-                                                           image:@"bundle://Icon.png"
-                                                             URL:@"tt://tableItemTest" canDelete:YES] autorelease],
-                          nil], 
-                         nil
-                         ];
-  */
 }
 
 - (void) openURLAction: (NSString *) URL  {
@@ -122,19 +100,15 @@ static NSDictionary *_barcodes;
 
 - (IBAction) scanButtonTapped
 {
-  // ADD: present a barcode reader that scans from the camera feed
   ZBarReaderViewController *reader = [ZBarReaderViewController new];
   reader.readerDelegate = self;
   
   ZBarImageScanner *scanner = reader.scanner;
-  // TODO: (optional) additional reader configuration here
-  
-  // EXAMPLE: disable rarely used I2/5 to improve performance
+
   [scanner setSymbology: ZBAR_I25
                  config: ZBAR_CFG_ENABLE
                      to: 0];
-  
-  // present and release the controller
+
   [self presentModalViewController: reader
                           animated: YES];
   [reader release];
@@ -229,7 +203,6 @@ static NSDictionary *_barcodes;
   [info objectForKey: ZBarReaderControllerResults];
   ZBarSymbol *symbol = nil;
   for(symbol in results)
-    // EXAMPLE: just grab the first barcode
     break;
   
   NSString *code = [self trimLeadingZeroes:symbol.data];    

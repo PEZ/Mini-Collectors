@@ -12,13 +12,16 @@
 @interface FigureViewController : TTModelViewController {
   Figure *_figure;
   TTImageView *_imageView;
-  TTButton *_downButton;
-  TTButton *_upButton;
+//  TTButton *_downButton;
+//  TTButton *_upButton;
+  TTLabel *_figureCountLabel;
 }
 
+
 @property (nonatomic, retain) Figure *figure;
-@property (nonatomic, copy) TTImageView *imageView;
-@property (nonatomic, copy) TTButton *downButton;
-@property (nonatomic, copy) TTButton *upButton;
+@property (nonatomic, retain) TTImageView *imageView;
+//@property (nonatomic, retain) TTButton *downButton;
+//@property (nonatomic, retain) TTButton *upButton;
+@property (nonatomic, retain) TTLabel *figureCountLabel;
 
 @end

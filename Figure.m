@@ -49,7 +49,7 @@ static NSDictionary *_figures;
 
 + (NSString *) archivePath {
   AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-  return [[delegate applicationDocumentsDirectory] stringByAppendingFormat:kArchiveFile];
+  return [[delegate applicationDocumentsDirectory] stringByAppendingPathComponent:kArchiveFile];
 }
 
 + (Figure *) figureFromKey:(NSString *)key {
@@ -67,7 +67,7 @@ static NSDictionary *_figures;
 + (void) saveFigures {
   BOOL result = [NSKeyedArchiver archiveRootObject:_figures toFile:[self archivePath]];
   if (!result) {
-    NSLog(@"FAIL: Saving figures");
+    NSLog(@"FAIL: Saving figures to %@", [self archivePath]);
   }
 }
 
