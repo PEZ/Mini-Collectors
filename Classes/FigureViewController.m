@@ -10,7 +10,7 @@
 #import "DefaultStyleSheet.h"
 #import <Three20UI/UIViewAdditions.h>
 
-#define MARGIN 30
+#define MARGIN 5
 
 @implementation FigureViewController
 
@@ -19,10 +19,19 @@
 //@synthesize downButton = _downButton;
 //@synthesize upButton = _upButton;
 @synthesize figureCountLabel = _figureCountLabel;
+@synthesize hidden = _hidden;
 
 - (id)initWithKey:(NSString *)key {
   if (self = [self init]) {
     self.figure = [Figure figureFromKey:key];
+    self.hidden = NO;
+  }
+  return self;
+}
+
+- (id)initHiddenWithKey:(NSString *)key {
+  if (self = [self initWithKey:key]) {
+    _hidden = YES;
   }
   return self;
 }
@@ -37,32 +46,47 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // private
 
-- (void)layout {
-  TTFlowLayout* flowLayout = [[[TTFlowLayout alloc] init] autorelease];
-  flowLayout.padding = 2;
-  flowLayout.spacing = 2;
-  CGSize size = [flowLayout layoutSubviews:self.view.subviews forView:self.view];
-  
-  UIScrollView* scrollView = (UIScrollView*)self.view;
-  scrollView.contentSize = CGSizeMake(scrollView.width, size.height);
-}
+//- (void)layout {
+//  TTFlowLayout* flowLayout = [[[TTFlowLayout alloc] init] autorelease];
+//  flowLayout.padding = MARGIN;
+//  flowLayout.spacing = MARGIN;
+//  CGSize size = [flowLayout layoutSubviews:self.view.subviews forView:self.view];
+//  
+//  UIScrollView* scrollView = (UIScrollView*)self.view;
+//  scrollView.contentSize = CGSizeMake(scrollView.width, size.height);
+//}
 
 
 - (void)updateCountLabel {
   _figureCountLabel.text = [NSString stringWithFormat:@"Collected: %d", _figure.count];
-  [_figureCountLabel sizeToFit];
 }
 
 - (void)decreaseFigureCount {
   [_figure decreaseCount];
   [self updateCountLabel];
-  [_figureCountLabel sizeToFit];
 }
 
 - (void)increaseFigureCount {
   [_figure increaseCount];
   [self updateCountLabel];
-  [_figureCountLabel sizeToFit];
+}
+
+- (void) setupButton:(TTButton *)button withSelector:(SEL)selector atX:(float)x addToView:(UIView *)aView {
+  [button setFrame:CGRectMake(x, 1, 30, 30)];
+  [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+  button.font = [UIFont boldSystemFontOfSize:24];
+  [aView addSubview:button];
+}
+
+- (NSString *) imagePath {
+  return _hidden ? [NSString stringWithFormat:@"bundle://Hidden-%d.png", _figure.series] : [NSString stringWithFormat:@"bundle://%@-320.png", _figure.key];
+}
+
+- (void) unHide {
+  self.hidden = NO;
+  self.title = _figure.name;
+  self.navigationItem.rightBarButtonItem = nil;
+  _imageView.urlPath = [self imagePath];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,20 +94,21 @@
 
 - (void)dealloc {
   TT_RELEASE_SAFELY(_imageView);
+  TT_RELEASE_SAFELY(_figureCountLabel);
 	[super dealloc];
 }
 
-- (void) setupButton:(TTButton *)button withSelector:(SEL)selector addToView:(UIView *)aView {
-  [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-  button.font = [UIFont boldSystemFontOfSize:20];
-  [button sizeToFit];
-  [aView addSubview:button];
-}
-
 - (void)loadView {
-//  self.navigationItem.rightBarButtonItem
-//  = [[[UIBarButtonItem alloc] initWithTitle:@"Increase Font" style:UIBarButtonItemStyleBordered
-//                                     target:self action:@selector(increaseFont)] autorelease];
+  if (_hidden) {
+    self.navigationItem.rightBarButtonItem
+    = [[[UIBarButtonItem alloc] initWithTitle:@"Reveal" style:UIBarButtonItemStyleBordered
+                                       target:self action:@selector(unHide)] autorelease];
+    self.title = _figure.count > 0 ? @"You have it" : @"Not collected!";
+  }
+  else {
+    self.title = _figure.name;
+  }
+
   
   UIScrollView* scrollView = [[[UIScrollView alloc] initWithFrame:TTNavigationFrame()] autorelease];
 	scrollView.autoresizesSubviews = YES;
@@ -93,27 +118,33 @@
   scrollView.delaysContentTouches = NO;
   self.view = scrollView;
   
-  NSArray* widgets = [NSArray arrayWithObjects:
-                      [TTButton buttonWithStyle:@"defaultButton:" title:@"-"],
-                      [TTButton buttonWithStyle:@"defaultButton:" title:@"+"],
-                      nil];
-
-  [self setupButton:[widgets objectAtIndex:0] withSelector:@selector(decreaseFigureCount) addToView:scrollView];
-  [self setupButton:[widgets objectAtIndex:1] withSelector:@selector(increaseFigureCount) addToView:scrollView];
-
-  _figureCountLabel = [[TTLabel alloc] initWithText:@"0"],
-  _figureCountLabel.font = [UIFont boldSystemFontOfSize:14];
-  _figureCountLabel.backgroundColor = [UIColor whiteColor];
-  [self updateCountLabel];
-  [scrollView addSubview:_figureCountLabel];
-
+  float imageY = 30;
   
-  [self layout];
+  if (!_hidden) {
+    NSArray* widgets = [NSArray arrayWithObjects:
+                        [TTButton buttonWithStyle:@"defaultButton:" title:@"-"],
+                        [TTButton buttonWithStyle:@"defaultButton:" title:@"+"],
+                        nil];
+    
+    [self setupButton:[widgets objectAtIndex:0] withSelector:@selector(decreaseFigureCount) atX:285 addToView:scrollView];
+    [self setupButton:[widgets objectAtIndex:1] withSelector:@selector(increaseFigureCount) atX:240 addToView:scrollView];
+    
+    _figureCountLabel = [[[UILabel alloc] initWithFrame:CGRectMake(MARGIN, MARGIN, 200, 25)] retain];
+    _figureCountLabel.font = [UIFont systemFontOfSize:20];
+    _figureCountLabel.textColor = [UIColor whiteColor];
+    _figureCountLabel.backgroundColor = [UIColor blackColor];
+    
+    [self updateCountLabel];
+    
+    [scrollView addSubview:_figureCountLabel];
+    
+    imageY = ((TTButton *)[widgets objectAtIndex:0]).frame.size.height + 20;
+  }
 
-  _imageView = [[TTImageView alloc] initWithFrame:CGRectMake(MARGIN, ((TTButton *)[widgets objectAtIndex:0]).frame.size.height + 20, self.view.frame.size.width - 20, 50)];
+  _imageView = [[TTImageView alloc] initWithFrame:CGRectMake(0, imageY, self.view.frame.size.width, 0)];
   _imageView.autoresizesToImage = YES;
-  _imageView.urlPath = [NSString stringWithFormat:@"bundle://%@-250.png", _figure.key];
-  //self.imageView.center = CGPointMake(self.view.frame.size.width/2, 150);
+  _imageView.urlPath = [self imagePath];
+  
   [self.view addSubview:_imageView];
 }
 

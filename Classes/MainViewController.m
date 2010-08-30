@@ -208,7 +208,7 @@ static NSDictionary *_barcodes;
   NSString *code = [self trimLeadingZeroes:symbol.data];    
   NSString *fig = [[self barcodes] valueForKey:code];
   if (fig != NULL) {
-    [self openURLAction:[NSString stringWithFormat:@"mc://figure/%@", fig]];
+    [self openURLAction:[NSString stringWithFormat:@"mc://hidden/%@", fig]];
   }
   else {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Barcode: %@", code]

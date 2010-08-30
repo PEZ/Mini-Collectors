@@ -38,28 +38,22 @@
 - (TTStyle*)defaultButton:(UIControlState)state {
   if (state == UIControlStateNormal) {
     return
-    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:8] next:
-     [TTShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.7) blur:3 offset:CGSizeMake(2, 2) next:
-      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0.25, 0.25, 0.25, 0.25) next:
-       [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:
-        [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-0.25, -0.25, -0.25, -0.25) next:
-         [TTSolidBorderStyle styleWithColor:RGBCOLOR(161, 167, 178) width:1 next:
-          [TTInsetStyle styleWithInset:UIEdgeInsetsMake(2, 0, 0, 0) next:
-           [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(11, 10, 9, 10) next:
-            [TTTextStyle styleWithFont:nil color:TTSTYLEVAR(linkTextColor)
-                           shadowColor:[UIColor colorWithWhite:255 alpha:0.4]
-                          shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]]]];
+    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(5, 0, 0, 0) next:
+    [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:2] next:
+      [TTReflectiveFillStyle styleWithColor:RGBACOLOR(12,14,21,0.9) next:
+      [TTSolidBorderStyle styleWithColor:[UIColor whiteColor] width:1 next:
+      [TTTextStyle styleWithFont:nil color:[UIColor whiteColor]
+                     shadowColor:[UIColor colorWithWhite:255 alpha:0.4]
+                    shadowOffset:CGSizeMake(0, -1) next:nil]]]]];
   } else if (state == UIControlStateHighlighted) {
     return
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(3, 3, 0, 0) next:
-     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:8] next:
-      [TTSolidFillStyle styleWithColor:[UIColor whiteColor] next:
-       [TTSolidBorderStyle styleWithColor:RGBCOLOR(161, 167, 178) width:1 next:
-        [TTInsetStyle styleWithInset:UIEdgeInsetsMake(2, 0, 0, 0) next:
-         [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(11, 10, 9, 10) next:
-          [TTTextStyle styleWithFont:nil color:TTSTYLEVAR(linkTextColor)
-                         shadowColor:[UIColor colorWithWhite:255 alpha:0.4]
-                        shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]];
+    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, 0, 0, 0) next:
+     [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:3] next:
+      [TTReflectiveFillStyle styleWithColor:RGBACOLOR(12,14,21,0.9) next:
+       [TTSolidBorderStyle styleWithColor:[UIColor whiteColor] width:1 next:
+       [TTTextStyle styleWithFont:nil color:[UIColor whiteColor]
+                      shadowColor:[UIColor colorWithWhite:255 alpha:0.4]
+                     shadowOffset:CGSizeMake(0, -1) next:nil]]]]];
   } else {
     return nil;
   }

@@ -31,6 +31,7 @@
   [map from:@"*" toViewController:[MainViewController class]];
   [map from:@"mc://main" toViewController:[MainViewController class]];
   [map from:@"mc://figure/(initWithKey:)/" toViewController:[FigureViewController class]];
+  [map from:@"mc://hidden/(initHiddenWithKey:)/" toViewController:[FigureViewController class]];
   
   if (![navigator restoreViewControllers]) {
     [navigator openURLAction:[TTURLAction actionWithURLPath:@"mc://main"]];

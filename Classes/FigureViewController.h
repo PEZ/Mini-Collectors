@@ -14,7 +14,8 @@
   TTImageView *_imageView;
 //  TTButton *_downButton;
 //  TTButton *_upButton;
-  TTLabel *_figureCountLabel;
+  UILabel *_figureCountLabel;
+  BOOL _hidden;
 }
 
 
@@ -22,6 +23,10 @@
 @property (nonatomic, retain) TTImageView *imageView;
 //@property (nonatomic, retain) TTButton *downButton;
 //@property (nonatomic, retain) TTButton *upButton;
-@property (nonatomic, retain) TTLabel *figureCountLabel;
+@property (nonatomic, retain) UILabel *figureCountLabel;
+@property (nonatomic) BOOL hidden;
+
+- (id)initWithKey:(NSString *)key;
+- (id) initHiddenWithKey:(NSString *)key;
 
 @end
