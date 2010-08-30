@@ -91,6 +91,7 @@
 		327497B5122B204400BED32D /* 2-16-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 32749795122B204400BED32D /* 2-16-57.png */; };
 		327497B6122B204400BED32D /* 2-16-320.png in Resources */ = {isa = PBXBuildFile; fileRef = 32749796122B204400BED32D /* 2-16-320.png */; };
 		327497CB122B283D00BED32D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 327497CA122B283D00BED32D /* Default.png */; };
+		32749807122B360900BED32D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32749806122B360900BED32D /* Icon.png */; };
 		32BEAAE412223C38003B0278 /* FigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEAAE312223C38003B0278 /* FigureViewController.m */; };
 		32BEAC8312240E05003B0278 /* Figure.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEAC8212240E05003B0278 /* Figure.m */; };
 		6E37974911B9BDCB0011C497 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E37972511B9BDB60011C497 /* libThree20Core.a */; };
@@ -362,7 +363,8 @@
 		32749795122B204400BED32D /* 2-16-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "2-16-57.png"; path = "Images/2-16-57.png"; sourceTree = "<group>"; };
 		32749796122B204400BED32D /* 2-16-320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "2-16-320.png"; path = "Images/2-16-320.png"; sourceTree = "<group>"; };
 		327497CA122B283D00BED32D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		327497FB122B322800BED32D /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		32749806122B360900BED32D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		32749835122B8A9A00BED32D /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		32BEAAE212223C38003B0278 /* FigureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FigureViewController.h; sourceTree = "<group>"; };
 		32BEAAE312223C38003B0278 /* FigureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FigureViewController.m; sourceTree = "<group>"; };
 		32BEAC8112240E05003B0278 /* Figure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Figure.h; path = ../Figure.h; sourceTree = "<group>"; };
@@ -440,7 +442,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				327497FB122B322800BED32D /* Entitlements.plist */,
 				32BEAA2C1221EF07003B0278 /* Images */,
 				324BBB59121FD178008631B0 /* ZBarSDK */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -465,9 +466,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				32749806122B360900BED32D /* Icon.png */,
 				327497CA122B283D00BED32D /* Default.png */,
 				EB383D1010BBFC630000B2D2 /* Three20.bundle */,
 				8D1107310486CEB800E47090 /* Mini_Collector-Info.plist */,
+				32749835122B8A9A00BED32D /* Entitlements.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -968,6 +971,7 @@
 				327497B5122B204400BED32D /* 2-16-57.png in Resources */,
 				327497B6122B204400BED32D /* 2-16-320.png in Resources */,
 				327497CB122B283D00BED32D /* Default.png in Resources */,
+				32749807122B360900BED32D /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1083,6 +1087,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Peter Stromberg";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1098,8 +1103,51 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Peter Stromberg";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Mini_Collector_Prefix.pch;
+				HEADER_SEARCH_PATHS = ../three20/Build/Products/three20;
+				INFOPLIST_FILE = "Mini_Collector-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ZBarSDK\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "Mini Collector";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "89DAC2B4-BB47-4C12-B66F-EE39AEA649B8";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		32749855122B8E8600BED32D /* Distribution AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Peter Stromberg";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B8AEEF1A-839E-4AD2-B32A-1E98690D1CD9";
+				SDKROOT = iphoneos4.0;
+			};
+			name = "Distribution AppStore";
+		};
+		32749856122B8E8600BED32D /* Distribution AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Peter Stromberg (42W53LZB79)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1116,9 +1164,10 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "Mini Collector";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CDD23441-A56F-42C8-AEB7-CE80791BCBDD";
+				VALIDATE_PRODUCT = YES;
 			};
-			name = Distribution;
+			name = "Distribution AppStore";
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1159,6 +1208,7 @@
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				327497F1122B306400BED32D /* Distribution */,
+				32749856122B8E8600BED32D /* Distribution AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1169,6 +1219,7 @@
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
 				327497F0122B306400BED32D /* Distribution */,
+				32749855122B8E8600BED32D /* Distribution AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
