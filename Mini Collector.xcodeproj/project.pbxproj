@@ -1083,6 +1083,49 @@
 			};
 			name = Release;
 		};
+		32500D0012313D7A0004E55A /* Distribution Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Peter Stromberg";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B8AEEF1A-839E-4AD2-B32A-1E98690D1CD9";
+				SDKROOT = iphoneos4.0;
+			};
+			name = "Distribution Ad Hoc";
+		};
+		32500D0112313D7A0004E55A /* Distribution Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Peter Stromberg";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Mini_Collector_Prefix.pch;
+				HEADER_SEARCH_PATHS = ../three20/Build/Products/three20;
+				INFOPLIST_FILE = "Mini_Collector-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ZBarSDK\"",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "Mini Collector";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B3F36610-61B5-4343-9E27-373DDF3BEF0E";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Distribution Ad Hoc";
+		};
 		327497F0122B306400BED32D /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1147,14 +1190,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Peter Stromberg (42W53LZB79)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Peter Stromberg";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Mini_Collector_Prefix.pch;
 				HEADER_SEARCH_PATHS = ../three20/Build/Products/three20;
 				INFOPLIST_FILE = "Mini_Collector-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ZBarSDK\"",
@@ -1164,7 +1207,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "Mini Collector";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CDD23441-A56F-42C8-AEB7-CE80791BCBDD";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "89DAC2B4-BB47-4C12-B66F-EE39AEA649B8";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = "Distribution AppStore";
@@ -1209,6 +1252,7 @@
 				1D6058950D05DD3E006BFB54 /* Release */,
 				327497F1122B306400BED32D /* Distribution */,
 				32749856122B8E8600BED32D /* Distribution AppStore */,
+				32500D0112313D7A0004E55A /* Distribution Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1220,6 +1264,7 @@
 				C01FCF5008A954540054247B /* Release */,
 				327497F0122B306400BED32D /* Distribution */,
 				32749855122B8E8600BED32D /* Distribution AppStore */,
+				32500D0012313D7A0004E55A /* Distribution Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
