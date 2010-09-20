@@ -6,19 +6,29 @@
 //  Copyright __MyCompanyName__ 2010. All rights reserved.
 //
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 #import "MainViewController.h"
 #import "FigureViewController.h"
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
+#define kMiniCollectorDataFile @"MiniCollector.data"
+
+
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
+  BOOL _gameCenterActivated;
+  NSArray *_gameCenterObjects;
+  NSMutableDictionary *_achievementsDictionary;
 }
+
+@property (nonatomic) BOOL gameCenterActivated;
+@property (nonatomic, retain) NSArray *gameCenterObjects;
+@property(nonatomic, retain) NSMutableDictionary *achievementsDictionary;
+
++ (AppDelegate *)getInstance;
++ (BOOL) isGameCenterAvailable;
 - (NSString *)applicationDocumentsDirectory;
+- (void) loadAchievements;
+- (void) reportAchievementIdentifier: (NSString*) identifier percentComplete: (float) percent;
+- (GKAchievement*) getAchievementForIdentifier: (NSString*) identifier;
+- (void) reportAchievementIdentifier: (NSString*) identifier percentComplete: (float) percent;
 
 @end
 

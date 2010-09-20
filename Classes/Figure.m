@@ -31,19 +31,26 @@ static NSDictionary *_figures;
   return self;
 }
 
-
 - (void) countChanged {
   self.launcherItem.badgeNumber = self.count;
   [Figure saveFigures];  
 }
 
+- (NSString *) achievmentIdentifier {
+  return [NSString stringWithFormat:@"F_%@", [self.key stringByReplacingOccurrencesOfString:@"-" withString:@"_"]];
+}
+
 - (void) increaseCount {
   self.count++;
+  [[AppDelegate getInstance] reportAchievementIdentifier:[self achievmentIdentifier] percentComplete:100.0];
   [self countChanged];
 }
 
 - (void) decreaseCount {
   self.count = self.count == 0 ? 0 : self.count - 1;
+  if (self.count == 0) {
+    [[AppDelegate getInstance] reportAchievementIdentifier:[self achievmentIdentifier] percentComplete:0.0];
+  }
   [self countChanged];
 }
 
@@ -53,11 +60,11 @@ static NSDictionary *_figures;
 }
 
 + (Figure *) figureFromKey:(NSString *)key {
-  return [[Figure figures] objectForKey:key];
+  return [[self figures] objectForKey:key];
 }
 
 + (Figure *) figureFromDict:(NSDictionary *)dict {
-  return [[Figure alloc] initFromDict:dict];
+  return [[self alloc] initFromDict:dict];
 }
 
 + (NSDictionary *) figures {

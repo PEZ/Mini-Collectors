@@ -4,18 +4,38 @@
 //
 //  Created by Rodrigo Mazzilli on 9/25/09.
 
-
 #import "MainViewController.h"
 #import "Figure.h"
 
 @interface MainViewController (Private)
 
 static NSDictionary *_barcodes;
+static MainViewController *_instance;
 
 @end
 
-
 @implementation MainViewController
+
++ (MainViewController *) getInstance {
+  return _instance;
+}
+
+- (void) authenticationChanged {
+  if ([GKLocalPlayer localPlayer].isAuthenticated) {
+    //self.localPlayerAuthenticated = YES;
+  }
+  else {
+    //self.gameCenterActivated = NO;
+  }
+}
+
+- (void) registerForAuthenticationNotification {
+  NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+  [nc addObserver: self
+         selector:@selector(authenticationChanged)
+             name:GKPlayerAuthenticationDidChangeNotificationName
+           object:nil];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -24,7 +44,19 @@ static NSDictionary *_barcodes;
                                                initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
                                                target:self
                                                action:@selector(scanButtonTapped)] autorelease];
+    if ([AppDelegate isGameCenterAvailable]) {
+      self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
+                                                initWithImage:[UIImage imageNamed:@"108-badge.png"]
+                                                style:UIBarButtonItemStylePlain
+                                                target:self
+                                                action:@selector(showAchievments)] autorelease];
+      [self registerForAuthenticationNotification];
+      if ([AppDelegate getInstance].gameCenterActivated) {
+        [self authenticateLocalPlayer:nil];
+      }
+    }
   }
+  _instance = self;
   return self;
 }
 
@@ -41,7 +73,45 @@ static NSDictionary *_barcodes;
 
 - (void)dealloc {
   [super dealloc];
-  
+}
+
+- (void) authenticateLocalPlayer:(SEL)callBack {
+  [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) {
+    if (error == nil) {
+      [AppDelegate getInstance].gameCenterActivated = YES;
+      if (callBack != nil) {
+        [self performSelector:callBack];
+      }
+    }
+    else {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error contacting Game Center"
+                                                      message:[NSString stringWithFormat:@"(%@)", [error localizedDescription]]
+                                                     delegate:self cancelButtonTitle:@"Roger that" otherButtonTitles:nil, nil];
+      [alert show];
+      [alert release];
+      
+    }
+  }];
+}
+
+- (void)showAchievments {
+  GKLocalPlayer *lp = [GKLocalPlayer localPlayer];
+  if (lp.authenticated) {
+    GKAchievementViewController *achievements = [[GKAchievementViewController alloc] init];
+    if (achievements != nil) {
+      achievements.achievementDelegate = self;
+      [self presentModalViewController: achievements animated: YES];
+    }
+    [achievements release];
+  }
+  else {
+    [self authenticateLocalPlayer:@selector(showAchievments)];
+  }
+
+}
+
+- (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController {
+  [self dismissModalViewControllerAnimated:YES];
 }
 
 - (NSArray *) launcherItemsForSeries:(int) series {
@@ -98,8 +168,7 @@ static NSDictionary *_barcodes;
 }
 
 
-- (IBAction) scanButtonTapped
-{
+- (IBAction) scanButtonTapped {
   ZBarReaderViewController *reader = [ZBarReaderViewController new];
   reader.readerDelegate = self;
   
