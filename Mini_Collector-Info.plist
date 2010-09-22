@@ -21,10 +21,12 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>LSRequiresIPhoneOS</key>
-	<false/>
+	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
-	<array><string>still-camera</string></array>
+	<array>
+		<string>still-camera</string>
+	</array>
 </dict>
 </plist>

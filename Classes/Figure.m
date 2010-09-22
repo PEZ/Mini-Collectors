@@ -40,17 +40,24 @@ static NSDictionary *_figures;
   return [NSString stringWithFormat:@"F_%@", [self.key stringByReplacingOccurrencesOfString:@"-" withString:@"_"]];
 }
 
+- (void) reportAchievment {
+  float percentComplete = [[AppDelegate getInstance] getAchievementForIdentifier:[self achievmentIdentifier]].percentComplete;
+  if (percentComplete < 100.0) {
+    [[AppDelegate getInstance] reportAchievementIdentifier:[self achievmentIdentifier] percentComplete:100.0];
+    NSString *sIdentifier = [NSString stringWithFormat:@"S%d", self.series];
+    float percentSeries = [[AppDelegate getInstance] getAchievementForIdentifier:sIdentifier].percentComplete;
+    [[AppDelegate getInstance] reportAchievementIdentifier:sIdentifier percentComplete:percentSeries + 100.0/15.999];
+  }
+}
+
 - (void) increaseCount {
   self.count++;
-  [[AppDelegate getInstance] reportAchievementIdentifier:[self achievmentIdentifier] percentComplete:100.0];
+  [self reportAchievment];
   [self countChanged];
 }
 
 - (void) decreaseCount {
   self.count = self.count == 0 ? 0 : self.count - 1;
-  if (self.count == 0) {
-    [[AppDelegate getInstance] reportAchievementIdentifier:[self achievmentIdentifier] percentComplete:0.0];
-  }
   [self countChanged];
 }
 

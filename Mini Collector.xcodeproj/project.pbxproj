@@ -13,8 +13,6 @@
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
 		323EAC96123EA77A004D85F6 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 323EAC95123EA77A004D85F6 /* GameKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		323EADB3123ED726004D85F6 /* 13-target.png in Resources */ = {isa = PBXBuildFile; fileRef = 323EADB2123ED726004D85F6 /* 13-target.png */; };
-		323EAE7F12401B09004D85F6 /* 108-badge.png in Resources */ = {isa = PBXBuildFile; fileRef = 323EAE7E12401B09004D85F6 /* 108-badge.png */; };
 		324BBB75121FD178008631B0 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 324BBB6F121FD178008631B0 /* libzbar.a */; };
 		324BBB76121FD178008631B0 /* zbar-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 324BBB71121FD178008631B0 /* zbar-back.png */; };
 		324BBB77121FD178008631B0 /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 324BBB72121FD178008631B0 /* zbar-help.html */; };
@@ -97,6 +95,7 @@
 		32749807122B360900BED32D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 32749806122B360900BED32D /* Icon.png */; };
 		32BEAAE412223C38003B0278 /* FigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEAAE312223C38003B0278 /* FigureViewController.m */; };
 		32BEAC8312240E05003B0278 /* Figure.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEAC8212240E05003B0278 /* Figure.m */; };
+		32C4FAD2124963680069E688 /* achievements.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C4FAD1124963680069E688 /* achievements.png */; };
 		6E37974911B9BDCB0011C497 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E37972511B9BDB60011C497 /* libThree20Core.a */; };
 		6E37974A11B9BDCB0011C497 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E37972B11B9BDB60011C497 /* libThree20Network.a */; };
 		6E37974B11B9BDCC0011C497 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E37973111B9BDB60011C497 /* libThree20Style.a */; };
@@ -267,8 +266,6 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		323EAC95123EA77A004D85F6 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		323EADB2123ED726004D85F6 /* 13-target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "13-target.png"; path = "Images/13-target.png"; sourceTree = "<group>"; };
-		323EAE7E12401B09004D85F6 /* 108-badge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "108-badge.png"; path = "Images/108-badge.png"; sourceTree = "<group>"; };
 		324BBB5D121FD178008631B0 /* Decoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Decoder.h; sourceTree = "<group>"; };
 		324BBB5E121FD178008631B0 /* Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exception.h; sourceTree = "<group>"; };
 		324BBB5F121FD178008631B0 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
@@ -375,6 +372,7 @@
 		32BEAAE312223C38003B0278 /* FigureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FigureViewController.m; sourceTree = "<group>"; };
 		32BEAC8112240E05003B0278 /* Figure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Figure.h; sourceTree = "<group>"; };
 		32BEAC8212240E05003B0278 /* Figure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Figure.m; sourceTree = "<group>"; };
+		32C4FAD1124963680069E688 /* achievements.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = achievements.png; path = Images/achievements.png; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Mini_Collector_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mini_Collector_Prefix.pch; sourceTree = "<group>"; };
 		6E37971011B9BDB60011C497 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../three20/src/Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E37971311B9BDB60011C497 /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../three20/src/Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -564,8 +562,7 @@
 		32BEAA2C1221EF07003B0278 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				323EAE7E12401B09004D85F6 /* 108-badge.png */,
-				323EADB2123ED726004D85F6 /* 13-target.png */,
+				32C4FAD1124963680069E688 /* achievements.png */,
 				32749777122B204400BED32D /* 2-1-57.png */,
 				32749778122B204400BED32D /* 2-1-320.png */,
 				32749779122B204400BED32D /* 2-2-57.png */,
@@ -989,8 +986,7 @@
 				327497B6122B204400BED32D /* 2-16-320.png in Resources */,
 				327497CB122B283D00BED32D /* Default.png in Resources */,
 				32749807122B360900BED32D /* Icon.png in Resources */,
-				323EADB3123ED726004D85F6 /* 13-target.png in Resources */,
-				323EAE7F12401B09004D85F6 /* 108-badge.png in Resources */,
+				32C4FAD2124963680069E688 /* achievements.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1056,7 +1052,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/Documents/XCode Projects/Mini Collector/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1082,7 +1078,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = "~/Documents/XCode Projects/Mini Collector/Entitlements.plist";
+				CODE_SIGN_ENTITLEMENTS = "";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1114,7 +1110,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B8AEEF1A-839E-4AD2-B32A-1E98690D1CD9";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 			};
 			name = "Distribution Ad Hoc";
 		};
@@ -1243,7 +1239,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
 		};

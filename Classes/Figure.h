@@ -29,5 +29,7 @@
 
 - (void) increaseCount;
 - (void) decreaseCount;
+- (NSString *) achievmentIdentifier;
+- (void) reportAchievment;
 
 @end

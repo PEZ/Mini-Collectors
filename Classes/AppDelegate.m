@@ -59,18 +59,26 @@ static AppDelegate *_instance;
 }
 
 - (void) reportAchievementIdentifier: (NSString*) identifier percentComplete: (float) percent {
-  if ([AppDelegate isGameCenterAvailable]) {
+  if ([AppDelegate isGameCenterAvailable] && [GKLocalPlayer localPlayer].authenticated) {
     GKAchievement *achievement = [self getAchievementForIdentifier: identifier];
     if (achievement) {
       achievement.percentComplete = percent;
       [achievement reportAchievementWithCompletionHandler:^(NSError *error) {
         if (error != nil) {
-          NSLog(@"Error reporting achievement: %@", [error localizedDescription]);
-          // Retain the achievement object and try again later (not shown).
+          NSLog(@"Error reporting achievement %@: %@", identifier, [error localizedDescription]);
         }
       }];
     }
   }
+}
+
+- (void) resetAchievements:(NSObject *)target callBack:(SEL)callBack {
+  self.achievementsDictionary = [[NSMutableDictionary alloc] init];
+  [GKAchievement resetAchievementsWithCompletionHandler:^(NSError *error) {
+    if (error == nil) {
+      [target performSelector:callBack];
+    }
+  }];
 }
 
 - (void) loadGameCenterInfo {

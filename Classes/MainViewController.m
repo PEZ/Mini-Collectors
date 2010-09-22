@@ -37,6 +37,14 @@ static MainViewController *_instance;
            object:nil];
 }
 
+- (void)showAchievmentsButton {
+  self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
+                                            initWithImage:[UIImage imageNamed:@"achievements.png"]
+                                            style:UIBarButtonItemStylePlain
+                                            target:self
+                                            action:@selector(showAchievments)] autorelease];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     self.title = @"Mini Collector";
@@ -45,15 +53,14 @@ static MainViewController *_instance;
                                                target:self
                                                action:@selector(scanButtonTapped)] autorelease];
     if ([AppDelegate isGameCenterAvailable]) {
-      self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
-                                                initWithImage:[UIImage imageNamed:@"108-badge.png"]
-                                                style:UIBarButtonItemStylePlain
-                                                target:self
-                                                action:@selector(showAchievments)] autorelease];
       [self registerForAuthenticationNotification];
       if ([AppDelegate getInstance].gameCenterActivated) {
-        [self authenticateLocalPlayer:nil];
+        [self authenticateLocalPlayer:@selector(resetAchievements)];
       }
+      else {
+        [self showAchievmentsButton];
+      }
+
     }
   }
   _instance = self;
@@ -75,10 +82,29 @@ static MainViewController *_instance;
   [super dealloc];
 }
 
+- (void) resetAchievements {
+  [[AppDelegate getInstance] resetAchievements:self callBack:@selector(reportAchievements)];
+}
+
+- (void) reportAchievements {
+  for (int series = 1; series < 3; series++) {
+    for (int i = 1; i <= 16; i++) {
+      NSString *key = [NSString stringWithFormat:@"%d-%d", series, i];
+      Figure *figure = [Figure figureFromKey:key];
+      if (figure != nil) {
+        if (figure.count > 0) {
+          [figure reportAchievment];
+        }
+      }
+    }
+  }
+}
+
 - (void) authenticateLocalPlayer:(SEL)callBack {
   [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) {
     if (error == nil) {
       [AppDelegate getInstance].gameCenterActivated = YES;
+      [self showAchievmentsButton];
       if (callBack != nil) {
         [self performSelector:callBack];
       }
@@ -174,9 +200,12 @@ static MainViewController *_instance;
   
   ZBarImageScanner *scanner = reader.scanner;
 
-  [scanner setSymbology: ZBAR_I25
+  [scanner setSymbology: 0
                  config: ZBAR_CFG_ENABLE
                      to: 0];
+  [scanner setSymbology: ZBAR_EAN13
+                 config: ZBAR_CFG_ENABLE
+                     to: 1];
 
   [self presentModalViewController: reader
                           animated: YES];

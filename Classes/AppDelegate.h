@@ -29,6 +29,6 @@
 - (void) reportAchievementIdentifier: (NSString*) identifier percentComplete: (float) percent;
 - (GKAchievement*) getAchievementForIdentifier: (NSString*) identifier;
 - (void) reportAchievementIdentifier: (NSString*) identifier percentComplete: (float) percent;
-
+- (void) resetAchievements:(NSObject *)target callBack:(SEL)callBack;
 @end
 
