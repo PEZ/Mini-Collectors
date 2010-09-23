@@ -12,14 +12,14 @@
 @interface FigureViewController : TTModelViewController {
   Figure *_figure;
   TTImageView *_imageView;
-  UILabel *_figureCountLabel;
+  TTLabel *_figureCountLabel;
   BOOL _hidden;
 }
 
 
 @property (nonatomic, retain) Figure *figure;
 @property (nonatomic, retain) TTImageView *imageView;
-@property (nonatomic, retain) UILabel *figureCountLabel;
+@property (nonatomic, retain) TTLabel *figureCountLabel;
 @property (nonatomic) BOOL hidden;
 
 - (id)initWithKey:(NSString *)key;

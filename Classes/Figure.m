@@ -40,20 +40,58 @@ static NSDictionary *_figures;
   return [NSString stringWithFormat:@"F_%@", [self.key stringByReplacingOccurrencesOfString:@"-" withString:@"_"]];
 }
 
-- (void) reportAchievment {
+- (NSArray *) incrementSeriesAchievments:(int)s {
+  NSMutableArray *achievements = [[NSMutableArray alloc] initWithCapacity:2];
+  NSString *thisSeriesId = [NSString stringWithFormat:@"S%d", s];
+  GKAchievement *thisSeriesAchievement = [[AppDelegate getInstance] getAchievementForIdentifier:thisSeriesId];
+  float percentThisSeries = thisSeriesAchievement.percentComplete;
+  if (percentThisSeries < 100.0) {
+    thisSeriesAchievement.percentComplete = percentThisSeries + 100.0/15.999999;
+    [achievements addObject:thisSeriesAchievement]; 
+    if (thisSeriesAchievement.percentComplete >= 100.0) {
+      GKAchievement *achievement2S = [[AppDelegate getInstance] getAchievementForIdentifier:@"2S"];
+      float percent2S = achievement2S.percentComplete;
+      if (percent2S < 100.0) {
+        achievement2S.percentComplete = percent2S + 100.0/1.999999;
+        [achievements addObject:achievement2S];
+      }
+    }
+  }
+  return achievements;
+}
+
+- (void) incrementSpree:(int)goalCount result:(NSMutableArray *)achievements  {
+  GKAchievement *a = [[AppDelegate getInstance] getAchievementForIdentifier:[NSString stringWithFormat:@"%dF", goalCount]];
+  float percent = a.percentComplete;
+  if (percent < 100.0) {
+    a.percentComplete = percent + 100.0/(goalCount - 0.000001);
+    [achievements addObject:a];
+  }
+}
+- (NSArray *) incrementFigureSpreeAchievments {
+  NSMutableArray *achievements = [[NSMutableArray alloc] initWithCapacity:2];
+  [self incrementSpree:10 result:achievements];
+  [self incrementSpree:25 result:achievements];
+  return achievements;
+}
+
+- (NSArray *) reportAchievement {
+  NSMutableArray *achievements = [[NSMutableArray alloc] initWithCapacity:4];
   float percentComplete = [[AppDelegate getInstance] getAchievementForIdentifier:[self achievmentIdentifier]].percentComplete;
   if (percentComplete < 100.0) {
     [[AppDelegate getInstance] reportAchievementIdentifier:[self achievmentIdentifier] percentComplete:100.0];
-    NSString *sIdentifier = [NSString stringWithFormat:@"S%d", self.series];
-    float percentSeries = [[AppDelegate getInstance] getAchievementForIdentifier:sIdentifier].percentComplete;
-    [[AppDelegate getInstance] reportAchievementIdentifier:sIdentifier percentComplete:percentSeries + 100.0/15.999];
+    [achievements addObjectsFromArray:[self incrementFigureSpreeAchievments]];
+    [achievements addObjectsFromArray:[self incrementSeriesAchievments:self.series]];
   }
+  return achievements;
 }
 
 - (void) increaseCount {
   self.count++;
-  [self reportAchievment];
   [self countChanged];
+  for (GKAchievement *a in [self reportAchievement]) {
+    [[AppDelegate getInstance] reportAchievementIdentifier:a.identifier percentComplete:a.percentComplete];
+  };
 }
 
 - (void) decreaseCount {
@@ -85,12 +123,8 @@ static NSDictionary *_figures;
   }
 }
 
-+ (void) loadFigures {
-  if ([[NSFileManager defaultManager] fileExistsAtPath:[self archivePath]]) {
-    _figures = [[NSKeyedUnarchiver unarchiveObjectWithFile:[self archivePath]] retain];
-  }
-  else {
-    NSNumber *zero = [NSNumber numberWithInt: 0];
++ (void) resetFigures {
+  NSNumber *zero = [NSNumber numberWithInt: 0];
     NSNumber *one = [NSNumber numberWithInt: 1];
     NSNumber *two = [NSNumber numberWithInt: 2];
     _figures =
@@ -161,6 +195,19 @@ static NSDictionary *_figures;
                               two, @"series", @"2-16", @"key", @"Weightlifter", @"name", zero, @"count", nil]] retain], @"2-16",
      nil];
     [self saveFigures];
+
+}
++ (void) loadFigures {
+  if ([[NSFileManager defaultManager] fileExistsAtPath:[self archivePath]]) {
+    @try {
+      _figures = [[NSKeyedUnarchiver unarchiveObjectWithFile:[self archivePath]] retain];
+    }
+    @catch (NSException * e) {
+      [self resetFigures];
+    }
+  }
+  else {
+    [self resetFigures];
   }
 }
 

@@ -58,7 +58,7 @@
 
 
 - (void)updateCountLabel {
-  _figureCountLabel.text = [NSString stringWithFormat:@"Collected: %d", _figure.count];
+  _figureCountLabel.text = [NSString stringWithFormat:@"%d", _figure.count];
 }
 
 - (void)decreaseFigureCount {
@@ -71,8 +71,8 @@
   [self updateCountLabel];
 }
 
-- (void) setupButton:(TTButton *)button withSelector:(SEL)selector atX:(float)x addToView:(UIView *)aView {
-  [button setFrame:CGRectMake(x, 1, 30, 30)];
+- (void) setupButton:(TTButton *)button withSelector:(SEL)selector atX:(float)x atY:(float)y addToView:(UIView *)aView {
+  [button setFrame:CGRectMake(x, y, 30, 30)];
   [button addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
   button.font = [UIFont boldSystemFontOfSize:24];
   [aView addSubview:button];
@@ -87,6 +87,19 @@
   self.title = _figure.name;
   self.navigationItem.rightBarButtonItem = nil;
   _imageView.urlPath = [self imagePath];
+}
+
+- (TTStyle*)labelWithFontSize:(CGFloat)fontSize {
+  return
+  [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:3] next:
+   [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, 1, 1, 1) next:
+    [TTShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.8) blur:3 offset:CGSizeMake(0, 4) next:
+     [TTReflectiveFillStyle styleWithColor:RGBACOLOR(12,140,21,0.9) next:
+      [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, -1, -1, -1) next:
+       [TTSolidBorderStyle styleWithColor:[UIColor whiteColor] width:2 next:
+        [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(1, 7, 2, 7) next:
+         [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:fontSize]
+                              color:[UIColor whiteColor] next:nil]]]]]]]];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -118,34 +131,31 @@
   scrollView.delaysContentTouches = NO;
   self.view = scrollView;
   
-  float imageY = 30;
-  
-  if (!_hidden) {
-    NSArray* widgets = [NSArray arrayWithObjects:
-                        [TTButton buttonWithStyle:@"defaultButton:" title:@"-"],
-                        [TTButton buttonWithStyle:@"defaultButton:" title:@"+"],
-                        nil];
-    
-    [self setupButton:[widgets objectAtIndex:0] withSelector:@selector(decreaseFigureCount) atX:285 addToView:scrollView];
-    [self setupButton:[widgets objectAtIndex:1] withSelector:@selector(increaseFigureCount) atX:240 addToView:scrollView];
-    
-    _figureCountLabel = [[[UILabel alloc] initWithFrame:CGRectMake(MARGIN, MARGIN, 200, 25)] retain];
-    _figureCountLabel.font = [UIFont systemFontOfSize:20];
-    _figureCountLabel.textColor = [UIColor whiteColor];
-    _figureCountLabel.backgroundColor = [UIColor blackColor];
-    
-    [self updateCountLabel];
-    
-    [scrollView addSubview:_figureCountLabel];
-    
-    imageY = ((TTButton *)[widgets objectAtIndex:0]).frame.size.height + 20;
-  }
-
+  float imageY = 5;
   _imageView = [[TTImageView alloc] initWithFrame:CGRectMake(0, imageY, self.view.frame.size.width, 0)];
   _imageView.autoresizesToImage = YES;
   _imageView.urlPath = [self imagePath];
   
   [self.view addSubview:_imageView];
+  
+  if (!_hidden) {
+    float imageBottom = _imageView.frame.size.height + imageY;
+    NSArray* widgets = [NSArray arrayWithObjects:
+                        [TTButton buttonWithStyle:@"defaultButton:" title:@"-"],
+                        [TTButton buttonWithStyle:@"defaultButton:" title:@"+"],
+                        [[TTLabel alloc] initWithFrame:CGRectMake(135, imageBottom + 22, 50, 40)],
+                        nil];
+    [self setupButton:[widgets objectAtIndex:0] withSelector:@selector(decreaseFigureCount) atX:90 atY:imageBottom + 20 addToView:scrollView];
+    [self setupButton:[widgets objectAtIndex:1] withSelector:@selector(increaseFigureCount) atX:200 atY:imageBottom + 20 addToView:scrollView];
+    _figureCountLabel = [widgets objectAtIndex:2];
+    _figureCountLabel.style = [self labelWithFontSize:25];
+    
+    [self updateCountLabel];
+    
+    [scrollView addSubview:_figureCountLabel];
+  }
+
+
 }
 
 @end

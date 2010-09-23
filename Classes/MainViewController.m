@@ -87,16 +87,22 @@ static MainViewController *_instance;
 }
 
 - (void) reportAchievements {
+  NSMutableDictionary *achievements = [NSMutableDictionary dictionaryWithCapacity:4];
   for (int series = 1; series < 3; series++) {
     for (int i = 1; i <= 16; i++) {
       NSString *key = [NSString stringWithFormat:@"%d-%d", series, i];
       Figure *figure = [Figure figureFromKey:key];
       if (figure != nil) {
         if (figure.count > 0) {
-          [figure reportAchievment];
+          for (GKAchievement *achievement in [figure reportAchievement]) {
+            [achievements setObject:achievement forKey:achievement.identifier];
+          };
         }
       }
     }
+  }
+  for (GKAchievement *achievement in [achievements allValues]) {
+    [[AppDelegate getInstance] reportAchievementIdentifier:achievement.identifier percentComplete:achievement.percentComplete];
   }
 }
 
