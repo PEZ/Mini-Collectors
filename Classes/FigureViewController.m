@@ -112,50 +112,52 @@
 }
 
 - (void)loadView {
-  if (_hidden) {
-    self.navigationItem.rightBarButtonItem
-    = [[[UIBarButtonItem alloc] initWithTitle:@"Reveal" style:UIBarButtonItemStyleBordered
-                                       target:self action:@selector(unHide)] autorelease];
-    self.title = _figure.count > 0 ? @"You have it" : @"Not collected!";
-  }
-  else {
-    self.title = _figure.name;
-  }
+  if (!_loaded) {
+    _loaded = YES;
 
-  
-  UIScrollView* scrollView = [[[UIScrollView alloc] initWithFrame:TTNavigationFrame()] autorelease];
-	scrollView.autoresizesSubviews = YES;
-	scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  scrollView.backgroundColor = [UIColor blackColor];
-  scrollView.canCancelContentTouches = NO;
-  scrollView.delaysContentTouches = NO;
-  self.view = scrollView;
-  
-  float imageY = 5;
-  _imageView = [[TTImageView alloc] initWithFrame:CGRectMake(0, imageY, self.view.frame.size.width, 0)];
-  _imageView.autoresizesToImage = YES;
-  _imageView.urlPath = [self imagePath];
-  
-  [self.view addSubview:_imageView];
-  
-  if (!_hidden) {
-    float imageBottom = _imageView.frame.size.height + imageY;
-    NSArray* widgets = [NSArray arrayWithObjects:
-                        [TTButton buttonWithStyle:@"defaultButton:" title:@"-"],
-                        [TTButton buttonWithStyle:@"defaultButton:" title:@"+"],
-                        [[TTLabel alloc] initWithFrame:CGRectMake(135, imageBottom + 22, 50, 40)],
-                        nil];
-    [self setupButton:[widgets objectAtIndex:0] withSelector:@selector(decreaseFigureCount) atX:90 atY:imageBottom + 20 addToView:scrollView];
-    [self setupButton:[widgets objectAtIndex:1] withSelector:@selector(increaseFigureCount) atX:200 atY:imageBottom + 20 addToView:scrollView];
-    _figureCountLabel = [widgets objectAtIndex:2];
-    _figureCountLabel.style = [self labelWithFontSize:25];
+    if (_hidden) {
+      self.navigationItem.rightBarButtonItem
+      = [[[UIBarButtonItem alloc] initWithTitle:@"Reveal" style:UIBarButtonItemStyleBordered
+                                         target:self action:@selector(unHide)] autorelease];
+      self.title = _figure.count > 0 ? @"You have it" : @"Not collected!";
+    }
+    else {
+      self.title = _figure.name;
+    }
     
-    [self updateCountLabel];
     
-    [scrollView addSubview:_figureCountLabel];
+    UIScrollView* scrollView = [[[UIScrollView alloc] initWithFrame:TTNavigationFrame()] autorelease];
+    scrollView.autoresizesSubviews = YES;
+    scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    scrollView.backgroundColor = [UIColor blackColor];
+    scrollView.canCancelContentTouches = NO;
+    scrollView.delaysContentTouches = NO;
+    self.view = scrollView;
+    
+    float imageY = 5;
+    _imageView = [[TTImageView alloc] initWithFrame:CGRectMake(0, imageY, self.view.frame.size.width, 0)];
+    _imageView.autoresizesToImage = YES;
+    _imageView.urlPath = [self imagePath];
+    
+    [self.view addSubview:_imageView];
+    
+    if (!_hidden) {
+      float imageBottom = _imageView.frame.size.height + imageY;
+      NSArray* widgets = [NSArray arrayWithObjects:
+                          [TTButton buttonWithStyle:@"defaultButton:" title:@"-"],
+                          [TTButton buttonWithStyle:@"defaultButton:" title:@"+"],
+                          [[TTLabel alloc] initWithFrame:CGRectMake(135, imageBottom + 22, 50, 40)],
+                          nil];
+      [self setupButton:[widgets objectAtIndex:0] withSelector:@selector(decreaseFigureCount) atX:90 atY:imageBottom + 20 addToView:scrollView];
+      [self setupButton:[widgets objectAtIndex:1] withSelector:@selector(increaseFigureCount) atX:200 atY:imageBottom + 20 addToView:scrollView];
+      _figureCountLabel = [widgets objectAtIndex:2];
+      _figureCountLabel.style = [self labelWithFontSize:25];
+      
+      [self updateCountLabel];
+      
+      [scrollView addSubview:_figureCountLabel];
+    }
   }
-
-
 }
 
 @end

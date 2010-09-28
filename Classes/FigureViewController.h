@@ -14,6 +14,7 @@
   TTImageView *_imageView;
   TTLabel *_figureCountLabel;
   BOOL _hidden;
+  BOOL _loaded;
 }
 
 
