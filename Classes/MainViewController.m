@@ -4,9 +4,13 @@
 //
 //  Created by Rodrigo Mazzilli on 9/25/09.
 
+#import <AVFoundation/AVFoundation.h>
 #import "MainViewController.h"
 #import "Figure.h"
-#import "InAppPurchaseManager.h"
+
+BOOL scanningAvailable() {
+  return [ZBarReaderViewController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+}
 
 @interface MainViewController (Private)
 
@@ -49,10 +53,12 @@ static MainViewController *_instance;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     self.title = @"Mini Collector";
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-                                               initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
-                                               target:self
-                                               action:@selector(scanButtonTapped)] autorelease];
+    if (scanningAvailable()) { 
+      self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+                                                 initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
+                                                 target:self
+                                                 action:@selector(scanButtonTapped)] autorelease];
+    }
     if ([AppDelegate isGameCenterAvailable]) {
       [self registerForAuthenticationNotification];
       if ([AppDelegate getInstance].gameCenterActivated) {
@@ -62,7 +68,6 @@ static MainViewController *_instance;
         [self showAchievmentsButton];
       }
     }
-    [[InAppPurchaseManager getInstance] requestScannerUpgradeProductData];
   }
   _instance = self;
   return self;
@@ -202,21 +207,32 @@ static MainViewController *_instance;
 
 
 - (IBAction) scanButtonTapped {
-  ZBarReaderViewController *reader = [ZBarReaderViewController new];
-  reader.readerDelegate = self;
-  
-  ZBarImageScanner *scanner = reader.scanner;
-
-  [scanner setSymbology: 0
-                 config: ZBAR_CFG_ENABLE
-                     to: 0];
-  [scanner setSymbology: ZBAR_EAN13
-                 config: ZBAR_CFG_ENABLE
-                     to: 1];
-
-  [self presentModalViewController: reader
-                          animated: YES];
-  [reader release];
+  @try {
+    ZBarReaderViewController *reader = [ZBarReaderViewController new];
+    reader.readerDelegate = self;
+    
+    ZBarImageScanner *scanner = reader.scanner;
+    
+    [scanner setSymbology: 0
+                   config: ZBAR_CFG_ENABLE
+                       to: 0];
+    [scanner setSymbology: ZBAR_EAN13
+                   config: ZBAR_CFG_ENABLE
+                       to: 1];
+    
+    [self presentModalViewController: reader
+                            animated: YES];
+    [reader release];
+  }
+  @catch (NSException * e) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Camera error"
+                                                    message:@"Error initializing camera. (The camera on iPhone 3G is not supported)."
+                                                   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+    [alert release];
+  }
+  @finally {
+  }
 }
 
 - (NSDictionary *) barcodes {

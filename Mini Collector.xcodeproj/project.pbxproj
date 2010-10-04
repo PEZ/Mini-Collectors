@@ -18,15 +18,12 @@
 		324BBB77121FD178008631B0 /* zbar-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 324BBB72121FD178008631B0 /* zbar-help.html */; };
 		324BBB78121FD178008631B0 /* zbar-helpicons.png in Resources */ = {isa = PBXBuildFile; fileRef = 324BBB73121FD178008631B0 /* zbar-helpicons.png */; };
 		324BBB79121FD178008631B0 /* zbar-samples.png in Resources */ = {isa = PBXBuildFile; fileRef = 324BBB74121FD178008631B0 /* zbar-samples.png */; };
-		324BBB7D121FDC7D008631B0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324BBB7C121FDC7D008631B0 /* AVFoundation.framework */; };
 		324BBB7F121FDC7D008631B0 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324BBB7E121FDC7D008631B0 /* CoreMedia.framework */; };
 		324BBB81121FDC7D008631B0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 324BBB80121FDC7D008631B0 /* CoreVideo.framework */; };
 		324BBB83121FDC7D008631B0 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 324BBB82121FDC7D008631B0 /* libiconv.dylib */; };
 		324BBC6F12201D49008631B0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 324BBC6E12201D49008631B0 /* MainViewController.m */; };
 		324BBCF012211A3A008631B0 /* LauncherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 324BBCEF12211A3A008631B0 /* LauncherView.m */; };
 		324BBDA21221B122008631B0 /* DefaultStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 324BBDA11221B122008631B0 /* DefaultStyleSheet.m */; };
-		326806EB125752C200CC8934 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 326806EA125752C200CC8934 /* InAppPurchaseManager.m */; };
-		326806F01257560A00CC8934 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 326806EF1257560A00CC8934 /* SKProduct+LocalizedPrice.m */; };
 		32680717125761CA00CC8934 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32680716125761CA00CC8934 /* StoreKit.framework */; };
 		32749755122B1C8900BED32D /* 1-1-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 32749733122B1C8900BED32D /* 1-1-57.png */; };
 		32749756122B1C8900BED32D /* 1-1-320.png in Resources */ = {isa = PBXBuildFile; fileRef = 32749734122B1C8900BED32D /* 1-1-320.png */; };
@@ -99,6 +96,7 @@
 		32BEAAE412223C38003B0278 /* FigureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEAAE312223C38003B0278 /* FigureViewController.m */; };
 		32BEAC8312240E05003B0278 /* Figure.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BEAC8212240E05003B0278 /* Figure.m */; };
 		32C4FAD2124963680069E688 /* achievements.png in Resources */ = {isa = PBXBuildFile; fileRef = 32C4FAD1124963680069E688 /* achievements.png */; };
+		32EDC260125A66E10018786A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EDC25F125A66E10018786A /* AVFoundation.framework */; };
 		6E37974911B9BDCB0011C497 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E37972511B9BDB60011C497 /* libThree20Core.a */; };
 		6E37974A11B9BDCB0011C497 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E37972B11B9BDB60011C497 /* libThree20Network.a */; };
 		6E37974B11B9BDCC0011C497 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E37973111B9BDB60011C497 /* libThree20Style.a */; };
@@ -292,7 +290,6 @@
 		324BBB72121FD178008631B0 /* zbar-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "zbar-help.html"; sourceTree = "<group>"; };
 		324BBB73121FD178008631B0 /* zbar-helpicons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-helpicons.png"; sourceTree = "<group>"; };
 		324BBB74121FD178008631B0 /* zbar-samples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zbar-samples.png"; sourceTree = "<group>"; };
-		324BBB7C121FDC7D008631B0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		324BBB7E121FDC7D008631B0 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		324BBB80121FDC7D008631B0 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		324BBB82121FDC7D008631B0 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
@@ -302,10 +299,6 @@
 		324BBCEF12211A3A008631B0 /* LauncherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LauncherView.m; sourceTree = "<group>"; };
 		324BBDA01221B122008631B0 /* DefaultStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultStyleSheet.h; sourceTree = "<group>"; };
 		324BBDA11221B122008631B0 /* DefaultStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultStyleSheet.m; sourceTree = "<group>"; };
-		326806E9125752C200CC8934 /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
-		326806EA125752C200CC8934 /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseManager.m; sourceTree = "<group>"; };
-		326806EE1257560A00CC8934 /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
-		326806EF1257560A00CC8934 /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
 		32680716125761CA00CC8934 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		32749733122B1C8900BED32D /* 1-1-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-1-57.png"; path = "Images/1-1-57.png"; sourceTree = "<group>"; };
 		32749734122B1C8900BED32D /* 1-1-320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-1-320.png"; path = "Images/1-1-320.png"; sourceTree = "<group>"; };
@@ -382,6 +375,7 @@
 		32BEAC8212240E05003B0278 /* Figure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Figure.m; sourceTree = "<group>"; };
 		32C4FAD1124963680069E688 /* achievements.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = achievements.png; path = Images/achievements.png; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Mini_Collector_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mini_Collector_Prefix.pch; sourceTree = "<group>"; };
+		32EDC25F125A66E10018786A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6E37971011B9BDB60011C497 /* Three20Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Core.xcodeproj; path = ../three20/src/Three20Core/Three20Core.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E37971311B9BDB60011C497 /* Three20Network.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Network.xcodeproj; path = ../three20/src/Three20Network/Three20Network.xcodeproj; sourceTree = SOURCE_ROOT; };
 		6E37971611B9BDB60011C497 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = ../three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -414,12 +408,12 @@
 				6E37974D11B9BDCC0011C497 /* libThree20UICommon.a in Frameworks */,
 				6E37974E11B9BDCD0011C497 /* libThree20UINavigator.a in Frameworks */,
 				324BBB75121FD178008631B0 /* libzbar.a in Frameworks */,
-				324BBB7D121FDC7D008631B0 /* AVFoundation.framework in Frameworks */,
 				324BBB7F121FDC7D008631B0 /* CoreMedia.framework in Frameworks */,
 				324BBB81121FDC7D008631B0 /* CoreVideo.framework in Frameworks */,
 				324BBB83121FDC7D008631B0 /* libiconv.dylib in Frameworks */,
 				323EAC96123EA77A004D85F6 /* GameKit.framework in Frameworks */,
 				32680717125761CA00CC8934 /* StoreKit.framework in Frameworks */,
+				32EDC260125A66E10018786A /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,10 +435,6 @@
 				324BBDA11221B122008631B0 /* DefaultStyleSheet.m */,
 				32BEAAE212223C38003B0278 /* FigureViewController.h */,
 				32BEAAE312223C38003B0278 /* FigureViewController.m */,
-				326806E9125752C200CC8934 /* InAppPurchaseManager.h */,
-				326806EA125752C200CC8934 /* InAppPurchaseManager.m */,
-				326806EE1257560A00CC8934 /* SKProduct+LocalizedPrice.h */,
-				326806EF1257560A00CC8934 /* SKProduct+LocalizedPrice.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -496,8 +486,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32EDC25F125A66E10018786A /* AVFoundation.framework */,
 				323EAC95123EA77A004D85F6 /* GameKit.framework */,
-				324BBB7C121FDC7D008631B0 /* AVFoundation.framework */,
 				324BBB7E121FDC7D008631B0 /* CoreMedia.framework */,
 				324BBB80121FDC7D008631B0 /* CoreVideo.framework */,
 				324BBB82121FDC7D008631B0 /* libiconv.dylib */,
@@ -1018,8 +1008,6 @@
 				324BBDA21221B122008631B0 /* DefaultStyleSheet.m in Sources */,
 				32BEAAE412223C38003B0278 /* FigureViewController.m in Sources */,
 				32BEAC8312240E05003B0278 /* Figure.m in Sources */,
-				326806EB125752C200CC8934 /* InAppPurchaseManager.m in Sources */,
-				326806F01257560A00CC8934 /* SKProduct+LocalizedPrice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

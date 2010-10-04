@@ -32,7 +32,7 @@ static AppDelegate *_instance;
   NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
   BOOL osVersionSupported = ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending);
   
-  return (gcClass && osVersionSupported);
+  return (gcClass && osVersionSupported && [gcClass localPlayer]);
 }
 
 - (NSString *) archivePath {
