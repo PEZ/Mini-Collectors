@@ -6,6 +6,7 @@
 
 #import "MainViewController.h"
 #import "Figure.h"
+#import "InAppPurchaseManager.h"
 
 @interface MainViewController (Private)
 
@@ -60,8 +61,8 @@ static MainViewController *_instance;
       else {
         [self showAchievmentsButton];
       }
-
     }
+    [[InAppPurchaseManager getInstance] requestScannerUpgradeProductData];
   }
   _instance = self;
   return self;
