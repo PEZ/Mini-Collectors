@@ -9,7 +9,22 @@
 #import "Figure.h"
 
 BOOL scanningAvailable() {
-  return [ZBarReaderViewController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+  BOOL available = [ZBarReaderViewController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+  
+#if TARGET_IPHONE_SIMULATOR
+  return available;
+#else
+  if (available) {
+    available = NO;
+    for (AVCaptureDevice *cameraDevice in [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
+      if ([cameraDevice isFocusModeSupported:AVCaptureFocusModeAutoFocus]) {
+        available = YES;
+        break;
+      }
+    }
+  }
+#endif
+  return available;
 }
 
 @interface MainViewController (Private)
