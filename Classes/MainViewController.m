@@ -10,20 +10,6 @@
 
 BOOL scanningAvailable() {
   BOOL available = [ZBarReaderViewController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-  
-#if TARGET_IPHONE_SIMULATOR
-  return available;
-#else
-  if (available) {
-    available = NO;
-    for (AVCaptureDevice *cameraDevice in [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
-      if ([cameraDevice isFocusModeSupported:AVCaptureFocusModeAutoFocus]) {
-        available = YES;
-        break;
-      }
-    }
-  }
-#endif
   return available;
 }
 
@@ -224,8 +210,11 @@ static MainViewController *_instance;
 - (IBAction) scanButtonTapped {
   @try {
     ZBarReaderViewController *reader = [ZBarReaderViewController new];
-    reader.readerDelegate = self;
-    
+    #if !TARGET_IPHONE_SIMULATOR
+      AVCaptureVideoDataOutput *videoCapture = (AVCaptureVideoDataOutput *)reader.readerView.captureReader.captureOutput;
+        videoCapture.videoSettings = nil;
+      reader.readerDelegate = self;
+    #endif
     ZBarImageScanner *scanner = reader.scanner;
     
     [scanner setSymbology: 0
