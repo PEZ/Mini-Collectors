@@ -12,6 +12,13 @@
 
 @implementation LauncherView
 
+@synthesize delegate2 = _delegate2;
+
+- (void)dealloc {
+  TT_RELEASE_SAFELY(_delegate2);
+
+  [super dealloc];
+}
 
 // Disable editing
 - (void)editHoldTimer:(NSTimer*)timer {
@@ -20,6 +27,16 @@
 
 - (CGFloat)rowHeight {
   return round(_scrollView.height / 4);
+}
+
+#pragma mark -
+#pragma mark UIPageControlDelegate
+
+-(void)updatePagerWithContentOffset:(CGPoint)contentOffset {
+	[super updatePagerWithContentOffset:contentOffset];
+	if (self.delegate2 != nil) {
+		[_delegate2 pageChanged:self.currentPageIndex];
+	}
 }
 
 @end

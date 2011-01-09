@@ -27,11 +27,11 @@ static AppDelegate *_instance;
 
 + (BOOL) isGameCenterAvailable {
   Class gcClass = (NSClassFromString(@"GKLocalPlayer"));
-  
+
   NSString *reqSysVer = @"4.1";
   NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
   BOOL osVersionSupported = ([currSysVer compare:reqSysVer options:NSNumericSearch] != NSOrderedAscending);
-  
+
   return (gcClass && osVersionSupported && [gcClass localPlayer]);
 }
 
@@ -90,7 +90,7 @@ static AppDelegate *_instance;
   }
   else {
     self.gameCenterActivated = NO;
-    self.gameCenterObjects = [NSMutableArray arrayWithObjects:nil];    
+    self.gameCenterObjects = [NSMutableArray arrayWithObjects:nil];
   }
 }
 
@@ -101,7 +101,7 @@ static AppDelegate *_instance;
   BOOL result = [NSKeyedArchiver archiveRootObject:data toFile:[self archivePath]];
   if (!result) {
     NSLog(@"FAIL: Saving figures to %@", [self archivePath]);
-  }  
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -114,16 +114,17 @@ static AppDelegate *_instance;
   TTNavigator* navigator = [TTNavigator navigator];
   navigator.persistenceMode = TTNavigatorPersistenceModeNone;
 
-  [TTStyleSheet setGlobalStyleSheet:[[[DefaultStyleSheet 
+  [TTStyleSheet setGlobalStyleSheet:[[[DefaultStyleSheet
                                        alloc] init] autorelease]];
-  
+
   TTURLMap* map = navigator.URLMap;
 
-  [map from:@"*" toViewController:[MainViewController class]];
+  [map from:@"*" toViewController:[TTWebController class]];
   [map from:@"mc://main" toViewController:[MainViewController class]];
   [map from:@"mc://figure/(initWithKey:)/" toViewController:[FigureViewController class]];
   [map from:@"mc://hidden/(initHiddenWithKey:)/" toViewController:[FigureViewController class]];
-  
+	[map from:@"mc://bumps/(initWithSeries:)/" toViewController:[BumpCodesViewController class]];
+
   if (![navigator restoreViewControllers]) {
     [navigator openURLAction:[TTURLAction actionWithURLPath:@"mc://main"]];
   }

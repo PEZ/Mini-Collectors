@@ -3,9 +3,10 @@
 #import "LauncherView.h"
 #import "AppDelegate.h"
 
-@interface MainViewController : TTViewController <TTLauncherViewDelegate, ZBarReaderDelegate, GKAchievementViewControllerDelegate> {
+@interface MainViewController : TTViewController <TTLauncherViewDelegate, LauncherViewDelegate, ZBarReaderDelegate, GKAchievementViewControllerDelegate> {
 	LauncherView *_launcherView;
   NSArray *_launcherItems;
+	NSInteger _currentPageIndex;
 }
 
 + (MainViewController *) getInstance;

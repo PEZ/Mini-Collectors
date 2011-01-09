@@ -35,7 +35,7 @@ static InAppPurchaseManager *_instance;
   [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
 
   // get the product description (defined in early sections)
-  [self requestProUpgradeProductData];
+  [self requestSeries3UpgradeProductData];
 }
 
 //
@@ -49,14 +49,14 @@ static InAppPurchaseManager *_instance;
 //
 // kick off the upgrade transaction
 //
-- (void)purchaseProUpgrade
+- (void)purchaseSeries3
 {
   SKPayment *payment = [SKPayment paymentWithProductIdentifier:kInAppPurchaseSeries3UpgradeProductId];
   [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
 
 
-- (void)requestScannerUpgradeProductData {
+- (void)requestSeries3UpgradeProductData {
   NSSet *productIdentifiers = [NSSet setWithObject:kInAppPurchaseSeries3UpgradeProductId];
   productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
   productsRequest.delegate = self;

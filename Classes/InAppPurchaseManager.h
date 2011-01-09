@@ -15,10 +15,10 @@
   SKProductsRequest *productsRequest;
 }
 
-- (void)requestScannerUpgradeProductData;
+- (void)requestSeries3UpgradeProductData;
 - (void)loadStore;
 - (BOOL)canMakePurchases;
-- (void)purchaseScanner;
+- (void)purchaseSeries3;
 + (InAppPurchaseManager *) getInstance;
 
 @end

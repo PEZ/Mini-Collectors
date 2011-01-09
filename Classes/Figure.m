@@ -158,7 +158,7 @@ static NSDictionary *_figures;
 					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
 																	 three, @"series", @"3-15", @"key", @"Cyborg", @"name", zero, @"count", nil]] retain], @"3-15",
 					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-																	 three, @"series", @"3-16", @"key", @"Sume Wrestler", @"name", zero, @"count", nil]] retain], @"3-16",
+																	 three, @"series", @"3-16", @"key", @"Sumo Wrestler", @"name", zero, @"count", nil]] retain], @"3-16",
 					nil];
 }
 

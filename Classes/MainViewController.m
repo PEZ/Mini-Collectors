@@ -52,15 +52,32 @@ static MainViewController *_instance;
                                             action:@selector(showAchievments)] autorelease];
 }
 
+- (void)showScanButton {
+	if (scanningAvailable()) {
+		self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+																							 initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
+																							 target:self
+																							 action:@selector(scanButtonTapped)] autorelease];
+	}
+}
+
+-(void)openBumpsView {
+	 TTOpenURL([NSString stringWithFormat:@"mc://bumps/%d", 3]);
+}
+
+- (void)showBumpsButton {
+  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+                                            initWithImage:[UIImage imageNamed:@"BumpsIcon.png"]
+                                            style:UIBarButtonItemStylePlain
+                                            target:self
+                                            action:@selector(openBumpsView)] autorelease];
+}
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     self.title = @"Mini Collector";
-    if (scanningAvailable()) {
-      self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-                                                 initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
-                                                 target:self
-                                                 action:@selector(scanButtonTapped)] autorelease];
-    }
+		[self showScanButton];
     if ([AppDelegate isGameCenterAvailable]) {
       [self registerForAuthenticationNotification];
       if ([AppDelegate getInstance].gameCenterActivated) {
@@ -71,7 +88,7 @@ static MainViewController *_instance;
       }
     }
   }
-	[[InAppPurchaseManager getInstance] requestScannerUpgradeProductData];
+	[[InAppPurchaseManager getInstance] requestSeries3UpgradeProductData];
   _instance = self;
   return self;
 }
@@ -187,9 +204,20 @@ static MainViewController *_instance;
 
   _launcherView.backgroundColor = [UIColor blackColor];
   _launcherView.delegate = self;
+  _launcherView.delegate2 = self;
   _launcherView.columnCount = 4;
   _launcherView.pages = [self launcherPages];
   [self.view addSubview:_launcherView];
+}
+
+- (void)pageChanged:(NSInteger)pageIndex {
+	_currentPageIndex = pageIndex;
+	if (_currentPageIndex < 2) {
+		[self showScanButton];
+	}
+	else {
+		[self showBumpsButton];
+	}
 }
 
 - (void) openURLAction: (NSString *) URL  {

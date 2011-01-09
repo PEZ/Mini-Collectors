@@ -8,7 +8,16 @@
 
 #import <Three20UI/TTLauncherView.h>
 
+@protocol LauncherViewDelegate
+
+-(void)pageChanged:(NSInteger)index;
+
+@end
+
 @interface LauncherView : TTLauncherView {
+	id<LauncherViewDelegate,NSObject> _delegate2;
 }
+
+@property (nonatomic, retain) id<LauncherViewDelegate,NSObject> delegate2;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "FigureViewController.h"
+#import "BumpCodesViewController.h"
 
 #define kMiniCollectorDataFile @"MiniCollector.data"
 
