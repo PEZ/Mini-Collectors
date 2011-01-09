@@ -136,6 +136,8 @@
 		EB3319CF12D882F3001E2AA6 /* 3-15-320.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3319AF12D882F3001E2AA6 /* 3-15-320.png */; };
 		EB3319D012D882F3001E2AA6 /* 3-16-57.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3319B012D882F3001E2AA6 /* 3-16-57.png */; };
 		EB3319D112D882F3001E2AA6 /* 3-16-320.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3319B112D882F3001E2AA6 /* 3-16-320.png */; };
+		EB331A2A12D9CF71001E2AA6 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = EB331A2612D9CF71001E2AA6 /* SKProduct+LocalizedPrice.m */; };
+		EB331A2B12D9CF71001E2AA6 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB331A2812D9CF71001E2AA6 /* InAppPurchaseManager.m */; };
 		EB383C0610BBF8A40000B2D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB383C0510BBF8A40000B2D2 /* AppDelegate.m */; };
 		EB383C1410BBF8C70000B2D2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB383C1310BBF8C70000B2D2 /* QuartzCore.framework */; };
 		EB383D1110BBFC630000B2D2 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EB383D1010BBFC630000B2D2 /* Three20.bundle */; };
@@ -603,6 +605,10 @@
 		EB3319AF12D882F3001E2AA6 /* 3-15-320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "3-15-320.png"; path = "Images/3-15-320.png"; sourceTree = "<group>"; };
 		EB3319B012D882F3001E2AA6 /* 3-16-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "3-16-57.png"; path = "Images/3-16-57.png"; sourceTree = "<group>"; };
 		EB3319B112D882F3001E2AA6 /* 3-16-320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "3-16-320.png"; path = "Images/3-16-320.png"; sourceTree = "<group>"; };
+		EB331A2612D9CF71001E2AA6 /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
+		EB331A2712D9CF71001E2AA6 /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
+		EB331A2812D9CF71001E2AA6 /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseManager.m; sourceTree = "<group>"; };
+		EB331A2912D9CF71001E2AA6 /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
 		EB383C0410BBF8A40000B2D2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		EB383C0510BBF8A40000B2D2 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		EB383C1310BBF8C70000B2D2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -642,6 +648,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				EB331A2612D9CF71001E2AA6 /* SKProduct+LocalizedPrice.m */,
+				EB331A2712D9CF71001E2AA6 /* SKProduct+LocalizedPrice.h */,
+				EB331A2812D9CF71001E2AA6 /* InAppPurchaseManager.m */,
+				EB331A2912D9CF71001E2AA6 /* InAppPurchaseManager.h */,
 				32BEAC8112240E05003B0278 /* Figure.h */,
 				32BEAC8212240E05003B0278 /* Figure.m */,
 				324BBC7012201D9A008631B0 /* MainViewController.h */,
@@ -1510,6 +1520,8 @@
 				324BBDA21221B122008631B0 /* DefaultStyleSheet.m in Sources */,
 				32BEAAE412223C38003B0278 /* FigureViewController.m in Sources */,
 				32BEAC8312240E05003B0278 /* Figure.m in Sources */,
+				EB331A2A12D9CF71001E2AA6 /* SKProduct+LocalizedPrice.m in Sources */,
+				EB331A2B12D9CF71001E2AA6 /* InAppPurchaseManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
