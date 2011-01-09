@@ -54,7 +54,7 @@ static MainViewController *_instance;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
     self.title = @"Mini Collector";
-    if (scanningAvailable()) { 
+    if (scanningAvailable()) {
       self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
                                                  initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
                                                  target:self
@@ -95,7 +95,7 @@ static MainViewController *_instance;
 
 - (void) reportAchievements {
   NSMutableDictionary *achievements = [NSMutableDictionary dictionaryWithCapacity:4];
-  for (int series = 1; series < 3; series++) {
+  for (int series = 1; series < 4; series++) {
     for (int i = 1; i <= 16; i++) {
       NSString *key = [NSString stringWithFormat:@"%d-%d", series, i];
       Figure *figure = [Figure figureFromKey:key];
@@ -128,7 +128,7 @@ static MainViewController *_instance;
                                                      delegate:self cancelButtonTitle:@"Roger that" otherButtonTitles:nil, nil];
       [alert show];
       [alert release];
-      
+
     }
   }];
 }
@@ -172,9 +172,9 @@ static MainViewController *_instance;
 }
 
 - (NSArray *) launcherPages {
-  
+
   return [NSArray arrayWithObjects:
-          [self launcherItemsForSeries:1],[self launcherItemsForSeries:2], nil
+          [self launcherItemsForSeries:1],[self launcherItemsForSeries:2],[self launcherItemsForSeries:3], nil
          ];
 }
 
@@ -182,7 +182,7 @@ static MainViewController *_instance;
 	[super loadView];
 
   _launcherView = [[LauncherView alloc] initWithFrame:self.view.bounds];
-  
+
   _launcherView.backgroundColor = [UIColor blackColor];
   _launcherView.delegate = self;
   _launcherView.columnCount = 4;
@@ -216,14 +216,14 @@ static MainViewController *_instance;
       reader.readerDelegate = self;
     #endif
     ZBarImageScanner *scanner = reader.scanner;
-    
+
     [scanner setSymbology: 0
                    config: ZBAR_CFG_ENABLE
                        to: 0];
     [scanner setSymbology: ZBAR_EAN13
                    config: ZBAR_CFG_ENABLE
                        to: 1];
-    
+
     [self presentModalViewController: reader
                             animated: YES];
     [reader release];
@@ -307,7 +307,7 @@ static MainViewController *_instance;
                  @"1-13", @"673419134040",
                  @"1-14", @"673419134057",
                  @"1-15", @"673419134064",
-                 @"1-16", @"673419133937",                 
+                 @"1-16", @"673419133937",
                  nil];
   }
   return _barcodes;
@@ -331,8 +331,8 @@ static MainViewController *_instance;
   ZBarSymbol *symbol = nil;
   for(symbol in results)
     break;
-  
-  NSString *code = [self trimLeadingZeroes:symbol.data];    
+
+  NSString *code = [self trimLeadingZeroes:symbol.data];
   NSString *fig = [[self barcodes] valueForKey:code];
   if (fig != NULL) {
     [self openURLAction:[NSString stringWithFormat:@"mc://hidden/%@", fig]];
@@ -343,7 +343,7 @@ static MainViewController *_instance;
                                                    delegate:self cancelButtonTitle:@"Roger that" otherButtonTitles:nil, nil];
     [alert show];
     [alert release];
-  }  
+  }
 }
 
 @end

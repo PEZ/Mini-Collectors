@@ -1,4 +1,4 @@
-// 
+//
 //  Figure.m
 //  Mini Collector
 //
@@ -11,7 +11,7 @@
 
 #define kArchiveFile @"Figures.archive"
 
-@implementation Figure 
+@implementation Figure
 
 @synthesize series = _series;
 @synthesize key = _key;
@@ -33,7 +33,7 @@ static NSDictionary *_figures;
 
 - (void) countChanged {
   self.launcherItem.badgeNumber = self.count;
-  [Figure saveFigures];  
+  [Figure saveFigures];
 }
 
 - (NSString *) achievmentIdentifier {
@@ -47,7 +47,7 @@ static NSDictionary *_figures;
   float percentThisSeries = thisSeriesAchievement.percentComplete;
   if (percentThisSeries < 100.0) {
     thisSeriesAchievement.percentComplete = percentThisSeries + 100.0/15.999999;
-    [achievements addObject:thisSeriesAchievement]; 
+    [achievements addObject:thisSeriesAchievement];
     if (thisSeriesAchievement.percentComplete >= 100.0) {
       GKAchievement *achievement2S = [[AppDelegate getInstance] getAchievementForIdentifier:@"2S"];
       float percent2S = achievement2S.percentComplete;
@@ -123,12 +123,51 @@ static NSDictionary *_figures;
   }
 }
 
++ (NSDictionary *) s3_figures {
+	NSNumber *zero = [NSNumber numberWithInt: 0];
+	NSNumber *three = [NSNumber numberWithInt: 3];
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 three, @"series", @"3-1", @"key", @"Hola Girl", @"name", zero, @"count", nil]] retain], @"3-1",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 three, @"series", @"3-2", @"key", @"Gorilla", @"name", zero, @"count", nil]] retain], @"3-2",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 three, @"series", @"3-3", @"key", @"Baseball Player", @"name", zero, @"count", nil]] retain], @"3-3",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 three, @"series", @"3-4", @"key", @"Tennis Player", @"name", zero, @"count", nil]] retain], @"3-4",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 three, @"series", @"3-5", @"key", @"Elf", @"name", zero, @"count", nil]] retain], @"3-5",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 three, @"series", @"3-6", @"key", @"Street Punk", @"name", zero, @"count", nil]] retain], @"3-6",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 three, @"series", @"3-7", @"key", @"Indian Chief", @"name", zero, @"count", nil]] retain], @"3-7",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 three, @"series", @"3-8", @"key", @"Alien", @"name", zero, @"count", nil]] retain], @"3-8",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 three, @"series", @"3-9", @"key", @"Pilot", @"name", zero, @"count", nil]] retain], @"3-9",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 three, @"series", @"3-10", @"key", @"Mummy", @"name", zero, @"count", nil]] retain], @"3-10",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 three, @"series", @"3-11", @"key", @"Fisherman", @"name", zero, @"count", nil]] retain], @"3-11",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 three, @"series", @"3-12", @"key", @"Snowboarder", @"name", zero, @"count", nil]] retain], @"3-12",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 three, @"series", @"3-13", @"key", @"Samurai", @"name", zero, @"count", nil]] retain], @"3-13",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 three, @"series", @"3-14", @"key", @"Racecar Driver", @"name", zero, @"count", nil]] retain], @"3-14",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 three, @"series", @"3-15", @"key", @"Cyborg", @"name", zero, @"count", nil]] retain], @"3-15",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 three, @"series", @"3-16", @"key", @"Sume Wrestler", @"name", zero, @"count", nil]] retain], @"3-16",
+					nil];
+}
+
 + (void) resetFigures {
   NSNumber *zero = [NSNumber numberWithInt: 0];
-    NSNumber *one = [NSNumber numberWithInt: 1];
-    NSNumber *two = [NSNumber numberWithInt: 2];
-    _figures =
-    [NSDictionary dictionaryWithObjectsAndKeys:
+	NSNumber *one = [NSNumber numberWithInt: 1];
+	NSNumber *two = [NSNumber numberWithInt: 2];
+    NSMutableDictionary *figures =
+    [NSMutableDictionary dictionaryWithObjectsAndKeys:
      [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
                               one, @"series", @"1-1", @"key", @"Robot", @"name", zero, @"count", nil]] retain], @"1-1",
      [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -194,17 +233,24 @@ static NSDictionary *_figures;
      [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
                               two, @"series", @"2-16", @"key", @"Weightlifter", @"name", zero, @"count", nil]] retain], @"2-16",
      nil];
+	[figures addEntriesFromDictionary:[self s3_figures]];
+	_figures = [NSDictionary dictionaryWithDictionary:figures];
     [self saveFigures];
 
 }
 + (void) loadFigures {
   if ([[NSFileManager defaultManager] fileExistsAtPath:[self archivePath]]) {
+		NSMutableDictionary *figures;
     @try {
-      _figures = [[NSKeyedUnarchiver unarchiveObjectWithFile:[self archivePath]] retain];
+      figures = [NSMutableDictionary dictionaryWithDictionary:[NSKeyedUnarchiver unarchiveObjectWithFile:[self archivePath]]];
     }
     @catch (NSException * e) {
       [self resetFigures];
     }
+		if ([figures count] < 33) {
+			[figures addEntriesFromDictionary:[self s3_figures]];
+		}
+		_figures = [[NSDictionary dictionaryWithDictionary:figures] retain];
   }
   else {
     [self resetFigures];
