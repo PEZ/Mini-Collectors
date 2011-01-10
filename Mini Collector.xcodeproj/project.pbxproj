@@ -157,6 +157,7 @@
 		EB331BA112DA5168001E2AA6 /* bump-3-15.png in Resources */ = {isa = PBXBuildFile; fileRef = EB331B9112DA5168001E2AA6 /* bump-3-15.png */; };
 		EB331BA212DA5168001E2AA6 /* bump-3-16.png in Resources */ = {isa = PBXBuildFile; fileRef = EB331B9212DA5168001E2AA6 /* bump-3-16.png */; };
 		EB331BA512DA5294001E2AA6 /* NSMutableArray+Shuffle.m in Sources */ = {isa = PBXBuildFile; fileRef = EB331BA412DA5294001E2AA6 /* NSMutableArray+Shuffle.m */; };
+		EB331C0712DAD817001E2AA6 /* Hidden-3.png in Resources */ = {isa = PBXBuildFile; fileRef = EB331C0612DAD817001E2AA6 /* Hidden-3.png */; };
 		EB383C0610BBF8A40000B2D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB383C0510BBF8A40000B2D2 /* AppDelegate.m */; };
 		EB383C1410BBF8C70000B2D2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB383C1310BBF8C70000B2D2 /* QuartzCore.framework */; };
 		EB383D1110BBFC630000B2D2 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EB383D1010BBFC630000B2D2 /* Three20.bundle */; };
@@ -649,6 +650,7 @@
 		EB331B9212DA5168001E2AA6 /* bump-3-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bump-3-16.png"; path = "Images/bump-3-16.png"; sourceTree = "<group>"; };
 		EB331BA312DA5294001E2AA6 /* NSMutableArray+Shuffle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffle.h"; sourceTree = "<group>"; };
 		EB331BA412DA5294001E2AA6 /* NSMutableArray+Shuffle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffle.m"; sourceTree = "<group>"; };
+		EB331C0612DAD817001E2AA6 /* Hidden-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Hidden-3.png"; path = "Images/Hidden-3.png"; sourceTree = "<group>"; };
 		EB383C0410BBF8A40000B2D2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		EB383C0510BBF8A40000B2D2 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		EB383C1310BBF8C70000B2D2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -971,6 +973,7 @@
 				EB331B0D12DA1921001E2AA6 /* BumpsIcon.png */,
 				32749753122B1C8900BED32D /* Hidden-1.png */,
 				32749754122B1C8900BED32D /* Hidden-2.png */,
+				EB331C0612DAD817001E2AA6 /* Hidden-3.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -1581,6 +1584,7 @@
 				EB331BA012DA5168001E2AA6 /* bump-3-14.png in Resources */,
 				EB331BA112DA5168001E2AA6 /* bump-3-15.png in Resources */,
 				EB331BA212DA5168001E2AA6 /* bump-3-16.png in Resources */,
+				EB331C0712DAD817001E2AA6 /* Hidden-3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
