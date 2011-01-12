@@ -7,7 +7,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import "MainViewController.h"
 #import "Figure.h"
-#import "InAppPurchaseManager.h"
 
 BOOL scanningAvailable() {
   BOOL available = [ZBarReaderViewController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
@@ -88,7 +87,6 @@ static MainViewController *_instance;
       }
     }
   }
-	[[InAppPurchaseManager getInstance] requestSeries3UpgradeProductData];
   _instance = self;
   return self;
 }

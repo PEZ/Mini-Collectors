@@ -6,9 +6,11 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
+#import <Three20UI/UIViewAdditions.h>
+
 #import "FigureViewController.h"
 #import "DefaultStyleSheet.h"
-#import <Three20UI/UIViewAdditions.h>
+#import "InAppPurchaseManager.h"
 
 #define MARGIN 5
 
@@ -16,8 +18,6 @@
 
 @synthesize figure = _figure;
 @synthesize imageView = _imageView;
-//@synthesize downButton = _downButton;
-//@synthesize upButton = _upButton;
 @synthesize figureCountLabel = _figureCountLabel;
 @synthesize hidden = _hidden;
 
@@ -42,20 +42,11 @@
   return self;
 }
 
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
-
-//- (void)layout {
-//  TTFlowLayout* flowLayout = [[[TTFlowLayout alloc] init] autorelease];
-//  flowLayout.padding = MARGIN;
-//  flowLayout.spacing = MARGIN;
-//  CGSize size = [flowLayout layoutSubviews:self.view.subviews forView:self.view];
-//  
-//  UIScrollView* scrollView = (UIScrollView*)self.view;
-//  scrollView.contentSize = CGSizeMake(scrollView.width, size.height);
-//}
-
+- (void)dealloc {
+  TT_RELEASE_SAFELY(_imageView);
+  TT_RELEASE_SAFELY(_figureCountLabel);
+	[super dealloc];
+}
 
 - (void)updateCountLabel {
   _figureCountLabel.text = [NSString stringWithFormat:@"%d", _figure.count];
@@ -78,8 +69,23 @@
   [aView addSubview:button];
 }
 
+
+- (BOOL)isSeries3Enabled {
+  //[prefs synchronize];
+  NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+  return [prefs boolForKey:kIsSeries3ProductUnlocked];
+}
+
 - (NSString *) imagePath {
-  return _hidden ? [NSString stringWithFormat:@"bundle://Hidden-%d.png", _figure.series] : [NSString stringWithFormat:@"bundle://%@-320.png", _figure.key];
+	if (_hidden) {
+		if (self.figure.series != 3 || [self isSeries3Enabled]) {
+			return [NSString stringWithFormat:@"bundle://Hidden-%d.png", _figure.series];
+		}
+		else {
+			return [NSString stringWithFormat:@"bundle://Locked-%d.png", _figure.series];
+		}
+	}
+  return [NSString stringWithFormat:@"bundle://%@-320.png", _figure.key];
 }
 
 - (void) unHide {
@@ -96,19 +102,32 @@
     [TTShadowStyle styleWithColor:RGBACOLOR(0,0,0,0.8) blur:3 offset:CGSizeMake(0, 4) next:
      [TTReflectiveFillStyle styleWithColor:RGBACOLOR(12,140,21,0.9) next:
       [TTInsetStyle styleWithInset:UIEdgeInsetsMake(-1, -1, -1, -1) next:
-       [TTSolidBorderStyle styleWithColor:[UIColor whiteColor] width:2 next:
+       [TTSolidBorderStyle styleWithColor:RGBACOLOR(12,140,21,0.9) width:1 next:
         [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(1, 7, 2, 7) next:
          [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:fontSize]
                               color:[UIColor whiteColor] next:nil]]]]]]]];
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// NSObject
+- (void)purchaseSeries3 {
+	InAppPurchaseManager *purchaseManager = [InAppPurchaseManager getInstance];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+																					 selector:@selector(series3ContentProvided)
+																							 name:kInAppPurchaseManagerSeries3ContentProvidedNotification
+																						 object:nil];
+	if ([purchaseManager canMakePurchases]) {
+		[purchaseManager purchaseSeries3];		
+	}
+	else {
+		TTAlert(@"Purchases are not available.");
+#if TARGET_IPHONE_SIMULATOR
+		[purchaseManager provideContent:kInAppPurchaseSeries3UpgradeProductId];
+#endif
+	}
+}
 
-- (void)dealloc {
-  TT_RELEASE_SAFELY(_imageView);
-  TT_RELEASE_SAFELY(_figureCountLabel);
-	[super dealloc];
+- (void)series3ContentProvided {
+	_loaded = NO;
+	[self loadView];
 }
 
 - (void)loadView {
@@ -116,16 +135,21 @@
     _loaded = YES;
 
     if (_hidden) {
-      self.navigationItem.rightBarButtonItem
-      = [[[UIBarButtonItem alloc] initWithTitle:@"Reveal" style:UIBarButtonItemStyleBordered
-                                         target:self action:@selector(unHide)] autorelease];
-      self.title = _figure.count > 0 ? @"You have it" : @"Not collected!";
+			if (self.figure.series != 3 || [self isSeries3Enabled]) {
+				self.navigationItem.rightBarButtonItem
+				= [[[UIBarButtonItem alloc] initWithTitle:@"Reveal" style:UIBarButtonItemStyleBordered
+																					 target:self action:@selector(unHide)] autorelease];
+				self.title = _figure.count > 0 ? @"You have it" : @"Not collected!";
+			}
+			else {
+				self.title = @"Series 3 is locked";
+			}
     }
     else {
       self.title = _figure.name;
     }
-    
-    
+
+
     UIScrollView* scrollView = [[[UIScrollView alloc] initWithFrame:TTNavigationFrame()] autorelease];
     scrollView.autoresizesSubviews = YES;
     scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -133,16 +157,27 @@
     scrollView.canCancelContentTouches = NO;
     scrollView.delaysContentTouches = NO;
     self.view = scrollView;
-    
+
     float imageY = 5;
     _imageView = [[TTImageView alloc] initWithFrame:CGRectMake(0, imageY, self.view.frame.size.width, 0)];
     _imageView.autoresizesToImage = YES;
     _imageView.urlPath = [self imagePath];
-    
+
     [self.view addSubview:_imageView];
-    
-    if (!_hidden) {
-      float imageBottom = _imageView.frame.size.height + imageY;
+		float imageBottom = _imageView.frame.size.height + imageY;
+
+		if (self.figure.series == 3 && ![self isSeries3Enabled]) {
+			TTButton *purchaseButton = [[TTButton buttonWithStyle:@"defaultButton:" title:@"Unlock Series 3 support"] retain];
+			purchaseButton.font = [UIFont systemFontOfSize:20];
+			[purchaseButton sizeToFit];
+			purchaseButton.width += 40;
+			purchaseButton.height += 15;
+			purchaseButton.left = (scrollView.width - purchaseButton.width) / 2;
+			purchaseButton.top = _imageView.bottom + 20;
+			[purchaseButton addTarget:self action:@selector(purchaseSeries3) forControlEvents:UIControlEventTouchUpInside];
+			[scrollView addSubview:purchaseButton];
+		}
+    else if (!_hidden) {
       NSArray* widgets = [NSArray arrayWithObjects:
                           [TTButton buttonWithStyle:@"defaultButton:" title:@"-"],
                           [TTButton buttonWithStyle:@"defaultButton:" title:@"+"],
@@ -152,9 +187,9 @@
       [self setupButton:[widgets objectAtIndex:1] withSelector:@selector(increaseFigureCount) atX:200 atY:imageBottom + 20 addToView:scrollView];
       _figureCountLabel = [widgets objectAtIndex:2];
       _figureCountLabel.style = [self labelWithFontSize:25];
-      
+
       [self updateCountLabel];
-      
+
       [scrollView addSubview:_figureCountLabel];
     }
   }

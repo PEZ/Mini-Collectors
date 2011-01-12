@@ -9,10 +9,8 @@
 #import "AppDelegate.h"
 #import "DefaultStyleSheet.h"
 #import "Figure.h"
+#import "InAppPurchaseManager.h"
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////
 @implementation AppDelegate
 
 @synthesize gameCenterActivated = _gameCenterActivated;
@@ -110,6 +108,7 @@ static AppDelegate *_instance;
   self.achievementsDictionary = [[NSMutableDictionary alloc] init];
   [Figure loadFigures];
   [self loadGameCenterInfo];
+	[[InAppPurchaseManager getInstance] loadStore];
 
   TTNavigator* navigator = [TTNavigator navigator];
   navigator.persistenceMode = TTNavigatorPersistenceModeNone;

@@ -47,10 +47,10 @@
                     shadowOffset:CGSizeMake(0, -1) next:nil]]]]];
   } else if (state == UIControlStateHighlighted) {
     return
-    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, 0, 0, 0) next:
+    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(6, -2, -2, -2) next:
      [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:3] next:
       [TTReflectiveFillStyle styleWithColor:RGBACOLOR(12,14,21,0.9) next:
-       [TTSolidBorderStyle styleWithColor:[UIColor whiteColor] width:1 next:
+       [TTSolidBorderStyle styleWithColor:[UIColor grayColor] width:1 next:
        [TTTextStyle styleWithFont:nil color:[UIColor whiteColor]
                       shadowColor:[UIColor colorWithWhite:255 alpha:0.4]
                      shadowOffset:CGSizeMake(0, -1) next:nil]]]]];

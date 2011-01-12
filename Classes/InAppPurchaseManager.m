@@ -7,8 +7,6 @@
 //
 
 #import "InAppPurchaseManager.h"
-#define kInAppPurchaseSeries3UpgradeProductId @"com.pezius.minicollector.series3"
-
 
 
 @implementation InAppPurchaseManager
@@ -76,7 +74,7 @@ static InAppPurchaseManager *_instance;
   if ([transaction.payment.productIdentifier isEqualToString:kInAppPurchaseSeries3UpgradeProductId])
   {
     // save the transaction receipt to disk
-    [[NSUserDefaults standardUserDefaults] setValue:transaction.transactionReceipt forKey:@"series3UpgradeTransactionReceipt" ];
+    [[NSUserDefaults standardUserDefaults] setValue:transaction.transactionReceipt forKey:@"series3UpgradeTransactionReceipt"];
     [[NSUserDefaults standardUserDefaults] synchronize];
   }
 }
@@ -88,8 +86,9 @@ static InAppPurchaseManager *_instance;
 {
   if ([productId isEqualToString:kInAppPurchaseSeries3UpgradeProductId])
   {
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isSeries3UpgradePurchased" ];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kIsSeries3ProductUnlocked];
     [[NSUserDefaults standardUserDefaults] synchronize];
+		[[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerSeries3ContentProvidedNotification object:self];
   }
 }
 
@@ -183,12 +182,12 @@ static InAppPurchaseManager *_instance;
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
   NSArray *products = response.products;
-  scannerProduct = [products count] == 1 ? [[products objectAtIndex:0] retain] : nil;
-  if (scannerProduct) {
-    NSLog(@"Product title: %@" , scannerProduct.localizedTitle);
-    NSLog(@"Product description: %@" , scannerProduct.localizedDescription);
-    NSLog(@"Product price: %@" , scannerProduct.price);
-    NSLog(@"Product id: %@" , scannerProduct.productIdentifier);
+  series3Product = [products count] == 1 ? [[products objectAtIndex:0] retain] : nil;
+  if (series3Product) {
+    NSLog(@"Product title: %@" , series3Product.localizedTitle);
+    NSLog(@"Product description: %@" , series3Product.localizedDescription);
+    NSLog(@"Product price: %@" , series3Product.price);
+    NSLog(@"Product id: %@" , series3Product.productIdentifier);
   }
 
   for (NSString *invalidProductId in response.invalidProductIdentifiers) {
