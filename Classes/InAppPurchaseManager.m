@@ -136,18 +136,8 @@ static InAppPurchaseManager *_instance;
 //
 // called when a transaction has failed
 //
-- (void)failedTransaction:(SKPaymentTransaction *)transaction
-{
-  if (transaction.error.code != SKErrorPaymentCancelled)
-  {
-    // error!
-    [self finishTransaction:transaction wasSuccessful:NO];
-  }
-  else
-  {
-    // this is fine, the user just cancelled, so don’t notify
-    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-  }
+- (void)failedTransaction:(SKPaymentTransaction *)transaction {
+	[self finishTransaction:transaction wasSuccessful:NO];
 }
 
 #pragma mark -
@@ -184,16 +174,15 @@ static InAppPurchaseManager *_instance;
   NSArray *products = response.products;
   series3Product = [products count] == 1 ? [[products objectAtIndex:0] retain] : nil;
   if (series3Product) {
-    NSLog(@"Product title: %@" , series3Product.localizedTitle);
-    NSLog(@"Product description: %@" , series3Product.localizedDescription);
-    NSLog(@"Product price: %@" , series3Product.price);
-    NSLog(@"Product id: %@" , series3Product.productIdentifier);
+    DLog(@"Product title: %@" , series3Product.localizedTitle);
+    DLog(@"Product description: %@" , series3Product.localizedDescription);
+    DLog(@"Product price: %@" , series3Product.price);
+    DLog(@"Product id: %@" , series3Product.productIdentifier);
   }
 
   for (NSString *invalidProductId in response.invalidProductIdentifiers) {
-    NSLog(@"Invalid product id: %@" , invalidProductId);
+    DLog(@"Invalid product id: %@" , invalidProductId);
   }
-
   // finally release the reqest we alloc/init’ed in requestProUpgradeProductData
   [productsRequest release];
 

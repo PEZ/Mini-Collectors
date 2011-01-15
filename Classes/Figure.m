@@ -119,7 +119,7 @@ static NSDictionary *_figures;
 + (void) saveFigures {
   BOOL result = [NSKeyedArchiver archiveRootObject:_figures toFile:[self archivePath]];
   if (!result) {
-    NSLog(@"FAIL: Saving figures to %@", [self archivePath]);
+    DLog(@"FAIL: Saving figures to %@", [self archivePath]);
   }
 }
 

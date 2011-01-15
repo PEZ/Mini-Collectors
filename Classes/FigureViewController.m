@@ -21,6 +21,59 @@
 @synthesize figureCountLabel = _figureCountLabel;
 @synthesize hidden = _hidden;
 
+- (BOOL)isSeries3Enabled {
+  //[prefs synchronize];
+  NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+  return [prefs boolForKey:kIsSeries3ProductUnlocked];
+}
+
+- (void)createPurchaseActivityLabel {
+	if (_purchaseActivityLabel == nil) {
+		_purchaseActivityLabel = [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleBlackBox] retain];
+		_purchaseActivityLabel.text = @"Purchase in progress...";
+		[_purchaseActivityLabel sizeToFit];
+		_purchaseActivityLabel.frame = CGRectMake(0, _imageView.bottom+20, self.view.width, _purchaseActivityLabel.height);
+		[self.view addSubview:_purchaseActivityLabel];
+	}
+}
+
+- (void)purchaseSeries3 {
+	[self createPurchaseActivityLabel];
+	_purchaseActivityLabel.hidden = NO;
+	_purchaseButton.hidden = YES;
+	InAppPurchaseManager *purchaseManager = [InAppPurchaseManager getInstance];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+																					 selector:@selector(series3ContentProvided)
+																							 name:kInAppPurchaseManagerSeries3ContentProvidedNotification
+																						 object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+																					 selector:@selector(purchaseFailed)
+																							 name:kInAppPurchaseManagerTransactionFailedNotification
+																						 object:nil];	
+	if ([purchaseManager canMakePurchases]) {
+		[purchaseManager purchaseSeries3];		
+	}
+	else {
+		TTAlert(@"Purchases are not available.");
+#if TARGET_IPHONE_SIMULATOR
+		[purchaseManager provideContent:kInAppPurchaseSeries3UpgradeProductId];
+#endif
+	}
+}
+
+- (void)createPurchaseButton {
+	if (_purchaseButton == nil) {
+		_purchaseButton = [[TTButton buttonWithStyle:@"defaultButton:" title:@"Purchase Series 3 support"] retain];
+		_purchaseButton.font = [UIFont systemFontOfSize:20];
+		[_purchaseButton sizeToFit];
+		_purchaseButton.width += 40;
+		_purchaseButton.height += 15;
+		_purchaseButton.left = (self.view.width - _purchaseButton.width) / 2;
+		_purchaseButton.top = _imageView.bottom + 20;
+		[_purchaseButton addTarget:self action:@selector(purchaseSeries3) forControlEvents:UIControlEventTouchUpInside];
+	}
+}
+
 - (id)initWithKey:(NSString *)key {
   if (self = [self init]) {
     self.figure = [Figure figureFromKey:key];
@@ -45,6 +98,8 @@
 - (void)dealloc {
   TT_RELEASE_SAFELY(_imageView);
   TT_RELEASE_SAFELY(_figureCountLabel);
+	TT_RELEASE_SAFELY(_purchaseButton);
+	TT_RELEASE_SAFELY(_purchaseActivityLabel);
 	[super dealloc];
 }
 
@@ -69,23 +124,18 @@
   [aView addSubview:button];
 }
 
-
-- (BOOL)isSeries3Enabled {
-  //[prefs synchronize];
-  NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-  return [prefs boolForKey:kIsSeries3ProductUnlocked];
-}
-
 - (NSString *) imagePath {
-	if (_hidden) {
-		if (self.figure.series != 3 || [self isSeries3Enabled]) {
-			return [NSString stringWithFormat:@"bundle://Hidden-%d.png", _figure.series];
+	if (self.figure.series != 3 || [self isSeries3Enabled]) {
+		if (!_hidden || _figure.count > 0) {
+			return [NSString stringWithFormat:@"bundle://%@-320.png", _figure.key];
 		}
 		else {
-			return [NSString stringWithFormat:@"bundle://Locked-%d.png", _figure.series];
+			return [NSString stringWithFormat:@"bundle://Hidden-%d.png", _figure.series];
 		}
 	}
-  return [NSString stringWithFormat:@"bundle://%@-320.png", _figure.key];
+	else {
+		return [NSString stringWithFormat:@"bundle://Locked-%d.png", _figure.series];
+	}
 }
 
 - (void) unHide {
@@ -108,48 +158,27 @@
                               color:[UIColor whiteColor] next:nil]]]]]]]];
 }
 
-- (void)purchaseSeries3 {
-	InAppPurchaseManager *purchaseManager = [InAppPurchaseManager getInstance];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-																					 selector:@selector(series3ContentProvided)
-																							 name:kInAppPurchaseManagerSeries3ContentProvidedNotification
-																						 object:nil];
-	if ([purchaseManager canMakePurchases]) {
-		[purchaseManager purchaseSeries3];		
-	}
-	else {
-		TTAlert(@"Purchases are not available.");
-#if TARGET_IPHONE_SIMULATOR
-		[purchaseManager provideContent:kInAppPurchaseSeries3UpgradeProductId];
-#endif
-	}
-}
-
-- (void)series3ContentProvided {
-	_loaded = NO;
-	[self loadView];
-}
-
 - (void)loadView {
   if (!_loaded) {
     _loaded = YES;
 
-    if (_hidden) {
-			if (self.figure.series != 3 || [self isSeries3Enabled]) {
-				self.navigationItem.rightBarButtonItem
-				= [[[UIBarButtonItem alloc] initWithTitle:@"Reveal" style:UIBarButtonItemStyleBordered
-																					 target:self action:@selector(unHide)] autorelease];
-				self.title = _figure.count > 0 ? @"You have it" : @"Not collected!";
+		if (self.figure.series != 3 || [self isSeries3Enabled]) {			
+			if (!_hidden) {
+				self.title = _figure.name;
 			}
 			else {
-				self.title = @"Series 3 is locked";
-			}
-    }
-    else {
-      self.title = _figure.name;
-    }
-
-
+				if (_figure.count == 0) {
+					self.navigationItem.rightBarButtonItem
+					= [[[UIBarButtonItem alloc] initWithTitle:@"Reveal" style:UIBarButtonItemStyleBordered
+																						 target:self action:@selector(unHide)] autorelease];
+				}
+				self.title = _figure.count > 0 ? @"You have it" : @"Not collected!";
+			}			
+		}
+		else {
+			self.title = @"Series 3 is locked";
+		}
+		
     UIScrollView* scrollView = [[[UIScrollView alloc] initWithFrame:TTNavigationFrame()] autorelease];
     scrollView.autoresizesSubviews = YES;
     scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -167,15 +196,8 @@
 		float imageBottom = _imageView.frame.size.height + imageY;
 
 		if (self.figure.series == 3 && ![self isSeries3Enabled]) {
-			TTButton *purchaseButton = [[TTButton buttonWithStyle:@"defaultButton:" title:@"Unlock Series 3 support"] retain];
-			purchaseButton.font = [UIFont systemFontOfSize:20];
-			[purchaseButton sizeToFit];
-			purchaseButton.width += 40;
-			purchaseButton.height += 15;
-			purchaseButton.left = (scrollView.width - purchaseButton.width) / 2;
-			purchaseButton.top = _imageView.bottom + 20;
-			[purchaseButton addTarget:self action:@selector(purchaseSeries3) forControlEvents:UIControlEventTouchUpInside];
-			[scrollView addSubview:purchaseButton];
+			[self createPurchaseButton];
+			[scrollView addSubview:_purchaseButton];
 		}
     else if (!_hidden) {
       NSArray* widgets = [NSArray arrayWithObjects:
@@ -193,6 +215,19 @@
       [scrollView addSubview:_figureCountLabel];
     }
   }
+}
+
+#pragma mark -
+#pragma mark Notifications
+
+- (void)series3ContentProvided {
+	_loaded = NO;
+	[self loadView];
+}
+
+-(void)purchaseFailed {
+	_purchaseActivityLabel.hidden = YES;
+	_purchaseButton.hidden = NO;
 }
 
 @end

@@ -13,10 +13,11 @@
   Figure *_figure;
   TTImageView *_imageView;
   TTLabel *_figureCountLabel;
+	TTButton *_purchaseButton;
+	TTActivityLabel *_purchaseActivityLabel;
   BOOL _hidden;
   BOOL _loaded;
 }
-
 
 @property (nonatomic, retain) Figure *figure;
 @property (nonatomic, retain) TTImageView *imageView;

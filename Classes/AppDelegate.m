@@ -63,7 +63,7 @@ static AppDelegate *_instance;
       achievement.percentComplete = percent;
       [achievement reportAchievementWithCompletionHandler:^(NSError *error) {
         if (error != nil) {
-          NSLog(@"Error reporting achievement %@: %@", identifier, [error localizedDescription]);
+          DLog(@"Error reporting achievement %@: %@", identifier, [error localizedDescription]);
         }
       }];
     }
@@ -98,7 +98,7 @@ static AppDelegate *_instance;
                         self.gameCenterObjects, @"gameCenterObjects", nil];
   BOOL result = [NSKeyedArchiver archiveRootObject:data toFile:[self archivePath]];
   if (!result) {
-    NSLog(@"FAIL: Saving figures to %@", [self archivePath]);
+    DLog(@"FAIL: Saving figures to %@", [self archivePath]);
   }
 }
 
