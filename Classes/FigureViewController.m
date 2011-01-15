@@ -64,7 +64,7 @@
 - (void)createPurchaseButton {
 	if (_purchaseButton == nil) {
 		_purchaseButton = [[TTButton buttonWithStyle:@"defaultButton:" title:@"Purchase Series 3 support"] retain];
-		_purchaseButton.font = [UIFont systemFontOfSize:20];
+		_purchaseButton.font = [UIFont systemFontOfSize:18];
 		[_purchaseButton sizeToFit];
 		_purchaseButton.width += 40;
 		_purchaseButton.height += 15;

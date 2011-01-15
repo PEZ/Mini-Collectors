@@ -35,6 +35,7 @@ static NSDictionary *_figures;
 	TT_RELEASE_SAFELY(_launcherItem);
 	TT_RELEASE_SAFELY(_name);
 	TT_RELEASE_SAFELY(_key);
+	[super dealloc];
 }
 
 - (void) countChanged {
@@ -47,7 +48,7 @@ static NSDictionary *_figures;
 }
 
 - (NSArray *) incrementSeriesAchievments:(int)s {
-  NSMutableArray *achievements = [[NSMutableArray alloc] initWithCapacity:2];
+  NSMutableArray *achievements = [[[NSMutableArray alloc] initWithCapacity:2] autorelease];
   NSString *thisSeriesId = [NSString stringWithFormat:@"S%d", s];
   GKAchievement *thisSeriesAchievement = [[AppDelegate getInstance] getAchievementForIdentifier:thisSeriesId];
   float percentThisSeries = thisSeriesAchievement.percentComplete;
@@ -75,14 +76,14 @@ static NSDictionary *_figures;
   }
 }
 - (NSArray *) incrementFigureSpreeAchievments {
-  NSMutableArray *achievements = [[NSMutableArray alloc] initWithCapacity:2];
+  NSMutableArray *achievements = [[[NSMutableArray alloc] initWithCapacity:2] autorelease];
   [self incrementSpree:10 result:achievements];
   [self incrementSpree:25 result:achievements];
   return achievements;
 }
 
 - (NSArray *) reportAchievement {
-  NSMutableArray *achievements = [[NSMutableArray alloc] initWithCapacity:4];
+  NSMutableArray *achievements = [[[NSMutableArray alloc] initWithCapacity:4] autorelease];
   float percentComplete = [[AppDelegate getInstance] getAchievementForIdentifier:[self achievmentIdentifier]].percentComplete;
   if (percentComplete < 100.0) {
     [[AppDelegate getInstance] reportAchievementIdentifier:[self achievmentIdentifier] percentComplete:100.0];
