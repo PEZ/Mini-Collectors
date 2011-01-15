@@ -11,6 +11,7 @@
 #import "FigureViewController.h"
 #import "DefaultStyleSheet.h"
 #import "InAppPurchaseManager.h"
+#import "SKProduct+LocalizedPrice.h"
 
 #define MARGIN 5
 
@@ -20,6 +21,8 @@
 @synthesize imageView = _imageView;
 @synthesize figureCountLabel = _figureCountLabel;
 @synthesize hidden = _hidden;
+
+static TTButton *_purchaseButton;
 
 - (BOOL)isSeries3Enabled {
   //[prefs synchronize];
@@ -61,17 +64,18 @@
 	}
 }
 
-- (void)createPurchaseButton {
++ (void)createPurchaseButton {
 	if (_purchaseButton == nil) {
-		_purchaseButton = [[TTButton buttonWithStyle:@"defaultButton:" title:@"Purchase Series 3 support"] retain];
-		_purchaseButton.font = [UIFont systemFontOfSize:18];
-		[_purchaseButton sizeToFit];
-		_purchaseButton.width += 40;
-		_purchaseButton.height += 15;
-		_purchaseButton.left = (self.view.width - _purchaseButton.width) / 2;
-		_purchaseButton.top = _imageView.bottom + 20;
-		[_purchaseButton addTarget:self action:@selector(purchaseSeries3) forControlEvents:UIControlEventTouchUpInside];
+		_purchaseButton = [[TTButton buttonWithStyle:@"defaultButton:" title:@"Unlock Series 3 support"] retain];
 	}
+}
+
++ (void)sizePurchaseButton {
+	_purchaseButton.font = [UIFont systemFontOfSize:18];
+	[_purchaseButton sizeToFit];
+	_purchaseButton.width += 40;
+	_purchaseButton.height += 15;
+	_purchaseButton.left = (320 - _purchaseButton.width) / 2;
 }
 
 - (id)initWithKey:(NSString *)key {
@@ -98,7 +102,7 @@
 - (void)dealloc {
   TT_RELEASE_SAFELY(_imageView);
   TT_RELEASE_SAFELY(_figureCountLabel);
-	TT_RELEASE_SAFELY(_purchaseButton);
+	//TT_RELEASE_SAFELY(_purchaseButton);
 	TT_RELEASE_SAFELY(_purchaseActivityLabel);
 	[super dealloc];
 }
@@ -196,7 +200,12 @@
 		float imageBottom = _imageView.frame.size.height + imageY;
 
 		if (self.figure.series == 3 && ![self isSeries3Enabled]) {
-			[self createPurchaseButton];
+			[[self class] createPurchaseButton];
+			[[self class] sizePurchaseButton];
+			_purchaseButton.hidden = NO;
+			_purchaseButton.top = _imageView.bottom + 20;
+			[_purchaseButton removeTarget:nil action:@selector(purchaseSeries3) forControlEvents:UIControlEventTouchUpInside];
+			[_purchaseButton addTarget:self action:@selector(purchaseSeries3) forControlEvents:UIControlEventTouchUpInside];			
 			[scrollView addSubview:_purchaseButton];
 		}
     else if (!_hidden) {
@@ -220,7 +229,7 @@
 #pragma mark -
 #pragma mark Notifications
 
-- (void)series3ContentProvided {
+-(void)series3ContentProvided {
 	_loaded = NO;
 	[self loadView];
 }
@@ -228,6 +237,13 @@
 -(void)purchaseFailed {
 	_purchaseActivityLabel.hidden = YES;
 	_purchaseButton.hidden = NO;
+}
+
++(void)purchaseProductFetched {
+	[[self class]createPurchaseButton];
+	[_purchaseButton setTitle:[NSString stringWithFormat:@"%@",
+														 [[[InAppPurchaseManager getInstance] series3Product] localizedPrice]]  forState:UIControlStateNormal];
+	[self sizePurchaseButton];
 }
 
 @end

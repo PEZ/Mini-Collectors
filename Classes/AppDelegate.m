@@ -10,6 +10,7 @@
 #import "DefaultStyleSheet.h"
 #import "Figure.h"
 #import "InAppPurchaseManager.h"
+#import "FigureViewController.h"
 
 @implementation AppDelegate
 
@@ -109,6 +110,10 @@ static AppDelegate *_instance;
   [Figure loadFigures];
   [self loadGameCenterInfo];
 	[[InAppPurchaseManager getInstance] loadStore];
+	[[NSNotificationCenter defaultCenter] addObserver:[FigureViewController class]
+																					 selector:@selector(purchaseProductFetched)
+																							 name:kInAppPurchaseManagerProductsFetchedNotification
+																						 object:nil];	
 
   TTNavigator* navigator = [TTNavigator navigator];
   navigator.persistenceMode = TTNavigatorPersistenceModeNone;

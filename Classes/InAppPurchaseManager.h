@@ -15,7 +15,7 @@
 
 
 @interface InAppPurchaseManager : NSObject <SKProductsRequestDelegate, SKPaymentTransactionObserver> {
-  SKProduct *series3Product;
+  SKProduct *_series3Product;
   SKProductsRequest *productsRequest;
 }
 
@@ -25,5 +25,6 @@
 - (void)purchaseSeries3;
 - (void)provideContent:(NSString *)productId;
 + (InAppPurchaseManager *) getInstance;
+- (SKProduct*) series3Product;
 
 @end

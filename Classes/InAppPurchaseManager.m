@@ -7,7 +7,7 @@
 //
 
 #import "InAppPurchaseManager.h"
-
+#import "SKProduct+LocalizedPrice.h"
 
 @implementation InAppPurchaseManager
 
@@ -19,6 +19,10 @@ static InAppPurchaseManager *_instance;
     _instance = [[InAppPurchaseManager alloc] init];
   }
   return _instance;
+}
+
+- (SKProduct*)series3Product {
+	return _series3Product;
 }
 
 #pragma -
@@ -172,12 +176,12 @@ static InAppPurchaseManager *_instance;
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
   NSArray *products = response.products;
-  series3Product = [products count] == 1 ? [[products objectAtIndex:0] retain] : nil;
-  if (series3Product) {
-    DLog(@"Product title: %@" , series3Product.localizedTitle);
-    DLog(@"Product description: %@" , series3Product.localizedDescription);
-    DLog(@"Product price: %@" , series3Product.price);
-    DLog(@"Product id: %@" , series3Product.productIdentifier);
+  _series3Product = [products count] == 1 ? [[products objectAtIndex:0] retain] : nil;
+  if (_series3Product) {
+    DLog(@"Product title: %@" , _series3Product.localizedTitle);
+    DLog(@"Product description: %@" , _series3Product.localizedDescription);
+    DLog(@"Product price: %@" , [_series3Product localizedPrice]);
+    DLog(@"Product id: %@" , _series3Product.productIdentifier);
   }
 
   for (NSString *invalidProductId in response.invalidProductIdentifiers) {
