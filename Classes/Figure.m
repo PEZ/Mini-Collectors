@@ -31,6 +31,12 @@ static NSDictionary *_figures;
   return self;
 }
 
+-(void)dealloc {
+	TT_RELEASE_SAFELY(_launcherItem);
+	TT_RELEASE_SAFELY(_name);
+	TT_RELEASE_SAFELY(_key);
+}
+
 - (void) countChanged {
   self.launcherItem.badgeNumber = self.count;
   [Figure saveFigures];
@@ -234,10 +240,10 @@ static NSDictionary *_figures;
                               two, @"series", @"2-16", @"key", @"Weightlifter", @"name", zero, @"count", nil]] retain], @"2-16",
      nil];
 	[figures addEntriesFromDictionary:[self s3_figures]];
-	_figures = [NSDictionary dictionaryWithDictionary:figures];
-    [self saveFigures];
-
+	_figures = [[NSDictionary dictionaryWithDictionary:figures] retain];
+	[self saveFigures];
 }
+
 + (void) loadFigures {
   if ([[NSFileManager defaultManager] fileExistsAtPath:[self archivePath]]) {
 		NSMutableDictionary *figures;
