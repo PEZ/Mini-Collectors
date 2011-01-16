@@ -9,7 +9,7 @@
 #import <Three20UI/Three20UI.h>
 #import "Figure.h"
 
-@interface FigureViewController : TTModelViewController {
+@interface FigureViewController : TTModelViewController <UIActionSheetDelegate> {
   Figure *_figure;
   TTImageView *_imageView;
   TTLabel *_figureCountLabel;

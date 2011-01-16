@@ -106,6 +106,11 @@ static AppDelegate *_instance;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
   _instance = self;
+
+	NSInteger totalStarts = [[NSUserDefaults standardUserDefaults] integerForKey:kNumStartsKey] + 1;
+	[[NSUserDefaults standardUserDefaults] setInteger:totalStarts forKey:kNumStartsKey];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+
   self.achievementsDictionary = [[NSMutableDictionary alloc] init];
   [Figure loadFigures];
   [self loadGameCenterInfo];

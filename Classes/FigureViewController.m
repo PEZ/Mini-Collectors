@@ -8,12 +8,16 @@
 
 #import <Three20UI/UIViewAdditions.h>
 
+#import "AppDelegate.h"
 #import "FigureViewController.h"
 #import "DefaultStyleSheet.h"
 #import "InAppPurchaseManager.h"
 #import "SKProduct+LocalizedPrice.h"
 
 #define MARGIN 5
+#define kHaveAskedForReview @"kHaveAskedForReview"
+#define kAskForReviewThreshold 5
+
 
 @implementation FigureViewController
 
@@ -116,9 +120,36 @@ static TTButton *_purchaseButton;
   [self updateCountLabel];
 }
 
+-(void)considerAskForReview {
+	if (![[NSUserDefaults standardUserDefaults] boolForKey:kHaveAskedForReview]) {
+		if ([[NSUserDefaults standardUserDefaults] integerForKey:kNumStartsKey] >= kAskForReviewThreshold) {
+			[[NSUserDefaults standardUserDefaults] setBool:YES forKey:kHaveAskedForReview];
+			[[NSUserDefaults standardUserDefaults] synchronize];
+			UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"Thanks for using Mini Collector! Would you consider rating it on the App Store?"
+																												 delegate:self
+																								cancelButtonTitle:@"Cancel"
+																					 destructiveButtonTitle:nil
+																								otherButtonTitles:@"Yes, gladly", nil];
+			[sheet showInView:self.view];
+		}
+	}
+}
+
+-(void)gotoReviews {
+	NSString *str = @"http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=390113980&mt=8";
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+}
+
+- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+  if (buttonIndex == 0) {
+		[self gotoReviews];
+  }
+}
+
 - (void)increaseFigureCount {
   [_figure increaseCount];
   [self updateCountLabel];
+	[self considerAskForReview];
 }
 
 - (void) setupButton:(TTButton *)button withSelector:(SEL)selector atX:(float)x atY:(float)y addToView:(UIView *)aView {
