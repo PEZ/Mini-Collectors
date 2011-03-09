@@ -60,16 +60,17 @@ static MainViewController *_instance;
 	}
 }
 
--(void)openBumpsView {
-	 TTOpenURL([NSString stringWithFormat:@"mc://bumps/%d", 3]);
+-(void)openBumpsView:(id)sender {
+	TTOpenURL([NSString stringWithFormat:@"mc://bumps/%d", [sender tag]]);
 }
 
-- (void)showBumpsButton {
+- (void)showBumpsButtonWithTag:(uint)tag {
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-                                            initWithImage:[UIImage imageNamed:@"BumpsIcon.png"]
-                                            style:UIBarButtonItemStylePlain
-                                            target:self
-                                            action:@selector(openBumpsView)] autorelease];
+																						 initWithImage:[UIImage imageNamed:@"BumpsIcon.png"]
+																						 style:UIBarButtonItemStylePlain
+																						 target:self
+																						 action:@selector(openBumpsView:)] autorelease];
+	self.navigationItem.rightBarButtonItem.tag = tag;
 }
 
 
@@ -191,7 +192,10 @@ static MainViewController *_instance;
 - (NSArray *) launcherPages {
 
   return [NSArray arrayWithObjects:
-          [self launcherItemsForSeries:1],[self launcherItemsForSeries:2],[self launcherItemsForSeries:3], nil
+          [self launcherItemsForSeries:1],
+					[self launcherItemsForSeries:2],
+					[self launcherItemsForSeries:3],
+					[self launcherItemsForSeries:4], nil
          ];
 }
 
@@ -213,9 +217,13 @@ static MainViewController *_instance;
 	if (_currentPageIndex < 2) {
 		[self showScanButton];
 	}
-	else {
-		[self showBumpsButton];
+	else if (pageIndex == 2) {
+		[self showBumpsButtonWithTag:pageIndex+1];
 	}
+	else {
+		self.navigationItem.rightBarButtonItem = nil;
+	}
+
 }
 
 - (void) openURLAction: (NSString *) URL  {

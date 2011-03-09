@@ -28,10 +28,13 @@
 
 static TTButton *_purchaseButton;
 
-- (BOOL)isSeries3Enabled {
-  //[prefs synchronize];
+- (BOOL)isSeriesEnabled {
   NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-  return [prefs boolForKey:kIsSeries3ProductUnlocked];
+  return [prefs boolForKey:[NSString stringWithFormat:kIsSeriesProductUnlocked, self.figure.series]];
+}
+
+- (BOOL)isContentUnlocked {
+	return (self.figure.series < 3 || [self isSeriesEnabled]);
 }
 
 - (void)createPurchaseActivityLabel {
@@ -70,7 +73,8 @@ static TTButton *_purchaseButton;
 
 + (void)createPurchaseButton {
 	if (_purchaseButton == nil) {
-		_purchaseButton = [[TTButton buttonWithStyle:@"defaultButton:" title:@"Unlock Series 3 support"] retain];
+		_purchaseButton = [[TTButton buttonWithStyle:@"defaultButton:"
+																					 title:@"Unlock"] retain];
 	}
 }
 
@@ -160,7 +164,7 @@ static TTButton *_purchaseButton;
 }
 
 - (NSString *) imagePath {
-	if (self.figure.series != 3 || [self isSeries3Enabled]) {
+	if ([self isContentUnlocked]) {
 		if (!_hidden || _figure.count > 0) {
 			return [NSString stringWithFormat:@"bundle://%@-320.png", _figure.key];
 		}
@@ -197,7 +201,7 @@ static TTButton *_purchaseButton;
   if (!_loaded) {
     _loaded = YES;
 
-		if (self.figure.series != 3 || [self isSeries3Enabled]) {			
+		if ([self isContentUnlocked]) {			
 			if (!_hidden) {
 				self.title = _figure.name;
 			}
@@ -211,7 +215,7 @@ static TTButton *_purchaseButton;
 			}			
 		}
 		else {
-			self.title = @"Series 3 is locked";
+			self.title = [NSString stringWithFormat:@"Series %d is locked", self.figure.series];
 		}
 		
     UIScrollView* scrollView = [[[UIScrollView alloc] initWithFrame:TTNavigationFrame()] autorelease];
@@ -230,7 +234,7 @@ static TTButton *_purchaseButton;
     [self.view addSubview:_imageView];
 		float imageBottom = _imageView.frame.size.height + imageY;
 
-		if (self.figure.series == 3 && ![self isSeries3Enabled]) {
+		if (![self isContentUnlocked]) {
 			[[self class] createPurchaseButton];
 			[[self class] sizePurchaseButton];
 			_purchaseButton.hidden = NO;

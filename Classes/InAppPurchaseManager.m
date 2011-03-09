@@ -90,7 +90,13 @@ static InAppPurchaseManager *_instance;
 {
   if ([productId isEqualToString:kInAppPurchaseSeries3UpgradeProductId])
   {
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kIsSeries3ProductUnlocked];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[NSString stringWithFormat:kIsSeriesProductUnlocked, 3]];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+		[[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerSeries3ContentProvidedNotification object:self];
+  }
+  else if ([productId isEqualToString:kInAppPurchaseSeries3UpgradeProductId])
+  {
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[NSString stringWithFormat:kIsSeriesProductUnlocked, 4]];
     [[NSUserDefaults standardUserDefaults] synchronize];
 		[[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerSeries3ContentProvidedNotification object:self];
   }

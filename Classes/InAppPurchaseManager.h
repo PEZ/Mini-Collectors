@@ -11,7 +11,8 @@
 #define kInAppPurchaseManagerSeries3ContentProvidedNotification @"kInAppPurchaseManagerSeries3ContentProvidedNotification"
 
 #define kInAppPurchaseSeries3UpgradeProductId @"com.pezius.minicollector.series3"
-#define kIsSeries3ProductUnlocked @"isSeries3ProductUnlocked"
+#define kIsSeriesProductUnlocked @"isSeries%dProductUnlocked"
+#define kInAppPurchaseSeries4UpgradeProductId @"com.pezius.minicollector.series4"
 
 
 @interface InAppPurchaseManager : NSObject <SKProductsRequestDelegate, SKPaymentTransactionObserver> {
