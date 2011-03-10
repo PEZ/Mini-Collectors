@@ -49,18 +49,12 @@ static NSMutableDictionary *_purchaseButtons;
 	}
 }
 
+- (NSString*)productId {
+	return [InAppPurchaseManager productIdForSeries:self.figure.series];
+}
+
 - (TTButton*)purchaseButton {
-	switch (self.figure.series) {
-		case 3:
-			return [_purchaseButtons objectForKey:kInAppPurchaseSeries3UpgradeProductId];
-			break;
-		case 4:
-			return [_purchaseButtons objectForKey:kInAppPurchaseSeries4UpgradeProductId];
-			break;
-		default:
-			break;
-	}
-	return nil;
+	return [_purchaseButtons objectForKey:[self productId]];
 }
 
 - (void)createPurchaseActivityLabel {
@@ -73,26 +67,26 @@ static NSMutableDictionary *_purchaseButtons;
 	}
 }
 
-- (void)purchaseSeries3 {
+- (void)purchase {
 	[self createPurchaseActivityLabel];
 	_purchaseActivityLabel.hidden = NO;
 	self.purchaseButton.hidden = YES;
 	InAppPurchaseManager *purchaseManager = [InAppPurchaseManager getInstance];
 	[[NSNotificationCenter defaultCenter] addObserver:self
-																					 selector:@selector(series3ContentProvided)
-																							 name:kInAppPurchaseManagerSeries3ContentProvidedNotification
+																					 selector:@selector(seriesContentProvided)
+																							 name:productIdKey(kInAppPurchaseManagerSeriesContentProvidedNotification, [self productId])
 																						 object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 																					 selector:@selector(purchaseFailed)
-																							 name:kInAppPurchaseManagerTransactionFailedNotification
+																							 name:productIdKey(kInAppPurchaseManagerTransactionFailedNotification, [self productId])
 																						 object:nil];	
 	if ([purchaseManager canMakePurchases]) {
-		[purchaseManager purchaseSeries3];		
+		[purchaseManager purchase:[self productId]];		
 	}
 	else {
 		TTAlert(@"Purchases are not available.");
 #if TARGET_IPHONE_SIMULATOR
-		[purchaseManager provideContent:kInAppPurchaseSeries3UpgradeProductId];
+		[purchaseManager provideContent:[self productId]];
 #endif
 	}
 }
@@ -257,8 +251,8 @@ static NSMutableDictionary *_purchaseButtons;
 			[[self class] sizePurchaseButton:self.purchaseButton];
 			self.purchaseButton.hidden = NO;
 			self.purchaseButton.top = _imageView.bottom + 20;
-			[self.purchaseButton removeTarget:nil action:@selector(purchaseSeries3) forControlEvents:UIControlEventTouchUpInside];
-			[self.purchaseButton addTarget:self action:@selector(purchaseSeries3) forControlEvents:UIControlEventTouchUpInside];			
+			[self.purchaseButton removeTarget:nil action:@selector(purchase) forControlEvents:UIControlEventTouchUpInside];
+			[self.purchaseButton addTarget:self action:@selector(purchase) forControlEvents:UIControlEventTouchUpInside];			
 			[scrollView addSubview:self.purchaseButton];
 		}
     else if (!_hidden) {
@@ -282,7 +276,7 @@ static NSMutableDictionary *_purchaseButtons;
 #pragma mark -
 #pragma mark Notifications
 
--(void)series3ContentProvided {
+-(void)seriesContentProvided {
 	_loaded = NO;
 	[self loadView];
 }

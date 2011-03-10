@@ -6,27 +6,34 @@
 
 #import <StoreKit/StoreKit.h>
 #define kInAppPurchaseManagerProductsFetchedNotification @"kInAppPurchaseManagerProductsFetchedNotification"
-#define kInAppPurchaseManagerTransactionFailedNotification @"kInAppPurchaseManagerTransactionFailedNotification"
-#define kInAppPurchaseManagerTransactionSucceededNotification @"kInAppPurchaseManagerTransactionSucceededNotification"
-#define kInAppPurchaseManagerSeries3ContentProvidedNotification @"kInAppPurchaseManagerSeries3ContentProvidedNotification"
+#define kInAppPurchaseManagerTransactionFailedNotification @"kInAppPurchaseManagerSeriesTransactionFailedNotification_%@"
+#define kInAppPurchaseManagerTransactionSucceededNotification @"kInAppPurchaseManagerSeriesTransactionSucceededNotification_%@"
+#define kInAppPurchaseManagerSeriesContentProvidedNotification @"kInAppPurchaseManagerSeriesContentProvidedNotification_%@"
+#define kInAppPurchaseManagerSeriesUpgradeTransactionReceipt @"kInAppPurchaseManagerSeriesUpgradeTransactionReceipt_%@"
 
 #define kInAppPurchaseSeries3UpgradeProductId @"com.pezius.minicollector.series3"
 #define kInAppPurchaseSeries4UpgradeProductId @"com.pezius.minicollector.series4"
-#define kInAppPurchaseSeriesProducts [NSArray arrayWithObjects: kInAppPurchaseSeries3UpgradeProductId, kInAppPurchaseSeries4UpgradeProductId, nil]
+
+#define kInAppPurchaseSeriesProducts [NSArray arrayWithObjects:kInAppPurchaseSeries3UpgradeProductId, kInAppPurchaseSeries4UpgradeProductId, nil]
 #define kIsSeriesProductUnlocked @"isSeries%dProductUnlocked"
 
+#define seriesKey(key, series) [NSString stringWithFormat:key, series]
+#define productIdKey(key, productId) [NSString stringWithFormat:key, productId]
 
 @interface InAppPurchaseManager : NSObject <SKProductsRequestDelegate, SKPaymentTransactionObserver> {
   NSMutableDictionary *_seriesProducts;
   SKProductsRequest *productsRequest;
 }
 
-- (void)requestSeries3UpgradeProductData;
+- (void)requestSeriesUpgradeProductData;
 - (void)loadStore;
 - (BOOL)canMakePurchases;
-- (void)purchaseSeries3;
+- (void)purchase:(NSString*)productId;
 - (void)provideContent:(NSString *)productId;
-+ (InAppPurchaseManager *) getInstance;
 - (NSDictionary*) seriesProducts;
+
++ (InAppPurchaseManager *) getInstance;
++ (NSString*)productIdForSeries:(uint)series;
++ (uint)seriesForProductId:(NSString*)productId;
 
 @end

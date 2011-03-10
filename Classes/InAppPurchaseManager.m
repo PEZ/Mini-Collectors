@@ -14,7 +14,7 @@
 static InAppPurchaseManager *_instance;
 
 
-+ (InAppPurchaseManager *) getInstance {
++ (InAppPurchaseManager*)getInstance {
   if (_instance == nil) {
     _instance = [[InAppPurchaseManager alloc] init];
   }
@@ -25,40 +25,64 @@ static InAppPurchaseManager *_instance;
 	return [NSDictionary dictionaryWithDictionary:_seriesProducts];
 }
 
++ (NSString*)productIdForSeries:(uint)series {
+	switch (series) {
+		case 3:
+			return kInAppPurchaseSeries3UpgradeProductId;
+			break;
+		case 4:
+			return kInAppPurchaseSeries4UpgradeProductId;
+			break;
+		default:
+			break;
+	}
+	return nil;
+}
+
++ (uint)seriesForProductId:(NSString*)productId {
+	if ([productId isEqualToString:kInAppPurchaseSeries3UpgradeProductId]) {
+		return 3;
+	}
+	else if ([productId isEqualToString:kInAppPurchaseSeries4UpgradeProductId]) {
+		return 4;
+	}
+	else {
+		return 0;
+	}
+}
+
+
+
 #pragma -
 #pragma Public methods
 
 //
 // call this method once on startup
 //
-- (void)loadStore
-{
+- (void)loadStore {
   // restarts any purchases if they were interrupted last time the app was open
   [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
 
   // get the product description (defined in early sections)
-  [self requestSeries3UpgradeProductData];
+  [self requestSeriesUpgradeProductData];
 }
 
 //
 // call this before making a purchase
 //
-- (BOOL)canMakePurchases
-{
+- (BOOL)canMakePurchases {
   return [SKPaymentQueue canMakePayments];
 }
 
 //
 // kick off the upgrade transaction
 //
-- (void)purchaseSeries3
-{
-  SKPayment *payment = [SKPayment paymentWithProductIdentifier:kInAppPurchaseSeries3UpgradeProductId];
-  [[SKPaymentQueue defaultQueue] addPayment:payment];
+- (void)purchase:(NSString*)productId {
+  [[SKPaymentQueue defaultQueue] addPayment:[SKPayment paymentWithProductIdentifier:productId]];
 }
 
 
-- (void)requestSeries3UpgradeProductData {
+- (void)requestSeriesUpgradeProductData {
   NSSet *productIdentifiers = [NSSet setWithObjects:kInAppPurchaseSeries3UpgradeProductId, kInAppPurchaseSeries4UpgradeProductId, nil];
   productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
   productsRequest.delegate = self;
@@ -73,61 +97,54 @@ static InAppPurchaseManager *_instance;
 //
 // saves a record of the transaction by storing the receipt to disk
 //
-- (void)recordTransaction:(SKPaymentTransaction *)transaction
-{
-  if ([transaction.payment.productIdentifier isEqualToString:kInAppPurchaseSeries3UpgradeProductId])
-  {
-    // save the transaction receipt to disk
-    [[NSUserDefaults standardUserDefaults] setValue:transaction.transactionReceipt forKey:@"series3UpgradeTransactionReceipt"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-  }
+- (void)recordTransaction:(SKPaymentTransaction *)transaction {
+	for (NSString *pId in kInAppPurchaseSeriesProducts) {
+		if ([transaction.payment.productIdentifier isEqualToString:pId]) {
+			[[NSUserDefaults standardUserDefaults] setValue:transaction.transactionReceipt forKey:productIdKey(kInAppPurchaseManagerSeriesUpgradeTransactionReceipt, pId)];
+			[[NSUserDefaults standardUserDefaults] synchronize];
+		}
+	}
 }
 
 //
-// enable series 3 features
+// enable series features
 //
-- (void)provideContent:(NSString *)productId
-{
-  if ([productId isEqualToString:kInAppPurchaseSeries3UpgradeProductId])
-  {
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[NSString stringWithFormat:kIsSeriesProductUnlocked, 3]];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-		[[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerSeries3ContentProvidedNotification object:self];
-  }
-  else if ([productId isEqualToString:kInAppPurchaseSeries3UpgradeProductId])
-  {
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:[NSString stringWithFormat:kIsSeriesProductUnlocked, 4]];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-		[[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerSeries3ContentProvidedNotification object:self];
-  }
+- (void)provideContent:(NSString *)productId {
+	for (NSString *pId in kInAppPurchaseSeriesProducts) {
+		uint series = [[self class] seriesForProductId:pId];
+		if ([productId isEqualToString:pId]) {
+			[[NSUserDefaults standardUserDefaults] setBool:YES forKey:seriesKey(kIsSeriesProductUnlocked, series)];
+			[[NSUserDefaults standardUserDefaults] synchronize];
+			[[NSNotificationCenter defaultCenter] postNotificationName:productIdKey(kInAppPurchaseManagerSeriesContentProvidedNotification, pId)
+																													object:self];
+		}
+	}
 }
 
 //
 // removes the transaction from the queue and posts a notification with the transaction result
 //
-- (void)finishTransaction:(SKPaymentTransaction *)transaction wasSuccessful:(BOOL)wasSuccessful
-{
+- (void)finishTransaction:(SKPaymentTransaction *)transaction wasSuccessful:(BOOL)wasSuccessful {
   // remove the transaction from the payment queue.
   [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 
   NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:transaction, @"transaction" , nil];
-  if (wasSuccessful)
-  {
-    // send out a notification that we’ve finished the transaction
-    [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerTransactionSucceededNotification object:self userInfo:userInfo];
+  if (wasSuccessful) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:productIdKey(kInAppPurchaseManagerTransactionSucceededNotification,
+																																						transaction.payment.productIdentifier)
+																												object:self userInfo:userInfo];
   }
-  else
-  {
-    // send out a notification for the failed transaction
-    [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerTransactionFailedNotification object:self userInfo:userInfo];
+  else {
+    [[NSNotificationCenter defaultCenter] postNotificationName:productIdKey(kInAppPurchaseManagerTransactionFailedNotification,
+																																						transaction.payment.productIdentifier)
+																												object:self userInfo:userInfo];
   }
 }
 
 //
 // called when the transaction was successful
 //
-- (void)completeTransaction:(SKPaymentTransaction *)transaction
-{
+- (void)completeTransaction:(SKPaymentTransaction *)transaction {
   [self recordTransaction:transaction];
   [self provideContent:transaction.payment.productIdentifier];
   [self finishTransaction:transaction wasSuccessful:YES];
@@ -136,8 +153,7 @@ static InAppPurchaseManager *_instance;
 //
 // called when a transaction has been restored and and successfully completed
 //
-- (void)restoreTransaction:(SKPaymentTransaction *)transaction
-{
+- (void)restoreTransaction:(SKPaymentTransaction *)transaction {
   [self recordTransaction:transaction.originalTransaction];
   [self provideContent:transaction.originalTransaction.payment.productIdentifier];
   [self finishTransaction:transaction wasSuccessful:YES];
@@ -156,12 +172,9 @@ static InAppPurchaseManager *_instance;
 //
 // called when the transaction status is updated
 //
-- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
-{
-  for (SKPaymentTransaction *transaction in transactions)
-  {
-    switch (transaction.transactionState)
-    {
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions {
+  for (SKPaymentTransaction *transaction in transactions) {
+    switch (transaction.transactionState) {
       case SKPaymentTransactionStatePurchased:
         [self completeTransaction:transaction];
         break;
