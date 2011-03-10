@@ -11,12 +11,13 @@
 #define kInAppPurchaseManagerSeries3ContentProvidedNotification @"kInAppPurchaseManagerSeries3ContentProvidedNotification"
 
 #define kInAppPurchaseSeries3UpgradeProductId @"com.pezius.minicollector.series3"
-#define kIsSeriesProductUnlocked @"isSeries%dProductUnlocked"
 #define kInAppPurchaseSeries4UpgradeProductId @"com.pezius.minicollector.series4"
+#define kInAppPurchaseSeriesProducts [NSArray arrayWithObjects: kInAppPurchaseSeries3UpgradeProductId, kInAppPurchaseSeries4UpgradeProductId, nil]
+#define kIsSeriesProductUnlocked @"isSeries%dProductUnlocked"
 
 
 @interface InAppPurchaseManager : NSObject <SKProductsRequestDelegate, SKPaymentTransactionObserver> {
-  SKProduct *_series3Product;
+  NSMutableDictionary *_seriesProducts;
   SKProductsRequest *productsRequest;
 }
 
@@ -26,6 +27,6 @@
 - (void)purchaseSeries3;
 - (void)provideContent:(NSString *)productId;
 + (InAppPurchaseManager *) getInstance;
-- (SKProduct*) series3Product;
+- (NSDictionary*) seriesProducts;
 
 @end

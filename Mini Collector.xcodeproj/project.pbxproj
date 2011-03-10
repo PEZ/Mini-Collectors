@@ -260,6 +260,7 @@
 		EB883D95132590DE00EAB955 /* 4-5-57.png in Resources */ = {isa = PBXBuildFile; fileRef = EB883D65132590DE00EAB955 /* 4-5-57.png */; };
 		EB883D96132590DE00EAB955 /* 4-5-57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB883D66132590DE00EAB955 /* 4-5-57@2x.png */; };
 		EB883D97132590DE00EAB955 /* 4-5-320.png in Resources */ = {isa = PBXBuildFile; fileRef = EB883D67132590DE00EAB955 /* 4-5-320.png */; };
+		EBDD902E1327B82A00115E73 /* Locked-4.png in Resources */ = {isa = PBXBuildFile; fileRef = EBDD902D1327B82A00115E73 /* Locked-4.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -853,6 +854,7 @@
 		EB883D65132590DE00EAB955 /* 4-5-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "4-5-57.png"; path = "Images/4-5-57.png"; sourceTree = "<group>"; };
 		EB883D66132590DE00EAB955 /* 4-5-57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "4-5-57@2x.png"; path = "Images/4-5-57@2x.png"; sourceTree = "<group>"; };
 		EB883D67132590DE00EAB955 /* 4-5-320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "4-5-320.png"; path = "Images/4-5-320.png"; sourceTree = "<group>"; };
+		EBDD902D1327B82A00115E73 /* Locked-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Locked-4.png"; path = "Images/Locked-4.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1056,6 +1058,7 @@
 		32BEAA2C1221EF07003B0278 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				EBDD902D1327B82A00115E73 /* Locked-4.png */,
 				32C4FAD1124963680069E688 /* achievements.png */,
 				EB81ED3C12EB1C28003F6AE8 /* 1-1-57.png */,
 				EB81ED3D12EB1C28003F6AE8 /* 1-1-57@2x.png */,
@@ -1981,6 +1984,7 @@
 				EB883D95132590DE00EAB955 /* 4-5-57.png in Resources */,
 				EB883D96132590DE00EAB955 /* 4-5-57@2x.png in Resources */,
 				EB883D97132590DE00EAB955 /* 4-5-320.png in Resources */,
+				EBDD902E1327B82A00115E73 /* Locked-4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2025,7 +2029,7 @@
 					debug,
 				);
 				CODE_SIGN_ENTITLEMENTS = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Peter Stromberg (42W53LZB79)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2044,7 +2048,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "Mini Collector";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CDAF2042-A67A-4C79-B1CE-854A9F65DE82";
 			};
 			name = Debug;
 		};
@@ -2206,7 +2210,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				BUILD_VARIANTS = debug;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Peter Stromberg (42W53LZB79)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2214,7 +2218,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CDAF2042-A67A-4C79-B1CE-854A9F65DE82";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;

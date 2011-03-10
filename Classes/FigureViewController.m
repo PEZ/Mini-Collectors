@@ -26,7 +26,7 @@
 @synthesize figureCountLabel = _figureCountLabel;
 @synthesize hidden = _hidden;
 
-static TTButton *_purchaseButton;
+static NSMutableDictionary *_purchaseButtons;
 
 - (BOOL)isSeriesEnabled {
   NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
@@ -35,6 +35,32 @@ static TTButton *_purchaseButton;
 
 - (BOOL)isContentUnlocked {
 	return (self.figure.series < 3 || [self isSeriesEnabled]);
+}
+
++ (void)createPurchaseButtons {
+	if (_purchaseButtons == nil) {
+		_purchaseButtons = [[NSMutableDictionary dictionaryWithCapacity:2] retain];
+		NSArray *productIds = kInAppPurchaseSeriesProducts;
+		for (NSString *productId in productIds) {
+			[_purchaseButtons setObject:[[TTButton buttonWithStyle:@"defaultButton:"
+																											 title:@"Unlock"] retain]
+													 forKey:productId];
+		}
+	}
+}
+
+- (TTButton*)purchaseButton {
+	switch (self.figure.series) {
+		case 3:
+			return [_purchaseButtons objectForKey:kInAppPurchaseSeries3UpgradeProductId];
+			break;
+		case 4:
+			return [_purchaseButtons objectForKey:kInAppPurchaseSeries4UpgradeProductId];
+			break;
+		default:
+			break;
+	}
+	return nil;
 }
 
 - (void)createPurchaseActivityLabel {
@@ -50,7 +76,7 @@ static TTButton *_purchaseButton;
 - (void)purchaseSeries3 {
 	[self createPurchaseActivityLabel];
 	_purchaseActivityLabel.hidden = NO;
-	_purchaseButton.hidden = YES;
+	self.purchaseButton.hidden = YES;
 	InAppPurchaseManager *purchaseManager = [InAppPurchaseManager getInstance];
 	[[NSNotificationCenter defaultCenter] addObserver:self
 																					 selector:@selector(series3ContentProvided)
@@ -71,19 +97,12 @@ static TTButton *_purchaseButton;
 	}
 }
 
-+ (void)createPurchaseButton {
-	if (_purchaseButton == nil) {
-		_purchaseButton = [[TTButton buttonWithStyle:@"defaultButton:"
-																					 title:@"Unlock"] retain];
-	}
-}
-
-+ (void)sizePurchaseButton {
-	_purchaseButton.font = [UIFont systemFontOfSize:18];
-	[_purchaseButton sizeToFit];
-	_purchaseButton.width += 40;
-	_purchaseButton.height += 15;
-	_purchaseButton.left = (320 - _purchaseButton.width) / 2;
++ (void)sizePurchaseButton:(TTButton*)button {
+	button.font = [UIFont systemFontOfSize:18];
+	[button sizeToFit];
+	button.width += 40;
+	button.height += 15;
+	button.left = (320 - button.width) / 2;
 }
 
 - (id)initWithKey:(NSString *)key {
@@ -110,7 +129,6 @@ static TTButton *_purchaseButton;
 - (void)dealloc {
   TT_RELEASE_SAFELY(_imageView);
   TT_RELEASE_SAFELY(_figureCountLabel);
-	//TT_RELEASE_SAFELY(_purchaseButton);
 	TT_RELEASE_SAFELY(_purchaseActivityLabel);
 	[super dealloc];
 }
@@ -235,13 +253,13 @@ static TTButton *_purchaseButton;
 		float imageBottom = _imageView.frame.size.height + imageY;
 
 		if (![self isContentUnlocked]) {
-			[[self class] createPurchaseButton];
-			[[self class] sizePurchaseButton];
-			_purchaseButton.hidden = NO;
-			_purchaseButton.top = _imageView.bottom + 20;
-			[_purchaseButton removeTarget:nil action:@selector(purchaseSeries3) forControlEvents:UIControlEventTouchUpInside];
-			[_purchaseButton addTarget:self action:@selector(purchaseSeries3) forControlEvents:UIControlEventTouchUpInside];			
-			[scrollView addSubview:_purchaseButton];
+			[[self class] createPurchaseButtons];
+			[[self class] sizePurchaseButton:self.purchaseButton];
+			self.purchaseButton.hidden = NO;
+			self.purchaseButton.top = _imageView.bottom + 20;
+			[self.purchaseButton removeTarget:nil action:@selector(purchaseSeries3) forControlEvents:UIControlEventTouchUpInside];
+			[self.purchaseButton addTarget:self action:@selector(purchaseSeries3) forControlEvents:UIControlEventTouchUpInside];			
+			[scrollView addSubview:self.purchaseButton];
 		}
     else if (!_hidden) {
       NSArray* widgets = [NSArray arrayWithObjects:
@@ -271,14 +289,18 @@ static TTButton *_purchaseButton;
 
 -(void)purchaseFailed {
 	_purchaseActivityLabel.hidden = YES;
-	_purchaseButton.hidden = NO;
+	self.purchaseButton.hidden = NO;
 }
 
 +(void)purchaseProductFetched {
-	[[self class]createPurchaseButton];
-	[_purchaseButton setTitle:[NSString stringWithFormat:@"%@",
-														 [[[InAppPurchaseManager getInstance] series3Product] localizedPrice]]  forState:UIControlStateNormal];
-	[self sizePurchaseButton];
+	[self createPurchaseButtons];
+	for (NSString *productId in kInAppPurchaseSeriesProducts) {
+		TTButton *button = [_purchaseButtons objectForKey:productId];
+		[button setTitle:[NSString stringWithFormat:@"%@",
+											[[[[InAppPurchaseManager getInstance] seriesProducts] objectForKey:productId] localizedPrice]]
+						forState:UIControlStateNormal];
+		[self sizePurchaseButton:button];
+	}
 }
 
 @end

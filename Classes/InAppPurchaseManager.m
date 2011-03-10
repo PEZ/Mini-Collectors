@@ -21,8 +21,8 @@ static InAppPurchaseManager *_instance;
   return _instance;
 }
 
-- (SKProduct*)series3Product {
-	return _series3Product;
+- (NSDictionary*) seriesProducts {
+	return [NSDictionary dictionaryWithDictionary:_seriesProducts];
 }
 
 #pragma -
@@ -59,7 +59,7 @@ static InAppPurchaseManager *_instance;
 
 
 - (void)requestSeries3UpgradeProductData {
-  NSSet *productIdentifiers = [NSSet setWithObject:kInAppPurchaseSeries3UpgradeProductId];
+  NSSet *productIdentifiers = [NSSet setWithObjects:kInAppPurchaseSeries3UpgradeProductId, kInAppPurchaseSeries4UpgradeProductId, nil];
   productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
   productsRequest.delegate = self;
   [productsRequest start];
@@ -181,14 +181,15 @@ static InAppPurchaseManager *_instance;
 #pragma mark SKProductsRequestDelegate methods
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
+	_seriesProducts = [[NSMutableDictionary dictionaryWithCapacity:2] retain];
   NSArray *products = response.products;
-  _series3Product = [products count] == 1 ? [[products objectAtIndex:0] retain] : nil;
-  if (_series3Product) {
-    DLog(@"Product title: %@" , _series3Product.localizedTitle);
-    DLog(@"Product description: %@" , _series3Product.localizedDescription);
-    DLog(@"Product price: %@" , [_series3Product localizedPrice]);
-    DLog(@"Product id: %@" , _series3Product.productIdentifier);
-  }
+	for (SKProduct *product in products) {
+		[_seriesProducts setObject:product forKey:product.productIdentifier];
+		DLog(@"Product title: %@" , product.localizedTitle);
+		DLog(@"Product description: %@" , product.localizedDescription);
+		DLog(@"Product price: %@" , [product localizedPrice]);
+		DLog(@"Product id: %@" , product.productIdentifier);
+	}
 
   for (NSString *invalidProductId in response.invalidProductIdentifiers) {
     DLog(@"Invalid product id: %@" , invalidProductId);
