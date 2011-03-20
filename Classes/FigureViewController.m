@@ -15,8 +15,8 @@
 #import "SKProduct+LocalizedPrice.h"
 
 #define MARGIN 5
-#define kHaveAskedForReview @"kHaveAskedForReview"
-#define kAskForReviewThreshold 5
+#define kHaveAskedForReview @"kHaveAskedForReview4"
+#define kAskForReviewThreshold 3
 
 
 @implementation FigureViewController
@@ -27,6 +27,7 @@
 @synthesize hidden = _hidden;
 
 static NSMutableDictionary *_purchaseButtons;
+static NSMutableDictionary *_purchaseInfoLabels;
 
 - (BOOL)isSeriesEnabled {
   NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
@@ -40,10 +41,20 @@ static NSMutableDictionary *_purchaseButtons;
 + (void)createPurchaseButtons {
 	if (_purchaseButtons == nil) {
 		_purchaseButtons = [[NSMutableDictionary dictionaryWithCapacity:2] retain];
-		NSArray *productIds = kInAppPurchaseSeriesProducts;
-		for (NSString *productId in productIds) {
+		for (NSString *productId in kInAppPurchaseSeriesProducts) {
 			[_purchaseButtons setObject:[[TTButton buttonWithStyle:@"defaultButton:"
 																											 title:@"Unlock"] retain]
+													 forKey:productId];
+		}
+	}
+}
+
++ (void)createPurchaseInfoLabels {
+	if (_purchaseInfoLabels == nil) {
+		_purchaseInfoLabels = [[NSMutableDictionary dictionaryWithCapacity:2] retain];
+		for (NSString *productId in kInAppPurchaseSeriesProducts) {
+			[_purchaseInfoLabels setObject:[[[TTLabel alloc] initWithText:[NSString stringWithFormat:@"Series %d support",
+																																		 [InAppPurchaseManager seriesForProductId:productId]]] retain]
 													 forKey:productId];
 		}
 	}
@@ -55,6 +66,10 @@ static NSMutableDictionary *_purchaseButtons;
 
 - (TTButton*)purchaseButton {
 	return [_purchaseButtons objectForKey:[self productId]];
+}
+
+- (TTLabel*)purchaseInfoLabel {
+	return [_purchaseInfoLabels objectForKey:[self productId]];
 }
 
 - (void)createPurchaseActivityLabel {
@@ -141,11 +156,11 @@ static NSMutableDictionary *_purchaseButtons;
 		if ([[NSUserDefaults standardUserDefaults] integerForKey:kNumStartsKey] >= kAskForReviewThreshold) {
 			[[NSUserDefaults standardUserDefaults] setBool:YES forKey:kHaveAskedForReview];
 			[[NSUserDefaults standardUserDefaults] synchronize];
-			UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"Thanks for using Mini Collector! Would you consider rating it on the App Store?"
+			UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:@"Thanks for using Mini Collector! Please consider rating this version on the App Store."
 																												 delegate:self
 																								cancelButtonTitle:@"Cancel"
 																					 destructiveButtonTitle:nil
-																								otherButtonTitles:@"Yes, gladly", nil];
+																								otherButtonTitles:@"Yes, I'll do it right now", nil];
 			[sheet showInView:self.view];
 		}
 	}
@@ -196,7 +211,7 @@ static NSMutableDictionary *_purchaseButtons;
   _imageView.urlPath = [self imagePath];
 }
 
-- (TTStyle*)labelWithFontSize:(CGFloat)fontSize {
+- (TTStyle*)figureCountLabelStyleWithFontSize:(CGFloat)fontSize {
   return
   [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:3] next:
    [TTInsetStyle styleWithInset:UIEdgeInsetsMake(1, 1, 1, 1) next:
@@ -208,6 +223,21 @@ static NSMutableDictionary *_purchaseButtons;
          [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:fontSize]
                               color:[UIColor whiteColor] next:nil]]]]]]]];
 }
+
+- (TTStyle*)purchaseInfoLabelStyle {
+  return
+		 [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:16]
+													color:[UIColor blackColor]
+								minimumFontSize:0
+										shadowColor:[UIColor colorWithWhite:0 alpha:0.9] 
+									 shadowOffset:CGSizeMake(0, 0) 
+									textAlignment:UITextAlignmentCenter 
+							verticalAlignment:UIControlContentVerticalAlignmentBottom 
+									lineBreakMode:UILineBreakModeTailTruncation 
+									numberOfLines:6
+													 next:nil];
+}
+
 
 - (void)loadView {
   if (!_loaded) {
@@ -248,12 +278,18 @@ static NSMutableDictionary *_purchaseButtons;
 
 		if (![self isContentUnlocked]) {
 			[[self class] createPurchaseButtons];
+			[[self class] createPurchaseInfoLabels];
 			[[self class] sizePurchaseButton:self.purchaseButton];
 			self.purchaseButton.hidden = NO;
 			self.purchaseButton.top = _imageView.bottom + 20;
 			[self.purchaseButton removeTarget:nil action:@selector(purchase) forControlEvents:UIControlEventTouchUpInside];
 			[self.purchaseButton addTarget:self action:@selector(purchase) forControlEvents:UIControlEventTouchUpInside];			
 			[scrollView addSubview:self.purchaseButton];
+			self.purchaseInfoLabel.frame = CGRectMake(MARGIN, imageBottom - 200, scrollView.frame.size.width - MARGIN * 2, 140);
+			self.purchaseInfoLabel.style = [self purchaseInfoLabelStyle];
+			self.purchaseInfoLabel.backgroundColor = RGBACOLOR(0,0,0,0);
+			//self.purchaseInfoLabel.line
+			[scrollView addSubview:self.purchaseInfoLabel];
 		}
     else if (!_hidden) {
       NSArray* widgets = [NSArray arrayWithObjects:
@@ -264,7 +300,7 @@ static NSMutableDictionary *_purchaseButtons;
       [self setupButton:[widgets objectAtIndex:0] withSelector:@selector(decreaseFigureCount) atX:90 atY:imageBottom + 20 addToView:scrollView];
       [self setupButton:[widgets objectAtIndex:1] withSelector:@selector(increaseFigureCount) atX:200 atY:imageBottom + 20 addToView:scrollView];
       _figureCountLabel = [widgets objectAtIndex:2];
-      _figureCountLabel.style = [self labelWithFontSize:25];
+      _figureCountLabel.style = [self figureCountLabelStyleWithFontSize:25];
 
       [self updateCountLabel];
 
@@ -284,16 +320,20 @@ static NSMutableDictionary *_purchaseButtons;
 -(void)purchaseFailed {
 	_purchaseActivityLabel.hidden = YES;
 	self.purchaseButton.hidden = NO;
+	self.purchaseButton.hidden = NO;
 }
 
 +(void)purchaseProductFetched {
 	[self createPurchaseButtons];
+	[self createPurchaseInfoLabels];
 	for (NSString *productId in kInAppPurchaseSeriesProducts) {
+		SKProduct *product = [[[InAppPurchaseManager getInstance] seriesProducts] objectForKey:productId];
 		TTButton *button = [_purchaseButtons objectForKey:productId];
-		[button setTitle:[NSString stringWithFormat:@"%@",
-											[[[[InAppPurchaseManager getInstance] seriesProducts] objectForKey:productId] localizedPrice]]
+		[button setTitle:[NSString stringWithFormat:@"%@", [product localizedPrice]]
 						forState:UIControlStateNormal];
 		[self sizePurchaseButton:button];
+		TTLabel *label = [_purchaseInfoLabels objectForKey:productId];
+		label.text = [NSString stringWithFormat:@"%@\n%@", product.localizedTitle, product.localizedDescription];
 	}
 }
 

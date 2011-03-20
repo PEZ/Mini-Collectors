@@ -80,6 +80,7 @@ static NSDictionary *_figures;
   [self incrementSpree:10 result:achievements];
   [self incrementSpree:25 result:achievements];
   [self incrementSpree:40 result:achievements];
+  [self incrementSpree:50 result:achievements];
   return achievements;
 }
 

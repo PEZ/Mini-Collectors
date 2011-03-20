@@ -217,7 +217,7 @@ static MainViewController *_instance;
 	if (_currentPageIndex < 2) {
 		[self showScanButton];
 	}
-	else if (pageIndex == 2) {
+	else if (pageIndex == 2 || pageIndex == 3) {
 		[self showBumpsButtonWithTag:pageIndex+1];
 	}
 	else {

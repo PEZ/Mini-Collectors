@@ -26,39 +26,68 @@
     self.autoresizesForKeyboard = YES;
     self.variableHeightRows = YES;
 		self.title = @"Bump Codes";
+		
+		NSString *help = [NSString stringWithFormat:@"The Series %d bags are \"bump coded\". Along the <b>bottom seal of the back of the bag</b> \
+there are some \"raised\" bumps/dots. <i>They can be really tricky to see, but they are there.</i> \
+Match those bumps with the patterns below and tap it.", series];
 
-		NSArray* trickies = [NSArray arrayWithObjects:N(2), N(7), N(13), nil];
+    TTListDataSource* dataSource = [[[TTListDataSource alloc] init] autorelease];
+
 		NSMutableArray* nonTrickies = [NSMutableArray arrayWithCapacity:16];
 		for (int i = 1; i < 17; i++) {
 			[nonTrickies addObject:N(i)];
 		}
-		[nonTrickies removeObjectsInArray:trickies];
 
-    TTListDataSource* dataSource = [[[TTListDataSource alloc] init] autorelease];
-
-		for (NSNumber* n in nonTrickies) {
-			[self addItemForNumber:n forSeries:series toDataSource:dataSource];
+		if (series == 3) {
+			NSArray* trickies1 = [NSArray arrayWithObjects:N(2), N(7), N(13), nil];
+			NSArray* trickies2 = [NSArray arrayWithObjects:N(4), N(12), N(3), N(16), N(8), N(10), N(11), nil];
+			[nonTrickies removeObjectsInArray:trickies1];
+			[nonTrickies removeObjectsInArray:trickies2];
+			
+			for (NSNumber* n in nonTrickies) {
+				[self addItemForNumber:n forSeries:series toDataSource:dataSource];
+			}
+			[dataSource.items shuffle];
+			
+			[dataSource.items insertObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil] atIndex:0];
+			
+			help = @"The patterns can be pretty similar. Watch out for the following codes. \
+Consider tapping and choose to <b>Reveal</b> to maximize your chanses of getting it right.";	
+			[dataSource.items addObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil]];
+			for (NSNumber* n in trickies2) {
+				[self addItemForNumber:n forSeries:series toDataSource:dataSource];
+			}		
+			
+			help = @"Some of the patterns are <b>extra</b> tricky. They are grouped together below and \
+represent the <b>Gorilla</b>, the <b>Indian Chief</b>, and the <b>Samurai</b>. In that order.";	
+			[dataSource.items addObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil]];
+			for (NSNumber* n in trickies1) {
+				[self addItemForNumber:n forSeries:series toDataSource:dataSource];
+			}		
 		}
-		[dataSource.items shuffle];
+		if (series == 4) {
+			NSArray* trickies1 = [NSArray arrayWithObjects:N(5), N(6), N(8), N(1), N(11), N(2), N(12), nil];
+			[nonTrickies removeObjectsInArray:trickies1];
 
-	  NSString *help = @"The Series 3 bags don't have the barcodes that Series 1 &amp; 2 had. \
-But there's still a code on the bags. Along the <b>bottom seal</b> of the <b>back of the bag</b> \
-you can see some \"raised\" bumps. Match those bumps with the patterns below and tap it.";
-		[dataSource.items insertObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil] atIndex:0];
+			for (NSNumber* n in nonTrickies) {
+				[self addItemForNumber:n forSeries:series toDataSource:dataSource];
+			}
+			[dataSource.items insertObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil] atIndex:0];
 
-		help = @"Three of the patterns are extra similar. They are grouped together below. \
-They represent the <b>Gorilla</b>, the <b>Indian Chief</b> and the <b>Samurai</b>, in that order.";	
+			help = @"The patterns can be very similar. Watch out for the following codes. \
+Consider tapping and choose to <b>Reveal</b> to maximize your chanses of getting it right.";	
+			[dataSource.items addObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil]];
+			for (NSNumber* n in trickies1) {
+				[self addItemForNumber:n forSeries:series toDataSource:dataSource];
+			}		
+			
+			
+		}
+
+		help = @"If you find errors with the codes, please tell me here \
+		http://blog.betterthantomorrow.com/2011/03/18/series-4-minifigures-codes-support/";	
 		[dataSource.items addObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil]];
-		for (NSNumber* n in trickies) {
-			[self addItemForNumber:n forSeries:series toDataSource:dataSource];
-		}		
-
-		help = @"Creds to FBTB's forum user <b>That guy</b> for cracking the codes. \
-See http://www.fbtb.net/2010/11/18/series-3-blind-pack-code-cracked/ for more info on the subject.";	
-		[dataSource.items addObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil]];
-
 		self.dataSource = dataSource;
-		[help release];
   }
   return self;
 }

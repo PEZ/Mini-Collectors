@@ -11,7 +11,7 @@
 #import "BumpCodesViewController.h"
 
 #define kMiniCollectorDataFile @"MiniCollector.data"
-#define kNumStartsKey @"kNumStartsKey"
+#define kNumStartsKey @"kNumStartsKey4"
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
   BOOL _gameCenterActivated;
