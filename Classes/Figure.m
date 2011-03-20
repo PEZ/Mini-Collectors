@@ -56,12 +56,14 @@ static NSDictionary *_figures;
     thisSeriesAchievement.percentComplete = percentThisSeries + 100.0/15.999999;
     [achievements addObject:thisSeriesAchievement];
     if (thisSeriesAchievement.percentComplete >= 100.0) {
-      GKAchievement *achievement2S = [[AppDelegate getInstance] getAchievementForIdentifier:@"2S"];
-      float percent2S = achievement2S.percentComplete;
-      if (percent2S < 100.0) {
-        achievement2S.percentComplete = percent2S + 100.0/1.999999;
-        [achievements addObject:achievement2S];
-      }
+			for (int numSeries = 2; numSeries < 10; numSeries++) {
+				GKAchievement *achievementXS = [[AppDelegate getInstance] getAchievementForIdentifier:[NSString stringWithFormat:@"%dS", numSeries]];
+				float percentXS = achievementXS.percentComplete;
+				if (percentXS < 100.0) {
+					achievementXS.percentComplete = percentXS + 100.0/(numSeries - 0.0000001);
+					[achievements addObject:achievementXS];
+				}
+			}
     }
   }
   return achievements;
@@ -84,7 +86,7 @@ static NSDictionary *_figures;
   return achievements;
 }
 
-- (NSArray *) reportAchievement {
+- (NSArray *) reportAchievements {
   NSMutableArray *achievements = [[[NSMutableArray alloc] initWithCapacity:4] autorelease];
   float percentComplete = [[AppDelegate getInstance] getAchievementForIdentifier:[self achievmentIdentifier]].percentComplete;
   if (percentComplete < 100.0) {
@@ -98,7 +100,7 @@ static NSDictionary *_figures;
 - (void) increaseCount {
   self.count++;
   [self countChanged];
-  for (GKAchievement *a in [self reportAchievement]) {
+  for (GKAchievement *a in [self reportAchievements]) {
     [[AppDelegate getInstance] reportAchievementIdentifier:a.identifier percentComplete:a.percentComplete];
   };
 }

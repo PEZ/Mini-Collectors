@@ -8,6 +8,7 @@
 
 #import <Three20UI/Three20UI.h>
 
+#define kTotalSeries 4
 
 @interface Figure : NSObject <NSCoding> {
   int _series;
@@ -30,6 +31,6 @@
 - (void) increaseCount;
 - (void) decreaseCount;
 - (NSString *) achievmentIdentifier;
-- (NSArray *) reportAchievement;
+- (NSArray *) reportAchievements;
 
 @end

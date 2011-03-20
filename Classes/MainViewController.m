@@ -113,13 +113,13 @@ static MainViewController *_instance;
 
 - (void) reportAchievements {
   NSMutableDictionary *achievements = [NSMutableDictionary dictionaryWithCapacity:4];
-  for (int series = 1; series < 4; series++) {
+  for (int series = 1; series < kTotalSeries + 1; series++) {
     for (int i = 1; i <= 16; i++) {
       NSString *key = [NSString stringWithFormat:@"%d-%d", series, i];
       Figure *figure = [Figure figureFromKey:key];
       if (figure != nil) {
         if (figure.count > 0) {
-          for (GKAchievement *achievement in [figure reportAchievement]) {
+          for (GKAchievement *achievement in [figure reportAchievements]) {
             [achievements setObject:achievement forKey:achievement.identifier];
           };
         }
