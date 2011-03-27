@@ -52,7 +52,7 @@ Match those bumps with the patterns below and tap it.", series];
 			[dataSource.items insertObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil] atIndex:0];
 			
 			help = @"The patterns can be pretty similar. Watch out for the following codes. \
-Consider tapping and choose to <b>Reveal</b> to maximize your chanses of getting it right.";	
+Consider tapping and choose to <b>Reveal</b> and combine with feeling the bag to maximize your chanses of getting it right.";	
 			[dataSource.items addObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil]];
 			for (NSNumber* n in trickies2) {
 				[self addItemForNumber:n forSeries:series toDataSource:dataSource];
@@ -66,6 +66,8 @@ represent the <b>Gorilla</b>, the <b>Indian Chief</b>, and the <b>Samurai</b>. I
 			}		
 		}
 		if (series == 4) {
+			help = [NSString stringWithFormat:@"%@ Please note that the codes for Series %d are freshly discovered \
+and it seems they can differ some between batches.", help, series];
 			NSArray* trickies1 = [NSArray arrayWithObjects:N(5), N(6), N(8), N(1), N(11), N(2), N(12), nil];
 			[nonTrickies removeObjectsInArray:trickies1];
 
@@ -75,7 +77,7 @@ represent the <b>Gorilla</b>, the <b>Indian Chief</b>, and the <b>Samurai</b>. I
 			[dataSource.items insertObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil] atIndex:0];
 
 			help = @"The patterns can be very similar. Watch out for the following codes. \
-Consider tapping and choose to <b>Reveal</b> to maximize your chanses of getting it right.";	
+Consider tapping and choose to <b>Reveal</b> and combine with feeling the bag to maximize your chanses of getting it right.";	
 			[dataSource.items addObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil]];
 			for (NSNumber* n in trickies1) {
 				[self addItemForNumber:n forSeries:series toDataSource:dataSource];

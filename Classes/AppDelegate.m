@@ -60,6 +60,9 @@ static AppDelegate *_instance;
 - (void) reportAchievementIdentifier: (NSString*) identifier percentComplete: (float) percent {
   if ([AppDelegate isGameCenterAvailable] && [GKLocalPlayer localPlayer].authenticated) {
     GKAchievement *achievement = [self getAchievementForIdentifier: identifier];
+		if ([identifier isEqualToString:@"5S"]) {
+			DLog(@"Reporting achievement %@", identifier);			
+		}
     if (achievement) {
       achievement.percentComplete = percent;
       [achievement reportAchievementWithCompletionHandler:^(NSError *error) {
@@ -113,6 +116,7 @@ static AppDelegate *_instance;
 
   self.achievementsDictionary = [[NSMutableDictionary alloc] init];
   [Figure loadFigures];
+
   [self loadGameCenterInfo];
 	[[InAppPurchaseManager getInstance] loadStore];
 	[[NSNotificationCenter defaultCenter] addObserver:[FigureViewController class]

@@ -47,7 +47,7 @@ static NSDictionary *_figures;
   return [NSString stringWithFormat:@"F_%@", [self.key stringByReplacingOccurrencesOfString:@"-" withString:@"_"]];
 }
 
-- (NSArray *) incrementSeriesAchievments:(int)s {
+- (NSArray *) incrementSeriesAchievments:(int)s isInteractive:(BOOL)isInteractive {
   NSMutableArray *achievements = [[[NSMutableArray alloc] initWithCapacity:2] autorelease];
   NSString *thisSeriesId = [NSString stringWithFormat:@"S%d", s];
   GKAchievement *thisSeriesAchievement = [[AppDelegate getInstance] getAchievementForIdentifier:thisSeriesId];
@@ -56,7 +56,7 @@ static NSDictionary *_figures;
     thisSeriesAchievement.percentComplete = percentThisSeries + 100.0/15.999999;
     [achievements addObject:thisSeriesAchievement];
     if (thisSeriesAchievement.percentComplete >= 100.0) {
-			for (int numSeries = 2; numSeries < 10; numSeries++) {
+			for (int numSeries = 2; numSeries <= kTotalSeries; numSeries++) {
 				GKAchievement *achievementXS = [[AppDelegate getInstance] getAchievementForIdentifier:[NSString stringWithFormat:@"%dS", numSeries]];
 				float percentXS = achievementXS.percentComplete;
 				if (percentXS < 100.0) {
@@ -69,7 +69,7 @@ static NSDictionary *_figures;
   return achievements;
 }
 
-- (void) incrementSpree:(int)goalCount result:(NSMutableArray *)achievements  {
+- (void) incrementSpree:(int)goalCount result:(NSMutableArray *)achievements isInteractive:(BOOL)isInteractive  {
   GKAchievement *a = [[AppDelegate getInstance] getAchievementForIdentifier:[NSString stringWithFormat:@"%dF", goalCount]];
   float percent = a.percentComplete;
   if (percent < 100.0) {
@@ -77,22 +77,22 @@ static NSDictionary *_figures;
     [achievements addObject:a];
   }
 }
-- (NSArray *) incrementFigureSpreeAchievments {
+- (NSArray *) incrementFigureSpreeAchievments:(BOOL)isInteractive {
   NSMutableArray *achievements = [[[NSMutableArray alloc] initWithCapacity:3] autorelease];
-  [self incrementSpree:10 result:achievements];
-  [self incrementSpree:25 result:achievements];
-  [self incrementSpree:40 result:achievements];
-  [self incrementSpree:50 result:achievements];
+  [self incrementSpree:10 result:achievements isInteractive:isInteractive];
+  [self incrementSpree:25 result:achievements isInteractive:isInteractive];
+  [self incrementSpree:40 result:achievements isInteractive:isInteractive];
+  [self incrementSpree:50 result:achievements isInteractive:isInteractive];
   return achievements;
 }
 
-- (NSArray *) reportAchievements {
+- (NSArray *) reportAchievements:(BOOL)isInteractive {
   NSMutableArray *achievements = [[[NSMutableArray alloc] initWithCapacity:4] autorelease];
   float percentComplete = [[AppDelegate getInstance] getAchievementForIdentifier:[self achievmentIdentifier]].percentComplete;
   if (percentComplete < 100.0) {
     [[AppDelegate getInstance] reportAchievementIdentifier:[self achievmentIdentifier] percentComplete:100.0];
-    [achievements addObjectsFromArray:[self incrementFigureSpreeAchievments]];
-    [achievements addObjectsFromArray:[self incrementSeriesAchievments:self.series]];
+    [achievements addObjectsFromArray:[self incrementFigureSpreeAchievments:isInteractive]];
+    [achievements addObjectsFromArray:[self incrementSeriesAchievments:self.series isInteractive:isInteractive]];
   }
   return achievements;
 }
@@ -100,7 +100,7 @@ static NSDictionary *_figures;
 - (void) increaseCount {
   self.count++;
   [self countChanged];
-  for (GKAchievement *a in [self reportAchievements]) {
+  for (GKAchievement *a in [self reportAchievements:YES]) {
     [[AppDelegate getInstance] reportAchievementIdentifier:a.identifier percentComplete:a.percentComplete];
   };
 }

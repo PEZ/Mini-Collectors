@@ -88,7 +88,6 @@
 		EB81EDDF12EB1C28003F6AE8 /* 1-7-57.png in Resources */ = {isa = PBXBuildFile; fileRef = EB81ED4E12EB1C28003F6AE8 /* 1-7-57.png */; };
 		EB81EDE012EB1C28003F6AE8 /* 1-7-57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB81ED4F12EB1C28003F6AE8 /* 1-7-57@2x.png */; };
 		EB81EDE112EB1C28003F6AE8 /* 1-7-320.png in Resources */ = {isa = PBXBuildFile; fileRef = EB81ED5012EB1C28003F6AE8 /* 1-7-320.png */; };
-		EB81EDE212EB1C28003F6AE8 /* 1-7-320@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB81ED5112EB1C28003F6AE8 /* 1-7-320@2x.png */; };
 		EB81EDE312EB1C28003F6AE8 /* 1-8-57.png in Resources */ = {isa = PBXBuildFile; fileRef = EB81ED5212EB1C28003F6AE8 /* 1-8-57.png */; };
 		EB81EDE412EB1C28003F6AE8 /* 1-8-57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB81ED5312EB1C28003F6AE8 /* 1-8-57@2x.png */; };
 		EB81EDE512EB1C28003F6AE8 /* 1-8-320.png in Resources */ = {isa = PBXBuildFile; fileRef = EB81ED5412EB1C28003F6AE8 /* 1-8-320.png */; };
@@ -260,6 +259,7 @@
 		EB883D95132590DE00EAB955 /* 4-5-57.png in Resources */ = {isa = PBXBuildFile; fileRef = EB883D65132590DE00EAB955 /* 4-5-57.png */; };
 		EB883D96132590DE00EAB955 /* 4-5-57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB883D66132590DE00EAB955 /* 4-5-57@2x.png */; };
 		EB883D97132590DE00EAB955 /* 4-5-320.png in Resources */ = {isa = PBXBuildFile; fileRef = EB883D67132590DE00EAB955 /* 4-5-320.png */; };
+		EBAA3794133A80EE00F813B6 /* 1-7-320@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAA3793133A80EE00F813B6 /* 1-7-320@2x.png */; };
 		EBDD902E1327B82A00115E73 /* Locked-4.png in Resources */ = {isa = PBXBuildFile; fileRef = EBDD902D1327B82A00115E73 /* Locked-4.png */; };
 		EBF0571D1333BF060082D89C /* bump-4-16.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF0570D1333BF050082D89C /* bump-4-16.png */; };
 		EBF0571E1333BF060082D89C /* bump-4-15.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF0570E1333BF060082D89C /* bump-4-15.png */; };
@@ -699,7 +699,6 @@
 		EB81ED4E12EB1C28003F6AE8 /* 1-7-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-7-57.png"; path = "Images/1-7-57.png"; sourceTree = "<group>"; };
 		EB81ED4F12EB1C28003F6AE8 /* 1-7-57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-7-57@2x.png"; path = "Images/1-7-57@2x.png"; sourceTree = "<group>"; };
 		EB81ED5012EB1C28003F6AE8 /* 1-7-320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-7-320.png"; path = "Images/1-7-320.png"; sourceTree = "<group>"; };
-		EB81ED5112EB1C28003F6AE8 /* 1-7-320@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-7-320@2x.png"; path = "Images/1-7-320@2x.png"; sourceTree = "<group>"; };
 		EB81ED5212EB1C28003F6AE8 /* 1-8-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-8-57.png"; path = "Images/1-8-57.png"; sourceTree = "<group>"; };
 		EB81ED5312EB1C28003F6AE8 /* 1-8-57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-8-57@2x.png"; path = "Images/1-8-57@2x.png"; sourceTree = "<group>"; };
 		EB81ED5412EB1C28003F6AE8 /* 1-8-320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-8-320.png"; path = "Images/1-8-320.png"; sourceTree = "<group>"; };
@@ -871,6 +870,7 @@
 		EB883D65132590DE00EAB955 /* 4-5-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "4-5-57.png"; path = "Images/4-5-57.png"; sourceTree = "<group>"; };
 		EB883D66132590DE00EAB955 /* 4-5-57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "4-5-57@2x.png"; path = "Images/4-5-57@2x.png"; sourceTree = "<group>"; };
 		EB883D67132590DE00EAB955 /* 4-5-320.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "4-5-320.png"; path = "Images/4-5-320.png"; sourceTree = "<group>"; };
+		EBAA3793133A80EE00F813B6 /* 1-7-320@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-7-320@2x.png"; path = "Images/1-7-320@2x.png"; sourceTree = "<group>"; };
 		EBDD902D1327B82A00115E73 /* Locked-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Locked-4.png"; path = "Images/Locked-4.png"; sourceTree = "<group>"; };
 		EBF0570D1333BF050082D89C /* bump-4-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bump-4-16.png"; path = "Images/bump-4-16.png"; sourceTree = "<group>"; };
 		EBF0570E1333BF060082D89C /* bump-4-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bump-4-15.png"; path = "Images/bump-4-15.png"; sourceTree = "<group>"; };
@@ -1116,7 +1116,7 @@
 				EB81ED4E12EB1C28003F6AE8 /* 1-7-57.png */,
 				EB81ED4F12EB1C28003F6AE8 /* 1-7-57@2x.png */,
 				EB81ED5012EB1C28003F6AE8 /* 1-7-320.png */,
-				EB81ED5112EB1C28003F6AE8 /* 1-7-320@2x.png */,
+				EBAA3793133A80EE00F813B6 /* 1-7-320@2x.png */,
 				EB81ED5212EB1C28003F6AE8 /* 1-8-57.png */,
 				EB81ED5312EB1C28003F6AE8 /* 1-8-57@2x.png */,
 				EB81ED5412EB1C28003F6AE8 /* 1-8-320.png */,
@@ -1863,7 +1863,6 @@
 				EB81EDDF12EB1C28003F6AE8 /* 1-7-57.png in Resources */,
 				EB81EDE012EB1C28003F6AE8 /* 1-7-57@2x.png in Resources */,
 				EB81EDE112EB1C28003F6AE8 /* 1-7-320.png in Resources */,
-				EB81EDE212EB1C28003F6AE8 /* 1-7-320@2x.png in Resources */,
 				EB81EDE312EB1C28003F6AE8 /* 1-8-57.png in Resources */,
 				EB81EDE412EB1C28003F6AE8 /* 1-8-57@2x.png in Resources */,
 				EB81EDE512EB1C28003F6AE8 /* 1-8-320.png in Resources */,
@@ -2053,6 +2052,7 @@
 				EBF0572B1333BF060082D89C /* bump-4-1.png in Resources */,
 				EBF0572C1333BF060082D89C /* bump-4-2.png in Resources */,
 				EBF057491333D7950082D89C /* Hidden-4.png in Resources */,
+				EBAA3794133A80EE00F813B6 /* 1-7-320@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2131,7 +2131,7 @@
 				GCC_PREFIX_HEADER = Mini_Collector_Prefix.pch;
 				HEADER_SEARCH_PATHS = ../three20/Build/Products/three20;
 				INFOPLIST_FILE = "Mini_Collector-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ZBarSDK\"",
@@ -2172,7 +2172,7 @@
 				GCC_PREFIX_HEADER = Mini_Collector_Prefix.pch;
 				HEADER_SEARCH_PATHS = ../three20/Build/Products/three20;
 				INFOPLIST_FILE = "Mini_Collector-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ZBarSDK\"",
@@ -2283,7 +2283,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CDAF2042-A67A-4C79-B1CE-854A9F65DE82";

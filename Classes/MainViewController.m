@@ -119,7 +119,7 @@ static MainViewController *_instance;
       Figure *figure = [Figure figureFromKey:key];
       if (figure != nil) {
         if (figure.count > 0) {
-          for (GKAchievement *achievement in [figure reportAchievements]) {
+          for (GKAchievement *achievement in [figure reportAchievements:NO]) {
             [achievements setObject:achievement forKey:achievement.identifier];
           };
         }

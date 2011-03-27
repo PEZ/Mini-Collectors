@@ -31,6 +31,6 @@
 - (void) increaseCount;
 - (void) decreaseCount;
 - (NSString *) achievmentIdentifier;
-- (NSArray *) reportAchievements;
+- (NSArray *) reportAchievements:(BOOL)isInteractive;
 
 @end
