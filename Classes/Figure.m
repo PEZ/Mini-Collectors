@@ -119,6 +119,10 @@ static NSDictionary *_figures;
   return [[self figures] objectForKey:key];
 }
 
++ (Figure *) figureFromSeries:(uint)series withNum:(uint)num {
+	return [self figureFromKey:[NSString stringWithFormat:@"%d-%d", series, num]];
+}
+
 + (Figure *) figureFromDict:(NSDictionary *)dict {
   return [[self alloc] initFromDict:dict];
 }

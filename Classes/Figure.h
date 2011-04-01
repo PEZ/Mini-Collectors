@@ -24,6 +24,7 @@
 @property (nonatomic, retain) TTLauncherItem *launcherItem;
 
 + (Figure *) figureFromKey:(NSString *)key;
++ (Figure *) figureFromSeries:(uint)series withNum:(uint)num;
 + (NSDictionary *) figures;
 + (void) saveFigures;
 + (void) loadFigures;
