@@ -13,12 +13,8 @@ BOOL scanningAvailable() {
   return available;
 }
 
-@interface MainViewController (Private)
-
 static NSDictionary *_barcodes;
 static MainViewController *_instance;
-
-@end
 
 @implementation MainViewController
 

@@ -23,7 +23,7 @@
 }
 
 -(id)initWithSeries:(NSInteger)series {
-  if (self = [super initWithNibName:nil	bundle:nil]) {
+  if ((self = [super initWithNibName:nil	bundle:nil])) {
     self.autoresizesForKeyboard = YES;
     self.variableHeightRows = YES;
 		self.title = @"Bump Codes";

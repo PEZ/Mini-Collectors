@@ -115,7 +115,7 @@ static NSMutableDictionary *_purchaseInfoLabels;
 }
 
 - (id)initWithKey:(NSString *)key {
-  if (self = [self init]) {
+  if ((self = [self init])) {
     self.figure = [Figure figureFromKey:key];
     self.hidden = NO;
   }
@@ -123,14 +123,14 @@ static NSMutableDictionary *_purchaseInfoLabels;
 }
 
 - (id)initHiddenWithKey:(NSString *)key {
-  if (self = [self initWithKey:key]) {
+  if ((self = [self initWithKey:key])) {
     _hidden = YES;
   }
   return self;
 }
 
 - (id)init {
-  if (self = [super init]) {
+  if ((self = [super init])) {
   }
   return self;
 }

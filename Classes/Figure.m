@@ -22,7 +22,7 @@
 static NSDictionary *_figures;
 
 - (Figure *) initFromDict:(NSDictionary *)dict {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     self.series = [[dict objectForKey:@"series"] intValue];
     self.key = [dict objectForKey:@"key"];
     self.count = [[dict objectForKey:@"count"] intValue];
@@ -294,25 +294,30 @@ static NSDictionary *_figures;
 }
 
 + (void) loadFigures {
-  if ([[NSFileManager defaultManager] fileExistsAtPath:[self archivePath]]) {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[self archivePath]]) {
 		NSMutableDictionary *figures;
-    @try {
-      figures = [NSMutableDictionary dictionaryWithDictionary:[NSKeyedUnarchiver unarchiveObjectWithFile:[self archivePath]]];
+        @try {
+            figures = [NSMutableDictionary dictionaryWithDictionary:[NSKeyedUnarchiver unarchiveObjectWithFile:[self archivePath]]];
+        }
+        @catch (NSException * e) {
+            [self resetFigures];
+        }
+        if (figures != nil) {
+            if ([figures count] == 32) {
+                [figures addEntriesFromDictionary:[self s3_figures]];
+            }
+            if ([figures count] == 48) {
+                [figures addEntriesFromDictionary:[self s4_figures]];
+            }
+            _figures = [[NSDictionary dictionaryWithDictionary:figures] retain];
+        }
+        else {
+            [self resetFigures];
+        }
     }
-    @catch (NSException * e) {
-      [self resetFigures];
+    else {
+        [self resetFigures];
     }
-		if ([figures count] == 32) {
-			[figures addEntriesFromDictionary:[self s3_figures]];
-		}
-		if ([figures count] == 48) {
-			[figures addEntriesFromDictionary:[self s4_figures]];
-		}
-		_figures = [[NSDictionary dictionaryWithDictionary:figures] retain];
-  }
-  else {
-    [self resetFigures];
-  }
 }
 
 
