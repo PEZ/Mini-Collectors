@@ -108,7 +108,7 @@ static MainViewController *_instance;
 }
 
 - (void) reportAchievements {
-  NSMutableDictionary *achievements = [NSMutableDictionary dictionaryWithCapacity:4];
+  NSMutableDictionary *achievements = [NSMutableDictionary dictionaryWithCapacity:kTotalSeries];
   for (int series = 1; series < kTotalSeries + 1; series++) {
     for (int i = 1; i <= 16; i++) {
       NSString *key = [NSString stringWithFormat:@"%d-%d", series, i];
@@ -191,7 +191,9 @@ static MainViewController *_instance;
           [self launcherItemsForSeries:1],
 					[self launcherItemsForSeries:2],
 					[self launcherItemsForSeries:3],
-					[self launcherItemsForSeries:4], nil
+					[self launcherItemsForSeries:4],
+					[self launcherItemsForSeries:5],
+          nil
          ];
 }
 
@@ -213,7 +215,7 @@ static MainViewController *_instance;
 	if (_currentPageIndex < 2) {
 		[self showScanButton];
 	}
-	else if (pageIndex == 2 || pageIndex == 3) {
+	else if (pageIndex > 1) {
 		[self showBumpsButtonWithTag:pageIndex+1];
 	}
 	else {

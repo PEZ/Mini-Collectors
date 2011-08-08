@@ -216,6 +216,45 @@ static NSDictionary *_figures;
 					nil];
 }
 
++ (NSDictionary *) s5_figures {
+	NSNumber *zero = [NSNumber numberWithInt: 0];
+	NSNumber *five = [NSNumber numberWithInt: 5];
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 five, @"series", @"5-1", @"key", @"Boxer", @"name", zero, @"count", nil]] retain], @"5-1",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 five, @"series", @"5-2", @"key", @"Cave Woman", @"name", zero, @"count", nil]] retain], @"5-2",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 five, @"series", @"5-3", @"key", @"Egyptian Queen", @"name", zero, @"count", nil]] retain], @"5-3",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 five, @"series", @"5-4", @"key", @"Small Clown", @"name", zero, @"count", nil]] retain], @"5-4",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 five, @"series", @"5-5", @"key", @"Evil Dwarf", @"name", zero, @"count", nil]] retain], @"5-5",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 five, @"series", @"5-6", @"key", @"Ice Fisherman", @"name", zero, @"count", nil]] retain], @"5-6",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 five, @"series", @"5-7", @"key", @"Fitness Instructor", @"name", zero, @"count", nil]] retain], @"5-7",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 five, @"series", @"5-8", @"key", @"Gangster", @"name", zero, @"count", nil]] retain], @"5-8",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 five, @"series", @"5-9", @"key", @"Gladiator", @"name", zero, @"count", nil]] retain], @"5-9",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 five, @"series", @"5-10", @"key", @"Graduate", @"name", zero, @"count", nil]] retain], @"5-10",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 five, @"series", @"5-11", @"key", @"Lizard Man", @"name", zero, @"count", nil]] retain], @"5-11",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 five, @"series", @"5-12", @"key", @"Lumberjack", @"name", zero, @"count", nil]] retain], @"5-12",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 five, @"series", @"5-13", @"key", @"Royal Guard", @"name", zero, @"count", nil]] retain], @"5-13",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 five, @"series", @"5-14", @"key", @"Detective", @"name", zero, @"count", nil]] retain], @"5-14",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 five, @"series", @"5-15", @"key", @"Snowboarder Guy", @"name", zero, @"count", nil]] retain], @"5-15",
+					[[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+																	 five, @"series", @"5-16", @"key", @"Zookeeper", @"name", zero, @"count", nil]] retain], @"5-16",
+					nil];
+}
+
 + (void) resetFigures {
   NSNumber *zero = [NSNumber numberWithInt: 0];
 	NSNumber *one = [NSNumber numberWithInt: 1];
@@ -289,35 +328,39 @@ static NSDictionary *_figures;
      nil];
 	[figures addEntriesFromDictionary:[self s3_figures]];
 	[figures addEntriesFromDictionary:[self s4_figures]];
+	[figures addEntriesFromDictionary:[self s5_figures]];
 	_figures = [[NSDictionary dictionaryWithDictionary:figures] retain];
 	[self saveFigures];
 }
 
 + (void) loadFigures {
-    if ([[NSFileManager defaultManager] fileExistsAtPath:[self archivePath]]) {
+  if ([[NSFileManager defaultManager] fileExistsAtPath:[self archivePath]]) {
 		NSMutableDictionary *figures;
-        @try {
-            figures = [NSMutableDictionary dictionaryWithDictionary:[NSKeyedUnarchiver unarchiveObjectWithFile:[self archivePath]]];
-        }
-        @catch (NSException * e) {
-            [self resetFigures];
-        }
-        if (figures != nil) {
-            if ([figures count] == 32) {
-                [figures addEntriesFromDictionary:[self s3_figures]];
-            }
-            if ([figures count] == 48) {
-                [figures addEntriesFromDictionary:[self s4_figures]];
-            }
-            _figures = [[NSDictionary dictionaryWithDictionary:figures] retain];
-        }
-        else {
-            [self resetFigures];
-        }
+    @try {
+      figures = [NSMutableDictionary dictionaryWithDictionary:[NSKeyedUnarchiver unarchiveObjectWithFile:[self archivePath]]];
+    }
+    @catch (NSException * e) {
+      [self resetFigures];
+    }
+    if (figures != nil) {
+      if ([figures count] == 32) {
+        [figures addEntriesFromDictionary:[self s3_figures]];
+      }
+      if ([figures count] == 48) {
+        [figures addEntriesFromDictionary:[self s4_figures]];
+      }
+      if ([figures count] == 64) {
+        [figures addEntriesFromDictionary:[self s5_figures]];
+      }
+      _figures = [[NSDictionary dictionaryWithDictionary:figures] retain];
     }
     else {
-        [self resetFigures];
+      [self resetFigures];
     }
+  }
+  else {
+    [self resetFigures];
+  }
 }
 
 

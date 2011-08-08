@@ -30,8 +30,8 @@
 		
 		NSString *help = [NSString stringWithFormat:@"The Series %d bags are \"bump coded\". Along the <b>bottom seal of the back of the bag</b> \
 there are some \"raised\" bumps/dots. <i>They can be really tricky to see, but they are there.</i> \
-Match those bumps with the patterns below and tap it. \
-(The figures you have already collected are marked as such in the list so that you know what figures you are looking for.)", series];
+Match those bumps with the patterns below and tap it. Watch out for when the seal is cut too tightly:\n\
+<img src=\"bundle://Seal-cut.png\" heigt=\"136\" width=\"297\" />", series];
 
     TTListDataSource* dataSource = [[[TTListDataSource alloc] init] autorelease];
 
@@ -68,8 +68,6 @@ represent the <b>Gorilla</b>, the <b>Indian Chief</b>, and the <b>Samurai</b>. I
 			}		
 		}
 		if (series == 4) {
-			help = [NSString stringWithFormat:@"%@ Please note that the codes for Series %d are freshly discovered \
-and it seems they can differ some between batches. The general advice is to combine the codes with really feeling the bags.", help, series];
 			NSArray* trickies1 = [NSArray arrayWithObjects:N(5), N(6), N(8), N(1), N(11), N(2), N(12), nil];
 			[nonTrickies removeObjectsInArray:trickies1];
 

@@ -35,7 +35,7 @@ static NSMutableDictionary *_purchaseInfoLabels;
 }
 
 - (BOOL)isContentUnlocked {
-	return (self.figure.series < 3 || [self isSeriesEnabled]);
+	return (self.figure.series < 4 || [self isSeriesEnabled]);
 }
 
 + (void)createPurchaseButtons {
@@ -54,8 +54,8 @@ static NSMutableDictionary *_purchaseInfoLabels;
 		_purchaseInfoLabels = [[NSMutableDictionary dictionaryWithCapacity:2] retain];
 		for (NSString *productId in kInAppPurchaseSeriesProducts) {
 			[_purchaseInfoLabels setObject:[[[TTLabel alloc] initWithText:[NSString stringWithFormat:@"Series %d support",
-																																		 [InAppPurchaseManager seriesForProductId:productId]]] retain]
-													 forKey:productId];
+                                                                           [InAppPurchaseManager seriesForProductId:productId]]] retain]
+                                    forKey:productId];
 		}
 	}
 }
