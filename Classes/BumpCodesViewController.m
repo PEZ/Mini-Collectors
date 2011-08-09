@@ -17,7 +17,7 @@
   [dataSource.items addObject:
 			 [TTTableStyledTextItem itemWithText:
 				[TTStyledText textFromXHTML:
-				 [NSString stringWithFormat:@"<img src=\"bundle://bump-%d-%@.png\" width=\"232\" height=\"30\"/>%@", series, n,
+				 [NSString stringWithFormat:@"<img src=\"bundle://bump-%d-%@.png\" width=\"232\" />%@", series, n,
 					count > 0 ? [NSString stringWithFormat:@" <b>(%d)</b>", count] : @""]]
 																			 URL:[NSString stringWithFormat:@"mc://hidden/%d-%@", series, n]]];
 }
@@ -83,6 +83,28 @@ your chanses of getting it right. <a href=\"http://www.mocpages.com/moc.php/2598
 			for (NSNumber* n in trickies1) {
 				[self addItemForNumber:n forSeries:series toDataSource:dataSource];
 			}		
+			
+			
+		}
+
+		if (series == 5) {
+			//NSArray* trickies1 = [NSArray arrayWithObjects:N(5), N(6), N(8), N(1), N(11), N(2), N(12), nil];
+			//[nonTrickies removeObjectsInArray:trickies1];
+      
+			for (NSNumber* n in nonTrickies) {
+				[self addItemForNumber:n forSeries:series toDataSource:dataSource];
+			}
+			[dataSource.items insertObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil] atIndex:0];
+      
+			/*
+       help = @"The patterns can be very similar. Watch out for the following codes. \
+      Consider tapping and choose to <b>Reveal</b> and combine with feeling the bag to maximize \
+      your chanses of getting it right. <a href=\"http://www.mocpages.com/moc.php/259838\">Here's a complete Series 4 feeling guide</a>.";	
+			[dataSource.items addObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil]];
+			for (NSNumber* n in trickies1) {
+				[self addItemForNumber:n forSeries:series toDataSource:dataSource];
+			}
+       */
 			
 			
 		}

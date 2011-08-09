@@ -13,8 +13,9 @@
 
 #define kInAppPurchaseSeries3UpgradeProductId @"com.pezius.minicollector.series3"
 #define kInAppPurchaseSeries4UpgradeProductId @"com.pezius.minicollector.series4"
+#define kInAppPurchaseSeries5UpgradeProductId @"com.pezius.minicollector.series5"
 
-#define kInAppPurchaseSeriesProducts [NSArray arrayWithObjects:kInAppPurchaseSeries3UpgradeProductId, kInAppPurchaseSeries4UpgradeProductId, nil]
+#define kInAppPurchaseSeriesProducts [NSArray arrayWithObjects:kInAppPurchaseSeries3UpgradeProductId, kInAppPurchaseSeries4UpgradeProductId, kInAppPurchaseSeries5UpgradeProductId, nil]
 #define kIsSeriesProductUnlocked @"isSeries%dProductUnlocked"
 
 #define seriesKey(key, series) [NSString stringWithFormat:key, series]
