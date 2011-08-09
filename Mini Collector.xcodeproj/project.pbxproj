@@ -328,6 +328,7 @@
 		EB9A213013F1615500C75FCC /* bump-5-14.png in Resources */ = {isa = PBXBuildFile; fileRef = EB9A212013F1615400C75FCC /* bump-5-14.png */; };
 		EB9A213113F1615500C75FCC /* bump-5-15.png in Resources */ = {isa = PBXBuildFile; fileRef = EB9A212113F1615400C75FCC /* bump-5-15.png */; };
 		EB9A213213F1615500C75FCC /* bump-5-16.png in Resources */ = {isa = PBXBuildFile; fileRef = EB9A212213F1615500C75FCC /* bump-5-16.png */; };
+		EB9A213413F170C100C75FCC /* Hidden-5.png in Resources */ = {isa = PBXBuildFile; fileRef = EB9A213313F170C100C75FCC /* Hidden-5.png */; };
 		EBAA3794133A80EE00F813B6 /* 1-7-320@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBAA3793133A80EE00F813B6 /* 1-7-320@2x.png */; };
 		EBDD902E1327B82A00115E73 /* Locked-4.png in Resources */ = {isa = PBXBuildFile; fileRef = EBDD902D1327B82A00115E73 /* Locked-4.png */; };
 		EBF0571D1333BF060082D89C /* bump-4-16.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF0570D1333BF050082D89C /* bump-4-16.png */; };
@@ -854,6 +855,7 @@
 		EB9A212013F1615400C75FCC /* bump-5-14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bump-5-14.png"; path = "Images/bump-5-14.png"; sourceTree = "<group>"; };
 		EB9A212113F1615400C75FCC /* bump-5-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bump-5-15.png"; path = "Images/bump-5-15.png"; sourceTree = "<group>"; };
 		EB9A212213F1615500C75FCC /* bump-5-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bump-5-16.png"; path = "Images/bump-5-16.png"; sourceTree = "<group>"; };
+		EB9A213313F170C100C75FCC /* Hidden-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Hidden-5.png"; path = "Images/Hidden-5.png"; sourceTree = "<group>"; };
 		EBAA3793133A80EE00F813B6 /* 1-7-320@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-7-320@2x.png"; path = "Images/1-7-320@2x.png"; sourceTree = "<group>"; };
 		EBDD902D1327B82A00115E73 /* Locked-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Locked-4.png"; path = "Images/Locked-4.png"; sourceTree = "<group>"; };
 		EBF0570D1333BF050082D89C /* bump-4-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bump-4-16.png"; path = "Images/bump-4-16.png"; sourceTree = "<group>"; };
@@ -1064,6 +1066,7 @@
 			children = (
 				EB9A20F713F0674000C75FCC /* Locked-5.png */,
 				EBF057481333D7950082D89C /* Hidden-4.png */,
+				EB9A213313F170C100C75FCC /* Hidden-5.png */,
 				EBDD902D1327B82A00115E73 /* Locked-4.png */,
 				32C4FAD1124963680069E688 /* achievements.png */,
 				EB81ED3C12EB1C28003F6AE8 /* 1-1-57.png */,
@@ -1967,6 +1970,7 @@
 				EB9A213013F1615500C75FCC /* bump-5-14.png in Resources */,
 				EB9A213113F1615500C75FCC /* bump-5-15.png in Resources */,
 				EB9A213213F1615500C75FCC /* bump-5-16.png in Resources */,
+				EB9A213413F170C100C75FCC /* Hidden-5.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2055,7 +2059,7 @@
 					../three20/Build/Products/three20,
 				);
 				INFOPLIST_FILE = "Mini_Collector-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ZBarSDK\"",
@@ -2086,7 +2090,7 @@
 					../three20/Build/Products/three20,
 				);
 				INFOPLIST_FILE = "Mini_Collector-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ZBarSDK\"",
@@ -2114,7 +2118,7 @@
 					"$(BUILT_PRODUCTS_DIR)/../../three20",
 					../three20/Build/Products/three20,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-ObjC";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B8AEEF1A-839E-4AD2-B32A-1E98690D1CD9";
 				SDKROOT = iphoneos;
@@ -2134,7 +2138,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = ../three20/Build/Products/three20;
 				INFOPLIST_FILE = "Mini_Collector-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ZBarSDK\"",
@@ -2164,7 +2168,7 @@
 					"$(BUILT_PRODUCTS_DIR)/../../three20",
 					../three20/Build/Products/three20,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-ObjC";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B8AEEF1A-839E-4AD2-B32A-1E98690D1CD9";
 				SDKROOT = iphoneos;
@@ -2184,7 +2188,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = ../three20/Build/Products/three20;
 				INFOPLIST_FILE = "Mini_Collector-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ZBarSDK\"",
@@ -2214,7 +2218,7 @@
 					"$(BUILT_PRODUCTS_DIR)/../../three20",
 					../three20/Build/Products/three20,
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = "-ObjC";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "89DAC2B4-BB47-4C12-B66F-EE39AEA649B8";
 				SDKROOT = iphoneos;
@@ -2234,7 +2238,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = ../three20/Build/Products/three20;
 				INFOPLIST_FILE = "Mini_Collector-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ZBarSDK\"",
@@ -2260,7 +2264,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				ONLY_ACTIVE_ARCH = YES;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CDAF2042-A67A-4C79-B1CE-854A9F65DE82";
 				SDKROOT = iphoneos;
@@ -2275,7 +2279,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

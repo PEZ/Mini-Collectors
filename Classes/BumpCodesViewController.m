@@ -83,17 +83,25 @@ your chanses of getting it right. <a href=\"http://www.mocpages.com/moc.php/2598
 			for (NSNumber* n in trickies1) {
 				[self addItemForNumber:n forSeries:series toDataSource:dataSource];
 			}		
-			
-			
+						
+      help = @"If you find errors with the codes, please tell me here \
+      http://blog.betterthantomorrow.com/2011/03/18/series-4-minifigures-codes-support/";	
+      [dataSource.items addObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil]];
 		}
 
 		if (series == 5) {
-			//NSArray* trickies1 = [NSArray arrayWithObjects:N(5), N(6), N(8), N(1), N(11), N(2), N(12), nil];
-			//[nonTrickies removeObjectsInArray:trickies1];
-      
 			for (NSNumber* n in nonTrickies) {
 				[self addItemForNumber:n forSeries:series toDataSource:dataSource];
 			}
+			[dataSource.items shuffle];
+      
+      help = @"The bump codes for Series 5 are quite unreliable as of now. They are often printed mirrored from \
+the below cheat codes. So far two different codes have been found for the <b>Gangster</b> and that is reflected below. \
+This app will get updated as soon as new code variants are discovered. Be adviced that:\n\
+<i>Feeling the bag is often necessary.</i> When feeling the bag, try to sort out the stand-brick, the body, legs and head \
+in one corner of the bag. Then you can feel for the special items without distraction. Remember that the legs of the \
+<b>Evil Dwarf</b> and the <b>Small Clown</b> don't bend.";
+
 			[dataSource.items insertObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil] atIndex:0];
       
 			/*
@@ -107,11 +115,14 @@ your chanses of getting it right. <a href=\"http://www.mocpages.com/moc.php/2598
        */
 			
 			
+      help = @"Watch out for when the seal is cut too tightly:\n\
+              <img src=\"bundle://Seal-cut.png\" heigt=\"136\" width=\"297\" />";      
+			[dataSource.items addObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil]];
+
+      help = @"If you find errors with the codes, please tell me here; http://is.gd/series5";	
+      [dataSource.items addObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil]];
 		}
 
-		help = @"If you find errors with the codes, please tell me here \
-		http://blog.betterthantomorrow.com/2011/03/18/series-4-minifigures-codes-support/";	
-		[dataSource.items addObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil]];
 		self.dataSource = dataSource;
   }
   return self;
