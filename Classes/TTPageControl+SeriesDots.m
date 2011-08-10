@@ -7,6 +7,7 @@
 //
 
 #import "TTPageControl+SeriesDots.h"
+#import <Three20UI/UIViewAdditions.h>
 #import "DefaultStyleSheet.h"
 
 @implementation TTPageControl (TTPageControl_SeriesDots)
@@ -35,27 +36,12 @@
   }
 }
 
-- (void)drawDotForPage:(NSInteger)page inContext:(TTStyleContext *)context  {
-    [[(DefaultStyleSheet*)[TTStyleSheet globalStyleSheet] pageDotWithColor:[self colorForPage:page]] draw:context];
+- (TTStyle*)dotStyleForPage:(NSInteger)page {
+  return [(DefaultStyleSheet*)[TTStyleSheet globalStyleSheet] pageDotWithColor:[self colorForPage:page]];
 }
 
-#pragma mark -
-#pragma mark Properties
-
-- (TTStyle*)normalDotStyle {
-  if (!_normalDotStyle) {
-    _normalDotStyle = [[[TTStyleSheet globalStyleSheet] styleWithSelector:_dotStyle
-                                                                 forState:UIControlStateNormal] retain];
-  }
-  return _normalDotStyle;
-}
-
-- (TTStyle*)currentDotStyle {
-  if (!_currentDotStyle) {
-    _currentDotStyle = [[[TTStyleSheet globalStyleSheet] styleWithSelector:_dotStyle
-                                                                  forState:UIControlStateSelected] retain];
-  }
-  return _currentDotStyle;
+- (void)drawDotForPage:(NSInteger)page inContext:(TTStyleContext *)context {
+    [[self dotStyleForPage:page] draw:context];
 }
 
 #pragma mark -
@@ -67,9 +53,9 @@
   }
   
   TTStyleContext* context = [[[TTStyleContext alloc] init] autorelease];
-  TTBoxStyle* boxStyle = [self.normalDotStyle firstStyleOfClass:[TTBoxStyle class]];
+  TTBoxStyle* boxStyle = [[self dotStyleForPage:0] firstStyleOfClass:[TTBoxStyle class]];
   
-  CGSize dotSize = [self.normalDotStyle addToSize:CGSizeZero context:context];
+  CGSize dotSize = [[self dotStyleForPage:0] addToSize:CGSizeZero context:context];
   
   CGFloat dotWidth = dotSize.width + boxStyle.margin.left + boxStyle.margin.right;
   CGFloat totalWidth = (dotWidth * _numberOfPages) - (boxStyle.margin.left + boxStyle.margin.right);

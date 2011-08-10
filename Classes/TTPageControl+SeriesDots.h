@@ -7,11 +7,8 @@
 //
 
 #import <Three20UI/TTPageControl.h>
-#import <Three20UI/UIViewAdditions.h>
+
 
 @interface TTPageControl (TTPageControl_SeriesDots)
-
-- (TTStyle*)normalDotStyle;
-- (TTStyle*)currentDotStyle;
 
 @end
