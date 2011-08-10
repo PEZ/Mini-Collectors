@@ -67,6 +67,7 @@
 		EB383C0610BBF8A40000B2D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EB383C0510BBF8A40000B2D2 /* AppDelegate.m */; };
 		EB383C1410BBF8C70000B2D2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB383C1310BBF8C70000B2D2 /* QuartzCore.framework */; };
 		EB383D1110BBFC630000B2D2 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EB383D1010BBFC630000B2D2 /* Three20.bundle */; };
+		EB5874B113F2918D00515C20 /* TTPageControl+SeriesDots.m in Sources */ = {isa = PBXBuildFile; fileRef = EB5874B013F2918D00515C20 /* TTPageControl+SeriesDots.m */; };
 		EB81ED2A12EB094E003F6AE8 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB81ED2912EB094E003F6AE8 /* Icon@2x.png */; };
 		EB81EDCD12EB1C28003F6AE8 /* 1-1-57.png in Resources */ = {isa = PBXBuildFile; fileRef = EB81ED3C12EB1C28003F6AE8 /* 1-1-57.png */; };
 		EB81EDCE12EB1C28003F6AE8 /* 1-1-57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB81ED3D12EB1C28003F6AE8 /* 1-1-57@2x.png */; };
@@ -594,6 +595,8 @@
 		EB383C0510BBF8A40000B2D2 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		EB383C1310BBF8C70000B2D2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EB383D1010BBFC630000B2D2 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = ../three20/src/Three20.bundle; sourceTree = SOURCE_ROOT; };
+		EB5874AF13F2918D00515C20 /* TTPageControl+SeriesDots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TTPageControl+SeriesDots.h"; sourceTree = "<group>"; };
+		EB5874B013F2918D00515C20 /* TTPageControl+SeriesDots.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TTPageControl+SeriesDots.m"; sourceTree = "<group>"; };
 		EB81ED2912EB094E003F6AE8 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		EB81ED3C12EB1C28003F6AE8 /* 1-1-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-1-57.png"; path = "Images/1-1-57.png"; sourceTree = "<group>"; };
 		EB81ED3D12EB1C28003F6AE8 /* 1-1-57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "1-1-57@2x.png"; path = "Images/1-1-57@2x.png"; sourceTree = "<group>"; };
@@ -931,6 +934,8 @@
 				EB331B4E12DA3604001E2AA6 /* BumpCodesViewController.m */,
 				EB331BA312DA5294001E2AA6 /* NSMutableArray+Shuffle.h */,
 				EB331BA412DA5294001E2AA6 /* NSMutableArray+Shuffle.m */,
+				EB5874AF13F2918D00515C20 /* TTPageControl+SeriesDots.h */,
+				EB5874B013F2918D00515C20 /* TTPageControl+SeriesDots.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1992,6 +1997,7 @@
 				EB331A2B12D9CF71001E2AA6 /* InAppPurchaseManager.m in Sources */,
 				EB331B4F12DA3604001E2AA6 /* BumpCodesViewController.m in Sources */,
 				EB331BA512DA5294001E2AA6 /* NSMutableArray+Shuffle.m in Sources */,
+				EB5874B113F2918D00515C20 /* TTPageControl+SeriesDots.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

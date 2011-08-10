@@ -9,7 +9,7 @@
 #import <Three20UI/Three20UI.h>
 #import "Figure.h"
 
-@interface FigureViewController : TTModelViewController <UIActionSheetDelegate> {
+@interface FigureViewController : TTTableViewController <UIActionSheetDelegate> {
   Figure *_figure;
   TTImageView *_imageView;
   TTLabel *_figureCountLabel;
@@ -26,6 +26,6 @@
 @property (nonatomic) BOOL hidden;
 
 - (id)initWithKey:(NSString *)key;
-- (id) initHiddenWithKey:(NSString *)key;
+- (id)initHiddenWithKey:(NSString *)key;
 
 @end
