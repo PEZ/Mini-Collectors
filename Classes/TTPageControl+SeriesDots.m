@@ -12,22 +12,22 @@
 @implementation TTPageControl (TTPageControl_SeriesDots)
 
 - (UIColor*)colorForPage:(NSInteger)page {
-  float alpha = (page == _currentPage) ? 1.0 : 0.5;
+  float alpha = (page == _currentPage) ? 1.0 : 0.4;
   switch (page) {
     case 0:
-      return RGBACOLOR(255, 255, 0, alpha);
+      return RGBACOLOR(255, 200, 0, alpha);
       break;
     case 1:
-      return RGBACOLOR(0, 0, 255, alpha);
+      return RGBACOLOR(1, 129, 200, alpha);
       break;
     case 2:
-      return RGBACOLOR(0, 255, 0, alpha);
+      return RGBACOLOR(150, 200, 50, alpha);
       break;
     case 3:
-      return RGBACOLOR(255, 175, 0, alpha);
+      return RGBACOLOR(255, 150, 50, alpha);
       break;
     case 4:
-      return RGBACOLOR(100, 100, 255, alpha);
+      return RGBACOLOR(0, 175, 205, alpha);
       break;      
     default:
       return nil;
