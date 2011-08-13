@@ -100,9 +100,11 @@ static NSDictionary *_figures;
 - (void) increaseCount {
   self.count++;
   [self countChanged];
-  for (GKAchievement *a in [self reportAchievements:YES]) {
-    [[AppDelegate getInstance] reportAchievementIdentifier:a.identifier percentComplete:a.percentComplete];
-  };
+  if ([AppDelegate isGameCenterAvailable]) {
+    for (GKAchievement *a in [self reportAchievements:YES]) {
+      [[AppDelegate getInstance] reportAchievementIdentifier:a.identifier percentComplete:a.percentComplete];
+    }
+  }
 }
 
 - (void) decreaseCount {
