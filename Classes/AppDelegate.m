@@ -11,6 +11,7 @@
 #import "Figure.h"
 #import "InAppPurchaseManager.h"
 #import "FigureViewController.h"
+#import "LockedViewController.h"
 
 @implementation AppDelegate
 
@@ -119,7 +120,7 @@ static AppDelegate *_instance;
 
   [self loadGameCenterInfo];
 	[[InAppPurchaseManager getInstance] loadStore];
-	[[NSNotificationCenter defaultCenter] addObserver:[FigureViewController class]
+	[[NSNotificationCenter defaultCenter] addObserver:[LockedViewController class]
 																					 selector:@selector(purchaseProductFetched)
 																							 name:kInAppPurchaseManagerProductsFetchedNotification
 																						 object:nil];	
@@ -135,7 +136,9 @@ static AppDelegate *_instance;
   [map from:@"*" toViewController:[TTWebController class]];
   [map from:@"mc://main" toViewController:[MainViewController class]];
   [map from:@"mc://figure/(initWithKey:)/" toViewController:[FigureViewController class]];
+  [map from:@"mc://figure_or_locked/(openFigureWithKey:)/" toObject:[MainViewController class]];
   [map from:@"mc://hidden/(initHiddenWithKey:)/" toViewController:[FigureViewController class]];
+  [map from:@"mc://locked/(initWithSeries:)/" toModalViewController:[LockedViewController class]];
 	[map from:@"mc://bumps/(initWithSeries:)/" toViewController:[BumpCodesViewController class]];
 
   if (![navigator restoreViewControllers]) {

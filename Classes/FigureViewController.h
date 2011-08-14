@@ -13,7 +13,6 @@
   Figure *_figure;
   TTImageView *_imageView;
   TTLabel *_figureCountLabel;
-	TTActivityLabel *_purchaseActivityLabel;
   BOOL _hidden;
   BOOL _loaded;
 }
@@ -21,8 +20,6 @@
 @property (nonatomic, retain) Figure *figure;
 @property (nonatomic, retain) TTImageView *imageView;
 @property (nonatomic, retain) TTLabel *figureCountLabel;
-@property (nonatomic, retain, readonly) TTButton *purchaseButton;
-@property (nonatomic, retain, readonly) TTLabel *purchaseInfoLabel;
 @property (nonatomic) BOOL hidden;
 
 - (id)initWithKey:(NSString *)key;

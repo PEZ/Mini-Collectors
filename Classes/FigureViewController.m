@@ -8,11 +8,9 @@
 
 #import <Three20UI/UIViewAdditions.h>
 
-#import "AppDelegate.h"
 #import "FigureViewController.h"
 #import "DefaultStyleSheet.h"
-#import "InAppPurchaseManager.h"
-#import "SKProduct+LocalizedPrice.h"
+#import "AppDelegate.h"
 
 #define MARGIN 5
 #define kHaveAskedForReview @"kHaveAskedForReview4"
@@ -26,93 +24,6 @@
 @synthesize figureCountLabel = _figureCountLabel;
 @synthesize hidden = _hidden;
 
-static NSMutableDictionary *_purchaseButtons;
-static NSMutableDictionary *_purchaseInfoLabels;
-
-- (BOOL)isSeriesEnabled {
-  NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-  return [prefs boolForKey:[NSString stringWithFormat:kIsSeriesProductUnlocked, self.figure.series]];
-}
-
-- (BOOL)isContentUnlocked {
-	return (self.figure.series < 4 || [self isSeriesEnabled]);
-}
-
-+ (void)createPurchaseButtons {
-	if (_purchaseButtons == nil) {
-		_purchaseButtons = [[NSMutableDictionary dictionaryWithCapacity:2] retain];
-		for (NSString *productId in kInAppPurchaseSeriesProducts) {
-			[_purchaseButtons setObject:[[TTButton buttonWithStyle:@"defaultButton:"
-																											 title:@"Unlock"] retain]
-													 forKey:productId];
-		}
-	}
-}
-
-+ (void)createPurchaseInfoLabels {
-	if (_purchaseInfoLabels == nil) {
-		_purchaseInfoLabels = [[NSMutableDictionary dictionaryWithCapacity:2] retain];
-		for (NSString *productId in kInAppPurchaseSeriesProducts) {
-			[_purchaseInfoLabels setObject:[[[TTLabel alloc] initWithText:[NSString stringWithFormat:@"Series %d support",
-                                                                           [InAppPurchaseManager seriesForProductId:productId]]] retain]
-                                    forKey:productId];
-		}
-	}
-}
-
-- (NSString*)productId {
-	return [InAppPurchaseManager productIdForSeries:self.figure.series];
-}
-
-- (TTButton*)purchaseButton {
-	return [_purchaseButtons objectForKey:[self productId]];
-}
-
-- (TTLabel*)purchaseInfoLabel {
-	return [_purchaseInfoLabels objectForKey:[self productId]];
-}
-
-- (void)createPurchaseActivityLabel {
-	if (_purchaseActivityLabel == nil) {
-		_purchaseActivityLabel = [[[TTActivityLabel alloc] initWithStyle:TTActivityLabelStyleBlackBox] retain];
-		_purchaseActivityLabel.text = @"Purchase in progress...";
-		[_purchaseActivityLabel sizeToFit];
-		_purchaseActivityLabel.frame = CGRectMake(0, _imageView.bottom+20, self.view.width, _purchaseActivityLabel.height);
-		[self.view addSubview:_purchaseActivityLabel];
-	}
-}
-
-- (void)purchase {
-	[self createPurchaseActivityLabel];
-	_purchaseActivityLabel.hidden = NO;
-	self.purchaseButton.hidden = YES;
-	InAppPurchaseManager *purchaseManager = [InAppPurchaseManager getInstance];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-																					 selector:@selector(seriesContentProvided)
-																							 name:productIdKey(kInAppPurchaseManagerSeriesContentProvidedNotification, [self productId])
-																						 object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-																					 selector:@selector(purchaseFailed)
-																							 name:productIdKey(kInAppPurchaseManagerTransactionFailedNotification, [self productId])
-																						 object:nil];	
-	if ([purchaseManager canMakePurchases]) {
-		[purchaseManager purchase:[self productId]];		
-	}
-	else {
-		TTAlert(@"Purchases are not available.");
-#if TARGET_IPHONE_SIMULATOR
-		[purchaseManager provideContent:[self productId]];
-#endif
-	}
-}
-
-+ (void)sizePurchaseButton:(TTButton*)button {
-	button.font = [UIFont systemFontOfSize:18];
-	[button sizeToFit];
-	button.width += 40;
-	button.height += 15;
-	button.left = (320 - button.width) / 2;
-}
 
 - (id)initWithKey:(NSString *)key {
   if ((self = [self init])) {
@@ -138,7 +49,6 @@ static NSMutableDictionary *_purchaseInfoLabels;
 - (void)dealloc {
   TT_RELEASE_SAFELY(_imageView);
   TT_RELEASE_SAFELY(_figureCountLabel);
-	TT_RELEASE_SAFELY(_purchaseActivityLabel);
 	[super dealloc];
 }
 
@@ -191,17 +101,12 @@ static NSMutableDictionary *_purchaseInfoLabels;
 }
 
 - (NSString *) imagePath {
-	if ([self isContentUnlocked]) {
-		if (!_hidden || _figure.count > 0) {
-			return [NSString stringWithFormat:@"bundle://%@-320.png", _figure.key];
-		}
-		else {
-			return [NSString stringWithFormat:@"bundle://Hidden-%d.png", _figure.series];
-		}
-	}
-	else {
-		return [NSString stringWithFormat:@"bundle://Locked-%d.png", _figure.series];
-	}
+  if (!_hidden || _figure.count > 0) {
+    return [NSString stringWithFormat:@"bundle://%@-320.png", _figure.key];
+  }
+  else {
+    return [NSString stringWithFormat:@"bundle://Hidden-%d.png", _figure.series];
+  }
 }
 
 - (void) unHide {
@@ -224,41 +129,21 @@ static NSMutableDictionary *_purchaseInfoLabels;
                               color:[UIColor whiteColor] next:nil]]]]]]]];
 }
 
-- (TTStyle*)purchaseInfoLabelStyle {
-  return
-		 [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:16]
-													color:[UIColor blackColor]
-								minimumFontSize:0
-										shadowColor:[UIColor colorWithWhite:0 alpha:0.9] 
-									 shadowOffset:CGSizeMake(0, 0) 
-									textAlignment:UITextAlignmentCenter 
-							verticalAlignment:UIControlContentVerticalAlignmentBottom 
-									lineBreakMode:UILineBreakModeTailTruncation 
-									numberOfLines:6
-													 next:nil];
-}
-
-
 - (void)loadView {
   if (!_loaded) {
     _loaded = YES;
 
-		if ([self isContentUnlocked]) {			
-			if (!_hidden) {
-				self.title = _figure.name;
-			}
-			else {
-				if (_figure.count == 0) {
-					self.navigationItem.rightBarButtonItem
-					= [[[UIBarButtonItem alloc] initWithTitle:@"Reveal" style:UIBarButtonItemStyleBordered
-																						 target:self action:@selector(unHide)] autorelease];
-				}
-				self.title = _figure.count > 0 ? @"You have it" : @"Not collected!";
-			}			
-		}
-		else {
-			self.title = [NSString stringWithFormat:@"Series %d is locked", self.figure.series];
-		}
+    if (!_hidden) {
+      self.title = _figure.name;
+    }
+    else {
+      if (_figure.count == 0) {
+        self.navigationItem.rightBarButtonItem
+        = [[[UIBarButtonItem alloc] initWithTitle:@"Reveal" style:UIBarButtonItemStyleBordered
+                                           target:self action:@selector(unHide)] autorelease];
+      }
+      self.title = _figure.count > 0 ? @"You have it" : @"Not collected!";
+    }			
 		
     UIScrollView* scrollView = [[[UIScrollView alloc] initWithFrame:TTNavigationFrame()] autorelease];
     scrollView.autoresizesSubviews = YES;
@@ -276,22 +161,7 @@ static NSMutableDictionary *_purchaseInfoLabels;
     [self.view addSubview:_imageView];
 		float imageBottom = _imageView.frame.size.height + imageY;
 
-		if (![self isContentUnlocked]) {
-			[[self class] createPurchaseButtons];
-			[[self class] createPurchaseInfoLabels];
-			[[self class] sizePurchaseButton:self.purchaseButton];
-			self.purchaseButton.hidden = NO;
-			self.purchaseButton.top = _imageView.bottom + 20;
-			[self.purchaseButton removeTarget:nil action:@selector(purchase) forControlEvents:UIControlEventTouchUpInside];
-			[self.purchaseButton addTarget:self action:@selector(purchase) forControlEvents:UIControlEventTouchUpInside];			
-			[scrollView addSubview:self.purchaseButton];
-			self.purchaseInfoLabel.frame = CGRectMake(MARGIN, imageBottom - 200, scrollView.frame.size.width - MARGIN * 2, 140);
-			self.purchaseInfoLabel.style = [self purchaseInfoLabelStyle];
-			self.purchaseInfoLabel.backgroundColor = RGBACOLOR(0,0,0,0);
-			//self.purchaseInfoLabel.line
-			[scrollView addSubview:self.purchaseInfoLabel];
-		}
-    else if (!_hidden) {
+    if (!_hidden) {
       NSArray* widgets = [NSArray arrayWithObjects:
                           [TTButton buttonWithStyle:@"defaultButton:" title:@"-"],
                           [TTButton buttonWithStyle:@"defaultButton:" title:@"+"],
@@ -309,33 +179,6 @@ static NSMutableDictionary *_purchaseInfoLabels;
   }
 }
 
-#pragma mark -
-#pragma mark Notifications
-
--(void)seriesContentProvided {
-	_loaded = NO;
-	[self loadView];
-}
-
--(void)purchaseFailed {
-	_purchaseActivityLabel.hidden = YES;
-	self.purchaseButton.hidden = NO;
-	self.purchaseButton.hidden = NO;
-}
-
-+(void)purchaseProductFetched {
-	[self createPurchaseButtons];
-	[self createPurchaseInfoLabels];
-	for (NSString *productId in kInAppPurchaseSeriesProducts) {
-		SKProduct *product = [[[InAppPurchaseManager getInstance] seriesProducts] objectForKey:productId];
-		TTButton *button = [_purchaseButtons objectForKey:productId];
-		[button setTitle:[NSString stringWithFormat:@"%@", [product localizedPrice]]
-						forState:UIControlStateNormal];
-		[self sizePurchaseButton:button];
-		TTLabel *label = [_purchaseInfoLabels objectForKey:productId];
-		label.text = [NSString stringWithFormat:@"%@\n%@", product.localizedTitle, product.localizedDescription];
-	}
-}
 
 @end
 

@@ -7,6 +7,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "MainViewController.h"
 #import "Figure.h"
+#import "InAppPurchaseManager.h"
 
 BOOL scanningAvailable() {
   BOOL available = [ZBarReaderViewController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
@@ -20,6 +21,15 @@ static MainViewController *_instance;
 
 + (MainViewController *) getInstance {
   return _instance;
+}
+
++ (BOOL)isSeriesEnabled:(NSInteger)series {
+  NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+  return [prefs boolForKey:[NSString stringWithFormat:kIsSeriesProductUnlocked, series]];
+}
+
++ (BOOL)isContentUnlocked:(NSInteger)series {
+	return (series < 4 || [self isSeriesEnabled:series]);
 }
 
 - (void) authenticationChanged {
@@ -56,8 +66,23 @@ static MainViewController *_instance;
 	}
 }
 
--(void)openBumpsView:(id)sender {
-	TTOpenURL([NSString stringWithFormat:@"mc://bumps/%d", [sender tag]]);
+- (void)openBumpsView:(id)sender {
+  if ([[self class] isContentUnlocked:[sender tag]]) {
+    TTOpenURL([NSString stringWithFormat:@"mc://bumps/%d", [sender tag]]);
+  }
+  else {
+    TTOpenURL([NSString stringWithFormat:@"mc://locked/%d", [sender tag]]);
+  }
+}
+
++ (void)openFigureWithKey:(NSString*)key {
+  Figure* figure = [Figure figureFromKey:key];
+  if ([self isContentUnlocked:figure.series]) {
+    TTOpenURL([NSString stringWithFormat:@"mc://figure/%@", key]);
+  }
+  else {
+    TTOpenURL([NSString stringWithFormat:@"mc://locked/%d", figure.series]);
+  }
 }
 
 - (void)showBumpsButtonWithTag:(uint)tag {
@@ -65,7 +90,8 @@ static MainViewController *_instance;
 																						 initWithImage:[UIImage imageNamed:@"BumpsIcon.png"]
 																						 style:UIBarButtonItemStylePlain
 																						 target:self
-																						 action:@selector(openBumpsView:)] autorelease];
+																						 action:@selector(openBumpsView:)]
+                                            autorelease];
 	self.navigationItem.rightBarButtonItem.tag = tag;
 }
 
@@ -175,7 +201,7 @@ static MainViewController *_instance;
     if (figure != nil) {
       NSString *name = figure.name;
       NSString *image = [NSString stringWithFormat:@"bundle://%@-57.png", figure.key];
-      NSString *url = [NSString stringWithFormat:@"mc://figure/%@", figure.key];
+      NSString *url = [NSString stringWithFormat:@"mc://figure_or_locked/%@", figure.key];
       TTLauncherItem *item = [[[TTLauncherItem alloc] initWithTitle:name image:image URL:url] autorelease];
       item.badgeNumber = figure.count;
       figure.launcherItem = item;

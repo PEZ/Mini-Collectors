@@ -349,6 +349,7 @@
 		EBF0572B1333BF060082D89C /* bump-4-1.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF0571B1333BF060082D89C /* bump-4-1.png */; };
 		EBF0572C1333BF060082D89C /* bump-4-2.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF0571C1333BF060082D89C /* bump-4-2.png */; };
 		EBF057491333D7950082D89C /* Hidden-4.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF057481333D7950082D89C /* Hidden-4.png */; };
+		EBFCED4C13F7D33E00456663 /* LockedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBFCED4B13F7D33E00456663 /* LockedViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -878,6 +879,8 @@
 		EBF0571B1333BF060082D89C /* bump-4-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bump-4-1.png"; path = "Images/bump-4-1.png"; sourceTree = "<group>"; };
 		EBF0571C1333BF060082D89C /* bump-4-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bump-4-2.png"; path = "Images/bump-4-2.png"; sourceTree = "<group>"; };
 		EBF057481333D7950082D89C /* Hidden-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Hidden-4.png"; path = "Images/Hidden-4.png"; sourceTree = "<group>"; };
+		EBFCED4A13F7D33D00456663 /* LockedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockedViewController.h; sourceTree = "<group>"; };
+		EBFCED4B13F7D33E00456663 /* LockedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockedViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -936,6 +939,8 @@
 				EB331BA412DA5294001E2AA6 /* NSMutableArray+Shuffle.m */,
 				EB5874AF13F2918D00515C20 /* TTPageControl+SeriesDots.h */,
 				EB5874B013F2918D00515C20 /* TTPageControl+SeriesDots.m */,
+				EBFCED4A13F7D33D00456663 /* LockedViewController.h */,
+				EBFCED4B13F7D33E00456663 /* LockedViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1998,6 +2003,7 @@
 				EB331B4F12DA3604001E2AA6 /* BumpCodesViewController.m in Sources */,
 				EB331BA512DA5294001E2AA6 /* NSMutableArray+Shuffle.m in Sources */,
 				EB5874B113F2918D00515C20 /* TTPageControl+SeriesDots.m in Sources */,
+				EBFCED4C13F7D33E00456663 /* LockedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
