@@ -31,7 +31,7 @@
         series, n,
         figure.name, count > 0 ? [NSString stringWithFormat:@" (%d)", count] : @"",
         series, n]]
-                                     URL:[NSString stringWithFormat:@"mc://figure/%d-%@", series, n]]];    
+                                     URL:[NSString stringWithFormat:@"mc://feel_guide/%d-%@", series, n]]];    
   }
 }
 

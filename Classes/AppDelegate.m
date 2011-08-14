@@ -12,6 +12,7 @@
 #import "InAppPurchaseManager.h"
 #import "FigureViewController.h"
 #import "LockedViewController.h"
+#import "FeelGuideViewController.h"
 
 @implementation AppDelegate
 
@@ -140,6 +141,7 @@ static AppDelegate *_instance;
   [map from:@"mc://hidden/(initHiddenWithKey:)/" toViewController:[FigureViewController class]];
   [map from:@"mc://locked/(initWithSeries:)/" toModalViewController:[LockedViewController class]];
 	[map from:@"mc://bumps/(initWithSeries:)/" toViewController:[BumpCodesViewController class]];
+  [map from:@"mc://feel_guide/(initWithKey:)/" toViewController:[FeelGuideViewController class]];
 
   if (![navigator restoreViewControllers]) {
     [navigator openURLAction:[TTURLAction actionWithURLPath:@"mc://main"]];

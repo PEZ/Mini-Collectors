@@ -62,10 +62,20 @@
   }
 }
 
+
+
 - (TTShapeStyle*)figureImage {
   return [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:8] next:
           [TTContentStyle styleWithNext:nil]];
   
+}
+
+- (TTBoxStyle*)figureImageRight {
+  return [TTBoxStyle styleWithMargin:UIEdgeInsetsMake(0, kTableCellSmallMargin, kTableCellSmallMargin, 0)
+                             padding:UIEdgeInsetsZero
+                             minSize:CGSizeZero
+                            position:TTPositionFloatRight
+                                next:[self figureImage]];
 }
 
 - (TTStyle*)figureTableImage {

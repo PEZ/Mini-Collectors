@@ -47,6 +47,10 @@ static NSDictionary *_figures;
   return [NSString stringWithFormat:@"F_%@", [self.key stringByReplacingOccurrencesOfString:@"-" withString:@"_"]];
 }
 
+- (NSInteger)number {
+  return [[[self.key componentsSeparatedByString:@"-"] objectAtIndex:1] integerValue];
+}
+
 - (NSArray *) incrementSeriesAchievments:(int)s isInteractive:(BOOL)isInteractive {
   NSMutableArray *achievements = [[[NSMutableArray alloc] initWithCapacity:2] autorelease];
   NSString *thisSeriesId = [NSString stringWithFormat:@"S%d", s];

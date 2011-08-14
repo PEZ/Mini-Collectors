@@ -350,6 +350,8 @@
 		EBF0572C1333BF060082D89C /* bump-4-2.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF0571C1333BF060082D89C /* bump-4-2.png */; };
 		EBF057491333D7950082D89C /* Hidden-4.png in Resources */ = {isa = PBXBuildFile; fileRef = EBF057481333D7950082D89C /* Hidden-4.png */; };
 		EBFCED4C13F7D33E00456663 /* LockedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBFCED4B13F7D33E00456663 /* LockedViewController.m */; };
+		EBFCED4F13F8182200456663 /* FeelGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBFCED4E13F8181F00456663 /* FeelGuideViewController.m */; };
+		EBFCED5113F85D6100456663 /* feel-guide-5.plist in Resources */ = {isa = PBXBuildFile; fileRef = EBFCED5013F85D6100456663 /* feel-guide-5.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -881,6 +883,9 @@
 		EBF057481333D7950082D89C /* Hidden-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Hidden-4.png"; path = "Images/Hidden-4.png"; sourceTree = "<group>"; };
 		EBFCED4A13F7D33D00456663 /* LockedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockedViewController.h; sourceTree = "<group>"; };
 		EBFCED4B13F7D33E00456663 /* LockedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockedViewController.m; sourceTree = "<group>"; };
+		EBFCED4D13F8181F00456663 /* FeelGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeelGuideViewController.h; sourceTree = "<group>"; };
+		EBFCED4E13F8181F00456663 /* FeelGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeelGuideViewController.m; sourceTree = "<group>"; };
+		EBFCED5013F85D6100456663 /* feel-guide-5.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "feel-guide-5.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -941,6 +946,8 @@
 				EB5874B013F2918D00515C20 /* TTPageControl+SeriesDots.m */,
 				EBFCED4A13F7D33D00456663 /* LockedViewController.h */,
 				EBFCED4B13F7D33E00456663 /* LockedViewController.m */,
+				EBFCED4D13F8181F00456663 /* FeelGuideViewController.h */,
+				EBFCED4E13F8181F00456663 /* FeelGuideViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -987,6 +994,7 @@
 				EB383D1010BBFC630000B2D2 /* Three20.bundle */,
 				8D1107310486CEB800E47090 /* Mini_Collector-Info.plist */,
 				32749835122B8A9A00BED32D /* Entitlements.plist */,
+				EBFCED5013F85D6100456663 /* feel-guide-5.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1981,6 +1989,7 @@
 				EB9A213113F1615500C75FCC /* bump-5-15.png in Resources */,
 				EB9A213213F1615500C75FCC /* bump-5-16.png in Resources */,
 				EB9A213413F170C100C75FCC /* Hidden-5.png in Resources */,
+				EBFCED5113F85D6100456663 /* feel-guide-5.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2004,6 +2013,7 @@
 				EB331BA512DA5294001E2AA6 /* NSMutableArray+Shuffle.m in Sources */,
 				EB5874B113F2918D00515C20 /* TTPageControl+SeriesDots.m in Sources */,
 				EBFCED4C13F7D33E00456663 /* LockedViewController.m in Sources */,
+				EBFCED4F13F8182200456663 /* FeelGuideViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,6 +22,7 @@
 @property (nonatomic) int count;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) TTLauncherItem *launcherItem;
+@property (readonly)  NSInteger number;
 
 + (Figure *) figureFromKey:(NSString *)key;
 + (Figure *) figureFromSeries:(uint)series withNum:(uint)num;
