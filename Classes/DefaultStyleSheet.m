@@ -8,6 +8,9 @@
 
 #import "DefaultStyleSheet.h"
 
+#define kFigureImageWidth 57
+#define kDisclosureWidth 10
+#define kTableCellSmallMargin 2
 
 @implementation DefaultStyleSheet
 
@@ -57,6 +60,31 @@
   } else {
     return nil;
   }
+}
+
+- (TTShapeStyle*)figureImage {
+  return [TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:8] next:
+          [TTContentStyle styleWithNext:nil]];
+  
+}
+
+- (TTStyle*)figureTableImage {
+  return [TTBoxStyle styleWithMargin:UIEdgeInsetsMake(kTableCellSmallMargin, kTableCellSmallMargin, kTableCellSmallMargin, 0)
+                             padding:UIEdgeInsetsZero
+                             minSize:CGSizeZero
+                            position:TTPositionAbsolute
+                                next:[self figureImage]];
+}
+
+- (TTStyle*)tableMessageContent {
+  return [TTBoxStyle styleWithMargin:UIEdgeInsetsMake(kTableCellSmallMargin,
+                                                      kFigureImageWidth + kTableCellSmallMargin * 2,
+                                                      kTableCellSmallMargin,
+                                                      kTableCellSmallMargin + kDisclosureWidth)
+                             padding:UIEdgeInsetsZero
+                             minSize:CGSizeZero
+                            position:TTPositionStatic
+                                next:nil];
 }
 
 @end

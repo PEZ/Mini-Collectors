@@ -13,13 +13,26 @@
 @implementation BumpCodesViewController
 
 -(void)addItemForNumber:(NSNumber*)n forSeries:(NSInteger)series toDataSource:(TTListDataSource*)dataSource {
-	uint count = [[Figure figureFromSeries:series withNum:[n intValue]] count];
-  [dataSource.items addObject:
-			 [TTTableStyledTextItem itemWithText:
-				[TTStyledText textFromXHTML:
-				 [NSString stringWithFormat:@"<img src=\"bundle://bump-%d-%@.png\" width=\"232\" />%@", series, n,
-					count > 0 ? [NSString stringWithFormat:@" <b>(%d)</b>", count] : @""]]
-																			 URL:[NSString stringWithFormat:@"mc://hidden/%d-%@", series, n]]];
+  Figure* figure = [Figure figureFromSeries:series withNum:[n intValue]];
+	uint count = [figure count];
+  if (series < 5) {
+    [dataSource.items addObject:
+     [TTTableStyledTextItem itemWithText:
+      [TTStyledText textFromXHTML:
+       [NSString stringWithFormat:@"<img src=\"bundle://bump-%d-%@.png\" width=\"232\" />%@", series, n,
+        count > 0 ? [NSString stringWithFormat:@" <b>(%d)</b>", count] : @""]]
+                                     URL:[NSString stringWithFormat:@"mc://hidden/%d-%@", series, n]]];
+  }
+  else {
+    [dataSource.items addObject:
+     [TTTableStyledTextItem itemWithText:
+      [TTStyledText textFromXHTML:
+       [NSString stringWithFormat:@"<img class=\"figureTableImage\" src=\"bundle://%d-%@-57.png\" width=\"57\" height=\"57\" /><div class=\"tableMessageContent\"><b>%@%@</b><br/><img src=\"bundle://bump-%d-%@.png\" width=\"232\" /></div>",
+        series, n,
+        figure.name, count > 0 ? [NSString stringWithFormat:@" (%d)", count] : @"",
+        series, n]]
+                                     URL:[NSString stringWithFormat:@"mc://figure/%d-%@", series, n]]];    
+  }
 }
 
 -(id)initWithSeries:(NSInteger)series {
@@ -93,7 +106,6 @@ your chanses of getting it right. <a href=\"http://www.mocpages.com/moc.php/2598
 			for (NSNumber* n in nonTrickies) {
 				[self addItemForNumber:n forSeries:series toDataSource:dataSource];
 			}
-			[dataSource.items shuffle];
       
       help = @"The bump codes for Series 5 are quite unreliable as of now. They are often printed mirrored from \
 the below cheat codes. So far two different codes have been found for the <b>Gangster</b> and that is reflected below. \
