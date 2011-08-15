@@ -5,7 +5,7 @@
 	<key>general</key>
 	<dict>
 		<key>guide</key>
-		<string>Try to sort out the parts common to most figures: The &lt;b&gt;head&lt;/b&gt;, the &lt;b&gt;body&lt;/b&gt;, the &lt;b&gt;legs&lt;/b&gt; and the &lt;b&gt;stand&lt;/b&gt;. It takes just a little bit of training to get good at this. The legs on most figures bend. The arms move. Remember that for some figures some of these \&quot;common\&quot; items are actually interesting or even missing. Also be aware that some of the small parts can slip in between the stand and the instructions sheet or just inside the instructions sheet.</string>
+		<string>Try to sort out the parts common to most figures: The &lt;b&gt;head&lt;/b&gt;, the &lt;b&gt;body&lt;/b&gt;, the &lt;b&gt;legs&lt;/b&gt; and the &lt;b&gt;stand&lt;/b&gt;. It takes just a little bit of training to get good at this. The legs on most figures bend. The arms move. Remember that for some figures some of these &quot;common&quot; items are actually interesting or even missing. Also be aware that some of the small parts can slip in between the stand and the instructions sheet or just inside the instructions sheet.</string>
 	</dict>
 	<key>figures</key>
 	<dict>
@@ -23,16 +23,16 @@
 			<key>name</key>
 			<string>Cave Woman</string>
 			<key>items</key>
-			<string></string>
+			<string>Club, hair and bone</string>
 			<key>guide</key>
-			<string>Easiest to find is the &lt;b&gt;club&lt;/b&gt; which is really thick at one end. But her &lt;b&gt;hair&lt;/b&gt; is made of hard rubber that gives when you squeeze it . It has a tuft at the top/crown, made such that the &lt;b&gt;bone&lt;/b&gt; can be snapped there. (Which means the bone is another item to feel for.)</string>
+			<string>Easiest to find is the &lt;b&gt;club&lt;/b&gt; which is really thick at one end. Her &lt;b&gt;hair&lt;/b&gt; is made of hard rubber that gives when you squeeze it. It has a tuft at the top/crown, made such that the &lt;b&gt;bone&lt;/b&gt; can be snapped in place. (Which means the bone is another item to feel for.)</string>
 		</dict>
 		<key>5-3</key>
 		<dict>
 			<key>name</key>
 			<string>Egyptian Queen</string>
 			<key>items</key>
-			<string></string>
+			<string>Dress and snake</string>
 			<key>guide</key>
 			<string>This is probably the easiest figure to identify in Series 5. Her &lt;b&gt;dress&lt;/b&gt; is made like a rectangular &quot;cone&quot; and quite bulky. Add to this that the &lt;b&gt;snake&lt;/b&gt; is easy to identify too. Note that her hair can be confused with a helmet, especially that of the &lt;b&gt;Boxer&lt;/b&gt;.</string>
 		</dict>
@@ -41,16 +41,16 @@
 			<key>name</key>
 			<string>Small Clown</string>
 			<key>items</key>
-			<string></string>
+			<string>Hat, cake and legs</string>
 			<key>guide</key>
-			<string>Feel for the hat, the cake and the legs. The &lt;b&gt;hat&lt;/b&gt; is round and has a narrow brim around it. The &lt;b&gt;cake&lt;/b&gt; is quite thick making it feel a bit like a regular head. It designed to sit on the top of the minifigure hand so there a round hole under it. The edge of the &lt;b&gt;cake&lt;/b&gt; is jagged which can be felt using your nails. As this is a small minifigure its &lt;b&gt;legs&lt;/b&gt; don&apos;t bend. (Something it has in common with the &lt;b&gt;Evil Dwarf&lt;/b&gt;.) They feel like a rectangular box that is open on one of the long sides.</string>
+			<string>The &lt;b&gt;hat&lt;/b&gt; is round and has a narrow brim around it. The &lt;b&gt;cake&lt;/b&gt; is quite thick making it feel a bit like a regular head. It&apos;s designed to sit on the top of the minifigure hand so there a round LEGO-hole under it. The edge of the &lt;b&gt;cake&lt;/b&gt; is jagged which can be felt using your nails. As this is a small minifigure its &lt;b&gt;legs&lt;/b&gt; don&apos;t bend. (Something it has in common with the &lt;b&gt;Evil Dwarf&lt;/b&gt;.) They feel like a rectangular box that is open on one of the long sides.</string>
 		</dict>
 		<key>5-5</key>
 		<dict>
 			<key>name</key>
 			<string>Evil Dwarf</string>
 			<key>items</key>
-			<string></string>
+			<string>Helmet, axe and legs</string>
 			<key>guide</key>
 			<string>The &lt;b&gt;helmet&lt;/b&gt; is very distinct with it&apos;s two wings. Remember that the &lt;b&gt;axe&lt;/b&gt; consists of three parts. The handle and then two parts for the head of the twin axe. As with the &lt;b&gt;Small Clown&lt;/b&gt; the legs don&apos;t bend. They feel like a rectangular box that is open on one of the long sides.</string>
 		</dict>
@@ -66,20 +66,20 @@
 		<key>5-7</key>
 		<dict>
 			<key>name</key>
-			<string></string>
+			<string>Fitness instructor</string>
 			<key>items</key>
-			<string></string>
+			<string>Boombox and hair</string>
 			<key>guide</key>
-			<string>She has a really blocky &lt;b&gt;boombox&lt;/b&gt; that is easy to identify. It has a handle. When you think you&apos;ve found it, use your fingernails to feel for the &lt;b&gt;speakers&lt;/b&gt;. Note that her &lt;b&gt;hair&lt;/b&gt; is long down her neck making it easier to separate from the hair and helmets of other Series 5 figures.</string>
+			<string>She has a really blocky &lt;b&gt;boombox&lt;/b&gt; that is easy to identify with its handle and its speakers. When you think you&apos;ve found it, use your fingernails to feel for the checkered structure of the speakers. Note that her &lt;b&gt;hair&lt;/b&gt; is long down her neck making it easier to separate from the hair and helmets of other Series 5 figures.</string>
 		</dict>
 		<key>5-8</key>
 		<dict>
 			<key>name</key>
 			<string>Gangster</string>
 			<key>items</key>
-			<string></string>
+			<string>Violin case, hat and gun</string>
 			<key>guide</key>
-			<string></string>
+			<string>The &lt;b&gt;violin case&lt;/b&gt; is easier to distinguish than one might think at first since it is not a &quot;real&quot; LEGO brick. With it&apos;s thick brim the gangster &lt;b&gt;hat&lt;/b&gt; is also easy to tell apart from other hats and items in Series 5. Small as it is the &lt;b&gt;gun&lt;/b&gt; is quite easy to identify once you find it.</string>
 		</dict>
 		<key>5-9</key>
 		<dict>
@@ -95,18 +95,18 @@
 			<key>name</key>
 			<string>Graduate</string>
 			<key>items</key>
-			<string></string>
+			<string>Hat, diploma and robe</string>
 			<key>guide</key>
-			<string></string>
+			<string>Imagine the &lt;b&gt;hat&lt;/b&gt; placed upside down. It is then like a shallow bowl attached to a tile. The &lt;b&gt;diploma&lt;/b&gt; is a LEGO tile (flat on one side and holes on the other). It&apos;s easily missed since it sneaks away among the stand and other stuff. The &lt;b&gt;robe&lt;/b&gt; is special since it&apos;s a tiny piece of cloth and &lt;i&gt;can&apos;t be felt&lt;/i&gt; through the material of the bag.</string>
 		</dict>
 		<key>5-11</key>
 		<dict>
 			<key>name</key>
 			<string>Lizard Man</string>
 			<key>items</key>
-			<string></string>
+			<string>Tail and lizard head</string>
 			<key>guide</key>
-			<string></string>
+			<string>Feel something like a wide, flat &lt;i&gt;S&lt;/i&gt;? That could very well be the &lt;b&gt;tail&lt;/b&gt; of the lizard suit. It&apos;s one of those pieces that attaches to the body around the neck of the minifigure. The &lt;b&gt;lizard head&lt;/b&gt; is like a helmet. Feels very much like a motorycle helmet actually. Though one with a nose. =)</string>
 		</dict>
 		<key>5-12</key>
 		<dict>
@@ -122,36 +122,36 @@
 			<key>name</key>
 			<string>Royal Guard</string>
 			<key>items</key>
-			<string></string>
+			<string>Helmet and rifle</string>
 			<key>guide</key>
-			<string></string>
+			<string>You almost can&apos;t miss the &lt;b&gt;helmet&lt;/b&gt; of this figure. It&apos;s really high and bulky with a structure you can feel throuh the material of the bag. It can be a bit hard to find the rifle, but when you do it really feels like what it is. Maybe it can be confused with the fishing rod of the &lt;b&gt;Ice Fisherman&lt;/b&gt;, but again, there is that &lt;b&gt;helmet&lt;/b&gt;.</string>
 		</dict>
 		<key>5-14</key>
 		<dict>
 			<key>name</key>
 			<string>Detective</string>
 			<key>items</key>
-			<string></string>
+			<string>Hat and magnifying glass</string>
 			<key>guide</key>
-			<string></string>
+			<string>Looked at the hat of Sherlock Holmes? That&apos;s the kind of &lt;b&gt;hat&lt;/b&gt; we&apos;re talking about here. It has brims on both the front and the back, but not on the sides. Look for the &lt;b&gt;magnifying glass&lt;/b&gt; (excuse the pun) too. It is like a miniature of the real thing. (Even magnifies a little). It has a really round glass with distinct edge.</string>
 		</dict>
 		<key>5-15</key>
 		<dict>
 			<key>name</key>
 			<string>Snowboarder Guy</string>
 			<key>items</key>
-			<string></string>
+			<string>Snowboard and hat</string>
 			<key>guide</key>
-			<string></string>
+			<string>The only figure that doesn&apos;t have that black stand. Instead it has a &lt;b&gt;snowboard&lt;/b&gt; which is quite easy to identify. His ski &lt;b&gt;hat&lt;/b&gt; is like a round bowl and has no brim (of course it has no brim).</string>
 		</dict>
 		<key>5-16</key>
 		<dict>
 			<key>name</key>
 			<string>Zookeeper</string>
 			<key>items</key>
-			<string></string>
+			<string>Monkey, hair and banana</string>
 			<key>guide</key>
-			<string></string>
+			<string>It&apos;s not as easy to identify the &lt;b&gt;monkey&lt;/b&gt; as one might first think. But one you find this odd piece and start feeling it you eventually can find the hand that it is holding above its head. The Zookeepers &lt;b&gt;hair&lt;/b&gt; is the only hair in Series 5 with a pony tail. The &lt;b&gt;banana&lt;/b&gt; can get lost among the other stuff in the bag since it&apos;s so small, but when you find it and already suspect this is the Zookeeper bag it really feels like a banana.</string>
 		</dict>
 	</dict>
 </dict>

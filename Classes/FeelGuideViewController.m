@@ -11,7 +11,6 @@
 
 @interface FeelGuideViewController (Private)
 + (NSDictionary*)guidesForSeries:(NSInteger)series;
-- (NSString*)guideForFigure:(Figure*)figure;
 @end
 
 @implementation FeelGuideViewController
@@ -34,7 +33,10 @@ Check the bump codes for a close match. That can often (but not always) help nar
     s = [NSString stringWithFormat:@"%@<b>Bump codes</b><br/>", s];
     s = [NSString stringWithFormat:@"%@<div><img src=\"bundle://bump-%d-%d.png\" width=\"232\" /></div><br/>", s, figure.series, figure.number];
     s = [NSString stringWithFormat:@"%@<b>Feel tips for %@</b><br/>", s, figure.name];
-    s = [NSString stringWithFormat:@"%@%@<br/><br/>", s, [self guideForFigure:figure]];
+    s = [NSString stringWithFormat:@"%@<i>Special items: %@.</i><br/>", s,
+         [[[guides objectForKey:@"figures"] objectForKey:figure.key] objectForKey:@"items"]];
+    s = [NSString stringWithFormat:@"%@%@<br/><br/>", s,
+         [[[guides objectForKey:@"figures"] objectForKey:figure.key] objectForKey:@"guide"]];
     s = [NSString stringWithFormat:@"%@<b>General feel tips</b><br/>", s];
     s = [NSString stringWithFormat:@"%@%@", s, [[guides objectForKey:@"general"] objectForKey:@"guide"]];
     TTListDataSource* dataSource = [[[TTListDataSource alloc] init] autorelease];
@@ -42,11 +44,6 @@ Check the bump codes for a close match. That can often (but not always) help nar
     self.dataSource = dataSource;
   }
   return self;
-}
-
-- (NSString*)guideForFigure:(Figure*)figure {
-  NSDictionary* guides  = [[self class] guidesForSeries:figure.series];
-  return [[[guides objectForKey:@"figures"] objectForKey:figure.key] objectForKey:@"guide"];
 }
 
 + (NSDictionary*)guidesForSeries:(NSInteger)series {
