@@ -2,17 +2,157 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>5-1</key>
-	<string>Gloves</string>
-	<key>5-2</key>
-	<string>Easiest to find is the &lt;b&gt;club&lt;/b&gt; which is really thick at one end. But her &lt;b&gt;hair&lt;/b&gt; is special too with that tuft at the top. It is made such that the &lt;b&gt;bone&lt;/b&gt; can be snapped there. Which means the bone is another item to feel for.</string>
-	<key>5-3</key>
-	<string>This is probably the easiest figure to identify in Series 5. Her &lt;b&gt;dress&lt;/b&gt; is made like a rectangular &quot;cone&quot; and quite bulky. Add to this that the &lt;b&gt;snake&lt;/b&gt; is easy to identify too.</string>
-	<key>5-4</key>
-	<string>Feel for the hat, the cake and the legs. The &lt;b&gt;hat&lt;/b&gt; is round and has a narrow brim around it. The &lt;b&gt;cake&lt;/b&gt; is designed to sit on the top of the minifigure hand so there a round hole under it. The edge of the &lt;b&gt;cake&lt;/b&gt; is jagged which can be felt using your nails. As this is a small minifigure its &lt;b&gt;legs&lt;/b&gt; don&apos;t bend. (Something it has in common with the &lt;b&gt;Evil Dwarf&lt;/b&gt;.) They feel like a rectangular box that is open on one of the long sides.</string>
-	<key>5-5</key>
-	<string>The &lt;b&gt;helmet&lt;/b&gt; is very distinct with it&apos;s two wings. Remember that the &lt;b&gt;axe&lt;/b&gt; consists of two parts. The head of it is a twin axe which is quite easy to identify. As with the &lt;b&gt;Small Clown&lt;/b&gt; the legs don&apos;t bend. They feel like a rectangular box that is open on one of the long sides.</string>
-	<key>5-6</key>
-	<string>Ice Fisherman</string>
+	<key>general</key>
+	<dict>
+		<key>guide</key>
+		<string>Try to sort out the parts common to most figures: The &lt;b&gt;head&lt;/b&gt;, the &lt;b&gt;body&lt;/b&gt;, the &lt;b&gt;legs&lt;/b&gt; and the &lt;b&gt;stand&lt;/b&gt;. It takes just a little bit of training to get good at this. The legs on most figures bend. The arms move. Remember that for some figures some of these \&quot;common\&quot; items are actually interesting or even missing. Also be aware that some of the small parts can slip in between the stand and the instructions sheet or just inside the instructions sheet.</string>
+	</dict>
+	<key>figures</key>
+	<dict>
+		<key>5-1</key>
+		<dict>
+			<key>name</key>
+			<string>Boxer</string>
+			<key>items</key>
+			<string></string>
+			<key>guide</key>
+			<string></string>
+		</dict>
+		<key>5-2</key>
+		<dict>
+			<key>name</key>
+			<string>Cave Woman</string>
+			<key>items</key>
+			<string></string>
+			<key>guide</key>
+			<string>Easiest to find is the &lt;b&gt;club&lt;/b&gt; which is really thick at one end. But her &lt;b&gt;hair&lt;/b&gt; is made of hard rubber that gives when you squeeze it . It has a tuft at the top/crown, made such that the &lt;b&gt;bone&lt;/b&gt; can be snapped there. (Which means the bone is another item to feel for.)</string>
+		</dict>
+		<key>5-3</key>
+		<dict>
+			<key>name</key>
+			<string>Egyptian Queen</string>
+			<key>items</key>
+			<string></string>
+			<key>guide</key>
+			<string>This is probably the easiest figure to identify in Series 5. Her &lt;b&gt;dress&lt;/b&gt; is made like a rectangular &quot;cone&quot; and quite bulky. Add to this that the &lt;b&gt;snake&lt;/b&gt; is easy to identify too. Note that her hair can be confused with a helmet, especially that of the &lt;b&gt;Boxer&lt;/b&gt;.</string>
+		</dict>
+		<key>5-4</key>
+		<dict>
+			<key>name</key>
+			<string>Small Clown</string>
+			<key>items</key>
+			<string></string>
+			<key>guide</key>
+			<string>Feel for the hat, the cake and the legs. The &lt;b&gt;hat&lt;/b&gt; is round and has a narrow brim around it. The &lt;b&gt;cake&lt;/b&gt; is quite thick making it feel a bit like a regular head. It designed to sit on the top of the minifigure hand so there a round hole under it. The edge of the &lt;b&gt;cake&lt;/b&gt; is jagged which can be felt using your nails. As this is a small minifigure its &lt;b&gt;legs&lt;/b&gt; don&apos;t bend. (Something it has in common with the &lt;b&gt;Evil Dwarf&lt;/b&gt;.) They feel like a rectangular box that is open on one of the long sides.</string>
+		</dict>
+		<key>5-5</key>
+		<dict>
+			<key>name</key>
+			<string>Evil Dwarf</string>
+			<key>items</key>
+			<string></string>
+			<key>guide</key>
+			<string>The &lt;b&gt;helmet&lt;/b&gt; is very distinct with it&apos;s two wings. Remember that the &lt;b&gt;axe&lt;/b&gt; consists of three parts. The handle and then two parts for the head of the twin axe. As with the &lt;b&gt;Small Clown&lt;/b&gt; the legs don&apos;t bend. They feel like a rectangular box that is open on one of the long sides.</string>
+		</dict>
+		<key>5-6</key>
+		<dict>
+			<key>name</key>
+			<string>Ice Fisherman</string>
+			<key>items</key>
+			<string></string>
+			<key>guide</key>
+			<string></string>
+		</dict>
+		<key>5-7</key>
+		<dict>
+			<key>name</key>
+			<string></string>
+			<key>items</key>
+			<string></string>
+			<key>guide</key>
+			<string>She has a really blocky &lt;b&gt;boombox&lt;/b&gt; that is easy to identify. It has a handle. When you think you&apos;ve found it, use your fingernails to feel for the &lt;b&gt;speakers&lt;/b&gt;. Note that her &lt;b&gt;hair&lt;/b&gt; is long down her neck making it easier to separate from the hair and helmets of other Series 5 figures.</string>
+		</dict>
+		<key>5-8</key>
+		<dict>
+			<key>name</key>
+			<string>Gangster</string>
+			<key>items</key>
+			<string></string>
+			<key>guide</key>
+			<string></string>
+		</dict>
+		<key>5-9</key>
+		<dict>
+			<key>name</key>
+			<string>Gladiator</string>
+			<key>items</key>
+			<string></string>
+			<key>guide</key>
+			<string></string>
+		</dict>
+		<key>5-10</key>
+		<dict>
+			<key>name</key>
+			<string>Graduate</string>
+			<key>items</key>
+			<string></string>
+			<key>guide</key>
+			<string></string>
+		</dict>
+		<key>5-11</key>
+		<dict>
+			<key>name</key>
+			<string>Lizard Man</string>
+			<key>items</key>
+			<string></string>
+			<key>guide</key>
+			<string></string>
+		</dict>
+		<key>5-12</key>
+		<dict>
+			<key>name</key>
+			<string>Lumberjack</string>
+			<key>items</key>
+			<string></string>
+			<key>guide</key>
+			<string></string>
+		</dict>
+		<key>5-13</key>
+		<dict>
+			<key>name</key>
+			<string>Royal Guard</string>
+			<key>items</key>
+			<string></string>
+			<key>guide</key>
+			<string></string>
+		</dict>
+		<key>5-14</key>
+		<dict>
+			<key>name</key>
+			<string>Detective</string>
+			<key>items</key>
+			<string></string>
+			<key>guide</key>
+			<string></string>
+		</dict>
+		<key>5-15</key>
+		<dict>
+			<key>name</key>
+			<string>Snowboarder Guy</string>
+			<key>items</key>
+			<string></string>
+			<key>guide</key>
+			<string></string>
+		</dict>
+		<key>5-16</key>
+		<dict>
+			<key>name</key>
+			<string>Zookeeper</string>
+			<key>items</key>
+			<string></string>
+			<key>guide</key>
+			<string></string>
+		</dict>
+	</dict>
 </dict>
 </plist>
