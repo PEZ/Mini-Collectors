@@ -107,12 +107,9 @@ your chanses of getting it right. <a href=\"http://www.mocpages.com/moc.php/2598
 				[self addItemForNumber:n forSeries:series toDataSource:dataSource];
 			}
       
-      help = @"The bump codes for Series 5 are quite unreliable as of now. They are often printed mirrored from \
-the below cheat codes. So far two different codes have been found for the <b>Gangster</b> and that is reflected below. \
-This app will get updated as soon as new code variants are discovered. Be adviced that:\n\
-<i>Feeling the bag is often necessary.</i> When feeling the bag, try to sort out the stand-brick, the body, legs and head \
-in one corner of the bag. Then you can feel for the special items without distraction. Remember that the legs of the \
-<b>Evil Dwarf</b> and the <b>Small Clown</b> don't bend.";
+      help = @"The bump codes for Series 5 are quite unreliable. Be adviced that: \
+<i>Feeling the bag is often necessary.</i> Use the bump codes  below to try narrow it down. Feel the bag. Attached to \
+each figure below is a \"feel guide\" that aims to help you identify what's in that bag. <b>Good luck!</b>";
 
 			[dataSource.items insertObject:[TTTableStyledTextItem itemWithText:[TTStyledText textFromXHTML:help lineBreaks:YES URLs:YES] URL:nil] atIndex:0];
       
