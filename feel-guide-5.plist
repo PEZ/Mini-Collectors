@@ -50,9 +50,9 @@
 			<key>name</key>
 			<string>Evil Dwarf</string>
 			<key>items</key>
-			<string>Helmet, axe and legs</string>
+			<string>Helmet, axe, shield and legs</string>
 			<key>guide</key>
-			<string>The &lt;b&gt;helmet&lt;/b&gt; is very distinct with it&apos;s two wings. Remember that the &lt;b&gt;axe&lt;/b&gt; consists of three parts. The handle and then two parts for the head of the twin axe. As with the &lt;b&gt;Small Clown&lt;/b&gt; the legs don&apos;t bend. They feel like a rectangular box that is open on one of the long sides.</string>
+			<string>The &lt;b&gt;helmet&lt;/b&gt; is very distinct with it&apos;s two wings. Remember that the &lt;b&gt;axe&lt;/b&gt; consists of three parts. The handle and then two parts for the head of the twin axe. His shield is round and has no structure on the front. The handle at the back is a bit like that of an old school submachine gun. As with the &lt;b&gt;Small Clown&lt;/b&gt; the legs don&apos;t bend. They feel like a rectangular box that is open on one of the long sides.</string>
 		</dict>
 		<key>5-6</key>
 		<dict>
@@ -86,9 +86,9 @@
 			<key>name</key>
 			<string>Gladiator</string>
 			<key>items</key>
-			<string></string>
+			<string>Helmet and shield</string>
 			<key>guide</key>
-			<string></string>
+			<string>Feel for the &lt;b&gt;helmet&lt;/b&gt; which is quite special with its chest and back protecting shields and that nub on the top. The &lt;b&gt;shield&lt;/b&gt; has handle at the back and a round thing in the center at the front.</string>
 		</dict>
 		<key>5-10</key>
 		<dict>
@@ -113,9 +113,9 @@
 			<key>name</key>
 			<string>Lumberjack</string>
 			<key>items</key>
-			<string></string>
+			<string>Axe and hat</string>
 			<key>guide</key>
-			<string></string>
+			<string>His &lt;b&gt;axe&lt;/b&gt; comes as one piece, which means you can feel for the round rod of a handle with the head of the axe at one end. The &lt;b&gt;hat&lt;/b&gt; differs from other hats in Series 5 by being a &quot;standard&quot; baseball cap with a screen only at the front.</string>
 		</dict>
 		<key>5-13</key>
 		<dict>
@@ -142,7 +142,7 @@
 			<key>items</key>
 			<string>Snowboard and hat</string>
 			<key>guide</key>
-			<string>The only figure that doesn&apos;t have that black stand. Instead it has a &lt;b&gt;snowboard&lt;/b&gt; which is quite easy to identify. His ski &lt;b&gt;hat&lt;/b&gt; is like a round bowl and has no brim (of course it has no brim).</string>
+			<string>Well, to no surprise he has a &lt;strong&gt;snowboard&lt;/strong&gt; which is quite easy to identify. His ski &lt;strong&gt;hat&lt;/strong&gt; is like a round bowl and has no brim (of course it has no brim).</string>
 		</dict>
 		<key>5-16</key>
 		<dict>
