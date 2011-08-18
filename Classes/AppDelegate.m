@@ -111,6 +111,11 @@ static AppDelegate *_instance;
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
   _instance = self;
+  
+  if([[UIApplication sharedApplication] respondsToSelector:@selector(setStatusBarHidden: withAnimation:)])
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+  else 
+    [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
 
 	NSInteger totalStarts = [[NSUserDefaults standardUserDefaults] integerForKey:kNumStartsKey] + 1;
 	[[NSUserDefaults standardUserDefaults] setInteger:totalStarts forKey:kNumStartsKey];
