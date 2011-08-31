@@ -91,15 +91,21 @@ static NSMutableDictionary *_purchaseInfoLabels;
 	_purchaseActivityLabel.hidden = NO;
 	self.purchaseButton.hidden = YES;
 	InAppPurchaseManager *purchaseManager = [InAppPurchaseManager getInstance];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-																					 selector:@selector(seriesContentProvided)
-																							 name:productIdKey(kInAppPurchaseManagerSeriesContentProvidedNotification, [self productId])
-																						 object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-																					 selector:@selector(purchaseFailed)
-																							 name:productIdKey(kInAppPurchaseManagerTransactionFailedNotification, [self productId])
-																						 object:nil];	
 	if ([purchaseManager canMakePurchases]) {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:productIdKey(kInAppPurchaseManagerSeriesContentProvidedNotification, [self productId])
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(seriesContentProvided)
+                                                 name:productIdKey(kInAppPurchaseManagerSeriesContentProvidedNotification, [self productId])
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:productIdKey(kInAppPurchaseManagerTransactionFailedNotification, [self productId])
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(purchaseFailed)
+                                                 name:productIdKey(kInAppPurchaseManagerTransactionFailedNotification, [self productId])
+                                               object:nil];	
 		[purchaseManager purchase:[self productId]];		
 	}
 	else {
