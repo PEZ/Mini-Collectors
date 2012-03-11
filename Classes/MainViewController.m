@@ -29,6 +29,7 @@ static MainViewController *_instance;
 }
 
 + (BOOL)isContentUnlocked:(NSInteger)series {
+  return YES;
 	return (series < 4 || [self isSeriesEnabled:series]);
 }
 
@@ -213,14 +214,11 @@ static MainViewController *_instance;
 
 - (NSArray *) launcherPages {
 
-  return [NSArray arrayWithObjects:
-          [self launcherItemsForSeries:1],
-					[self launcherItemsForSeries:2],
-					[self launcherItemsForSeries:3],
-					[self launcherItemsForSeries:4],
-					[self launcherItemsForSeries:5],
-          nil
-         ];
+  NSMutableArray *pages = [NSMutableArray arrayWithCapacity:kTotalSeries];
+  for (int i = 0; i < kTotalSeries; i++) {
+    [pages addObject:[self launcherItemsForSeries:i+1]];
+  }
+  return [NSArray arrayWithArray:pages];
 }
 
 - (void)loadView {

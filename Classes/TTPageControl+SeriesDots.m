@@ -30,6 +30,9 @@
     case 4:
       return RGBACOLOR(0, 175, 205, alpha);
       break;      
+    case 5:
+      return RGBACOLOR(225, 225, 225, alpha);
+      break;      
     default:
       return nil;
       break;
