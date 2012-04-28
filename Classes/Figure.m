@@ -266,40 +266,79 @@ static NSDictionary *_figures;
   NSNumber *six = [NSNumber numberWithInt: 6];
   return [NSDictionary dictionaryWithObjectsAndKeys:
           [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   six, @"series", @"6-1", @"key", @"Flamenco Dancer.png", @"name", zero, @"count", nil]] retain], @"6-1",
+                                   six, @"series", @"6-1", @"key", @"Flamenco Dancer", @"name", zero, @"count", nil]] retain], @"6-1",
           [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   six, @"series", @"6-2", @"key", @"Lady Liberty.png", @"name", zero, @"count", nil]] retain], @"6-2",
+                                   six, @"series", @"6-2", @"key", @"Lady Liberty", @"name", zero, @"count", nil]] retain], @"6-2",
           [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   six, @"series", @"6-3", @"key", @"Clockwork Robot.png", @"name", zero, @"count", nil]] retain], @"6-3",
+                                   six, @"series", @"6-3", @"key", @"Clockwork Robot", @"name", zero, @"count", nil]] retain], @"6-3",
           [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   six, @"series", @"6-4", @"key", @"Sleepyhead.png", @"name", zero, @"count", nil]] retain], @"6-4",
+                                   six, @"series", @"6-4", @"key", @"Sleepyhead", @"name", zero, @"count", nil]] retain], @"6-4",
           [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   six, @"series", @"6-5", @"key", @"Surgeon.png", @"name", zero, @"count", nil]] retain], @"6-5",
+                                   six, @"series", @"6-5", @"key", @"Surgeon", @"name", zero, @"count", nil]] retain], @"6-5",
           [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   six, @"series", @"6-6", @"key", @"Skater Girl.png", @"name", zero, @"count", nil]] retain], @"6-6",
+                                   six, @"series", @"6-6", @"key", @"Skater Girl", @"name", zero, @"count", nil]] retain], @"6-6",
           [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   six, @"series", @"6-7", @"key", @"Mechanic.png", @"name", zero, @"count", nil]] retain], @"6-7",
+                                   six, @"series", @"6-7", @"key", @"Mechanic", @"name", zero, @"count", nil]] retain], @"6-7",
           [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   six, @"series", @"6-8", @"key", @"Butcher.png", @"name", zero, @"count", nil]] retain], @"6-8",
+                                   six, @"series", @"6-8", @"key", @"Butcher", @"name", zero, @"count", nil]] retain], @"6-8",
           [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   six, @"series", @"6-9", @"key", @"Intergalactic Girl.png", @"name", zero, @"count", nil]] retain], @"6-9",
+                                   six, @"series", @"6-9", @"key", @"Intergalactic Girl", @"name", zero, @"count", nil]] retain], @"6-9",
           [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   six, @"series", @"6-10", @"key", @"Leprechaun.png", @"name", zero, @"count", nil]] retain], @"6-10",
+                                   six, @"series", @"6-10", @"key", @"Leprechaun", @"name", zero, @"count", nil]] retain], @"6-10",
           [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   six, @"series", @"6-11", @"key", @"Genie.png", @"name", zero, @"count", nil]] retain], @"6-11",
+                                   six, @"series", @"6-11", @"key", @"Genie", @"name", zero, @"count", nil]] retain], @"6-11",
           [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   six, @"series", @"6-12", @"key", @"Classic Alien.png", @"name", zero, @"count", nil]] retain], @"6-12",
+                                   six, @"series", @"6-12", @"key", @"Classic Alien", @"name", zero, @"count", nil]] retain], @"6-12",
           [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   six, @"series", @"6-13", @"key", @"Bandit.png", @"name", zero, @"count", nil]] retain], @"6-13",
+                                   six, @"series", @"6-13", @"key", @"Bandit", @"name", zero, @"count", nil]] retain], @"6-13",
           [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   six, @"series", @"6-14", @"key", @"Minotaur.png", @"name", zero, @"count", nil]] retain], @"6-14",
+                                   six, @"series", @"6-14", @"key", @"Minotaur", @"name", zero, @"count", nil]] retain], @"6-14",
           [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   six, @"series", @"6-15", @"key", @"Highland Battler.png", @"name", zero, @"count", nil]] retain], @"6-15",
+                                   six, @"series", @"6-15", @"key", @"Highland Battler", @"name", zero, @"count", nil]] retain], @"6-15",
           [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
-                                   six, @"series", @"6-16", @"key", @"Roman Soldier.png", @"name", zero, @"count", nil]] retain], @"6-16",
+                                   six, @"series", @"6-16", @"key", @"Roman Soldier", @"name", zero, @"count", nil]] retain], @"6-16",
           nil];
 }
 
++ (NSDictionary *) s7_figures {
+    NSNumber *zero = [NSNumber numberWithInt: 0];
+    NSNumber *seven = [NSNumber numberWithInt: 7];
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     seven, @"series", @"7-1", @"key", @"Aztec Warrior", @"name", zero, @"count", nil]] retain], @"7-1",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     seven, @"series", @"7-2", @"key", @"Bagpiper", @"name", zero, @"count", nil]] retain], @"7-2",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     seven, @"series", @"7-3", @"key", @"Bride", @"name", zero, @"count", nil]] retain], @"7-3",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     seven, @"series", @"7-4", @"key", @"Bunny Suite Guy", @"name", zero, @"count", nil]] retain], @"7-4",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     seven, @"series", @"7-5", @"key", @"Dare Devil", @"name", zero, @"count", nil]] retain], @"7-5",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     seven, @"series", @"7-6", @"key", @"Evil Knight", @"name", zero, @"count", nil]] retain], @"7-6",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     seven, @"series", @"7-7", @"key", @"Computer Programmer", @"name", zero, @"count", nil]] retain], @"7-7",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     seven, @"series", @"7-8", @"key", @"Hippie", @"name", zero, @"count", nil]] retain], @"7-8",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     seven, @"series", @"7-9", @"key", @"Ocean King", @"name", zero, @"count", nil]] retain], @"7-9",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     seven, @"series", @"7-10", @"key", @"Grandma Visitor", @"name", zero, @"count", nil]] retain], @"7-10",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     seven, @"series", @"7-11", @"key", @"Rocker Girl", @"name", zero, @"count", nil]] retain], @"7-11",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     seven, @"series", @"7-12", @"key", @"Galaxy Patrol", @"name", zero, @"count", nil]] retain], @"7-12",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     seven, @"series", @"7-13", @"key", @"Swimming Champion", @"name", zero, @"count", nil]] retain], @"7-13",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     seven, @"series", @"7-14", @"key", @"Jungle Boy", @"name", zero, @"count", nil]] retain], @"7-14",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     seven, @"series", @"7-15", @"key", @"Tennis Ace", @"name", zero, @"count", nil]] retain], @"7-15",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     seven, @"series", @"7-16", @"key", @"Viking Woman", @"name", zero, @"count", nil]] retain], @"7-16",
+            nil];
+}
+            
 + (void) resetFigures {
   NSNumber *zero = [NSNumber numberWithInt: 0];
 	NSNumber *one = [NSNumber numberWithInt: 1];
@@ -375,6 +414,7 @@ static NSDictionary *_figures;
 	[figures addEntriesFromDictionary:[self s4_figures]];
 	[figures addEntriesFromDictionary:[self s5_figures]];
 	[figures addEntriesFromDictionary:[self s6_figures]];
+    [figures addEntriesFromDictionary:[self s7_figures]];
 	_figures = [[NSDictionary dictionaryWithDictionary:figures] retain];
 	[self saveFigures];
 }
@@ -400,6 +440,9 @@ static NSDictionary *_figures;
       }
       if ([figures count] == 80) {
         [figures addEntriesFromDictionary:[self s6_figures]];
+      }
+      if ([figures count] == 96) {
+        [figures addEntriesFromDictionary:[self s7_figures]];
       }
       _figures = [[NSDictionary dictionaryWithDictionary:figures] retain];
     }

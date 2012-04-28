@@ -26,20 +26,23 @@ static InAppPurchaseManager *_instance;
 }
 
 + (NSString*)productIdForSeries:(uint)series {
-	switch (series) {
-		case 3:
-			return kInAppPurchaseSeries3UpgradeProductId;
-			break;
-		case 4:
-			return kInAppPurchaseSeries4UpgradeProductId;
-			break;
-		case 5:
-			return kInAppPurchaseSeries5UpgradeProductId;
-			break;
-		default:
-			break;
-	}
-	return nil;
+  switch (series) {
+    case 3:
+      return kInAppPurchaseSeries3UpgradeProductId;
+      break;
+    case 4:
+      return kInAppPurchaseSeries4UpgradeProductId;
+      break;
+    case 5:
+      return kInAppPurchaseSeries5UpgradeProductId;
+      break;
+    case 7:
+      return kInAppPurchaseSeries7UpgradeProductId;
+      break;
+    default:
+      break;
+  }
+  return nil;
 }
 
 + (uint)seriesForProductId:(NSString*)productId {
@@ -51,6 +54,9 @@ static InAppPurchaseManager *_instance;
 	}
 	else if ([productId isEqualToString:kInAppPurchaseSeries5UpgradeProductId]) {
 		return 5;
+	}
+	else if ([productId isEqualToString:kInAppPurchaseSeries7UpgradeProductId]) {
+      return 7;
 	}
 	else {
 		return 0;
@@ -92,6 +98,7 @@ static InAppPurchaseManager *_instance;
   NSSet *productIdentifiers = [NSSet setWithObjects:kInAppPurchaseSeries3UpgradeProductId,
                                kInAppPurchaseSeries4UpgradeProductId,
                                kInAppPurchaseSeries5UpgradeProductId,
+                               kInAppPurchaseSeries7UpgradeProductId,
                                nil];
   productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
   productsRequest.delegate = self;

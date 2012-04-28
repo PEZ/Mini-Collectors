@@ -29,8 +29,7 @@ static MainViewController *_instance;
 }
 
 + (BOOL)isContentUnlocked:(NSInteger)series {
-  return YES;
-	return (series < 4 || [self isSeriesEnabled:series]);
+	return (series < 7 || [self isSeriesEnabled:series]);
 }
 
 - (void) authenticationChanged {
@@ -239,7 +238,7 @@ static MainViewController *_instance;
 	if (_currentPageIndex < 2) {
 		[self showScanButton];
 	}
-	else if (pageIndex > 1) {
+	else if (pageIndex > 1 && pageIndex < 5) {
 		[self showBumpsButtonWithTag:pageIndex+1];
 	}
 	else {
