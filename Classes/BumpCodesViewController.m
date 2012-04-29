@@ -23,6 +23,16 @@
         count > 0 ? [NSString stringWithFormat:@" <b>(%d)</b>", count] : @""]]
                                      URL:[NSString stringWithFormat:@"mc://hidden/%d-%@", series, n]]];
   }
+  else if (series < 7) {
+    [dataSource.items addObject:
+     [TTTableStyledTextItem itemWithText:
+      [TTStyledText textFromXHTML:
+       [NSString stringWithFormat:@"<img class=\"figureTableImage\" src=\"bundle://%d-%@-57.png\" width=\"57\" height=\"57\" /><div class=\"tableMessageContent\"><b>%@%@</b><br/><img src=\"bundle://bump-%d-%@.png\" width=\"232\" /></div>",
+        series, n,
+        figure.name, count > 0 ? [NSString stringWithFormat:@" (%d)", count] : @"",
+        series, n]]
+                                     URL:[NSString stringWithFormat:@"mc://feel_guide/%d-%@", series, n]]];    
+  }
   else {
     [dataSource.items addObject:
      [TTTableStyledTextItem itemWithText:

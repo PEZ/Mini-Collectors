@@ -14,7 +14,7 @@
 
 #define MARGIN 5
 #define kHaveAskedForReview @"kHaveAskedForReview4"
-#define kAskForReviewThreshold 3
+#define kAskForReviewThreshold 7
 
 
 @implementation FigureViewController

@@ -75,6 +75,20 @@ static MainViewController *_instance;
   }
 }
 
+- (void)openInfoView:(id)sender {
+  if ([[self class] isContentUnlocked:[sender tag]]) {
+    if ([sender tag] == 6) {
+      TTOpenURL(@"http://blog.betterthantomorrow.com/2011/12/23/minifigures-series-6-dot-codes-and-feel-instructions/");
+    }
+    else {
+      TTOpenURL(@"http://blog.betterthantomorrow.com/2012/04/29/series-7-feel-guide-and-some-bump-codes/");
+    }
+  }
+  else {
+    TTOpenURL([NSString stringWithFormat:@"mc://locked/%d", [sender tag]]);
+  }
+}
+
 + (void)openFigureWithKey:(NSString*)key {
   Figure* figure = [Figure figureFromKey:key];
   if ([self isContentUnlocked:figure.series]) {
@@ -93,6 +107,16 @@ static MainViewController *_instance;
 																						 action:@selector(openBumpsView:)]
                                             autorelease];
 	self.navigationItem.rightBarButtonItem.tag = tag;
+}
+
+- (void)showInfoButtonWithTag:(uint)tag {
+  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+                                             initWithImage:[UIImage imageNamed:@"infoIcon.png"]
+                                             style:UIBarButtonItemStylePlain
+                                             target:self
+                                             action:@selector(openInfoView:)]
+                                            autorelease];
+  self.navigationItem.rightBarButtonItem.tag = tag;
 }
 
 
@@ -242,9 +266,8 @@ static MainViewController *_instance;
 		[self showBumpsButtonWithTag:pageIndex+1];
 	}
 	else {
-		self.navigationItem.rightBarButtonItem = nil;
-	}
-
+        [self showInfoButtonWithTag:pageIndex+1];
+    }
 }
 
 - (void) openURLAction: (NSString *) URL  {
