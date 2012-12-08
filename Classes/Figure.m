@@ -339,6 +339,85 @@ static NSDictionary *_figures;
             nil];
 }
             
++ (NSDictionary *) s8_figures {
+    NSNumber *zero = [NSNumber numberWithInt: 0];
+    NSNumber *eight = [NSNumber numberWithInt: 8];
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     eight, @"series", @"8-1", @"key", @"Actor", @"name", zero, @"count", nil]] retain], @"8-1",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     eight, @"series", @"8-2", @"key", @"Pirate Captain", @"name", zero, @"count", nil]] retain], @"8-2",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     eight, @"series", @"8-3", @"key", @"Conquistador", @"name", zero, @"count", nil]] retain], @"8-3",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     eight, @"series", @"8-4", @"key", @"Evil Robot", @"name", zero, @"count", nil]] retain], @"8-4",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     eight, @"series", @"8-5", @"key", @"Alien Villainess", @"name", zero, @"count", nil]] retain], @"8-5",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     eight, @"series", @"8-6", @"key", @"Diver", @"name", zero, @"count", nil]] retain], @"8-6",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     eight, @"series", @"8-7", @"key", @"Vampire Bat", @"name", zero, @"count", nil]] retain], @"8-7",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     eight, @"series", @"8-8", @"key", @"Fairy", @"name", zero, @"count", nil]] retain], @"8-8",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     eight, @"series", @"8-9", @"key", @"Football Player", @"name", zero, @"count", nil]] retain], @"8-9",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     eight, @"series", @"8-10", @"key", @"Businessman", @"name", zero, @"count", nil]] retain], @"8-10",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     eight, @"series", @"8-11", @"key", @"Downhill Skier", @"name", zero, @"count", nil]] retain], @"8-11",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     eight, @"series", @"8-12", @"key", @"Red Cheerleader", @"name", zero, @"count", nil]] retain], @"8-12",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     eight, @"series", @"8-13", @"key", @"Santa", @"name", zero, @"count", nil]] retain], @"8-13",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     eight, @"series", @"8-14", @"key", @"Lederhosen Guy", @"name", zero, @"count", nil]] retain], @"8-14",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     eight, @"series", @"8-15", @"key", @"DJ", @"name", zero, @"count", nil]] retain], @"8-15",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     eight, @"series", @"8-16", @"key", @"Cowgirl", @"name", zero, @"count", nil]] retain], @"8-16",
+            nil];
+}
+
++ (NSDictionary *) s9_figures {
+    NSNumber *zero = [NSNumber numberWithInt: 0];
+    NSNumber *nine = [NSNumber numberWithInt: 9];
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     nine, @"series", @"9-1", @"key", @"Hollywood Starlet", @"name", zero, @"count", nil]] retain], @"9-1",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     nine, @"series", @"9-2", @"key", @"Roman Emperor", @"name", zero, @"count", nil]] retain], @"9-2",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     nine, @"series", @"9-3", @"key", @"Alien Avenger", @"name", zero, @"count", nil]] retain], @"9-3",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     nine, @"series", @"9-4", @"key", @"Forest Maiden", @"name", zero, @"count", nil]] retain], @"9-4",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     nine, @"series", @"9-5", @"key", @"Plumber", @"name", zero, @"count", nil]] retain], @"9-5",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     nine, @"series", @"9-6", @"key", @"Mermaid", @"name", zero, @"count", nil]] retain], @"9-6",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     nine, @"series", @"9-7", @"key", @"Battle Mech", @"name", zero, @"count", nil]] retain], @"9-7",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     nine, @"series", @"9-8", @"key", @"Roller Derby Girl", @"name", zero, @"count", nil]] retain], @"9-8",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     nine, @"series", @"9-9", @"key", @"Mr. Good and Evil", @"name", zero, @"count", nil]] retain], @"9-9",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     nine, @"series", @"9-10", @"key", @"Fortune Teller", @"name", zero, @"count", nil]] retain], @"9-10",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     nine, @"series", @"9-11", @"key", @"Judge", @"name", zero, @"count", nil]] retain], @"9-11",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     nine, @"series", @"9-12", @"key", @"Chicken Suit Guy", @"name", zero, @"count", nil]] retain], @"9-12",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     nine, @"series", @"9-13", @"key", @"Policeman", @"name", zero, @"count", nil]] retain], @"9-13",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     nine, @"series", @"9-14", @"key", @"Waiter", @"name", zero, @"count", nil]] retain], @"9-14",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     nine, @"series", @"9-15", @"key", @"Heroic Knight", @"name", zero, @"count", nil]] retain], @"9-15",
+            [[Figure figureFromDict:[NSDictionary dictionaryWithObjectsAndKeys:
+                                     nine, @"series", @"9-16", @"key", @"Cyclops", @"name", zero, @"count", nil]] retain], @"9-16",
+            nil];
+}
+
+
 + (void) resetFigures {
   NSNumber *zero = [NSNumber numberWithInt: 0];
 	NSNumber *one = [NSNumber numberWithInt: 1];
@@ -415,44 +494,52 @@ static NSDictionary *_figures;
 	[figures addEntriesFromDictionary:[self s5_figures]];
 	[figures addEntriesFromDictionary:[self s6_figures]];
     [figures addEntriesFromDictionary:[self s7_figures]];
+    [figures addEntriesFromDictionary:[self s8_figures]];
+    [figures addEntriesFromDictionary:[self s9_figures]];
 	_figures = [[NSDictionary dictionaryWithDictionary:figures] retain];
 	[self saveFigures];
 }
 
 + (void) loadFigures {
-  if ([[NSFileManager defaultManager] fileExistsAtPath:[self archivePath]]) {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[self archivePath]]) {
 		NSMutableDictionary *figures;
-    @try {
-      figures = [NSMutableDictionary dictionaryWithDictionary:[NSKeyedUnarchiver unarchiveObjectWithFile:[self archivePath]]];
-    }
-    @catch (NSException * e) {
-      [self resetFigures];
-    }
-    if (figures != nil) {
-      if ([figures count] == 32) {
-        [figures addEntriesFromDictionary:[self s3_figures]];
-      }
-      if ([figures count] == 48) {
-        [figures addEntriesFromDictionary:[self s4_figures]];
-      }
-      if ([figures count] == 64) {
-        [figures addEntriesFromDictionary:[self s5_figures]];
-      }
-      if ([figures count] == 80) {
-        [figures addEntriesFromDictionary:[self s6_figures]];
-      }
-      if ([figures count] == 96) {
-        [figures addEntriesFromDictionary:[self s7_figures]];
-      }
-      _figures = [[NSDictionary dictionaryWithDictionary:figures] retain];
+        @try {
+            figures = [NSMutableDictionary dictionaryWithDictionary:[NSKeyedUnarchiver unarchiveObjectWithFile:[self archivePath]]];
+        }
+        @catch (NSException * e) {
+            [self resetFigures];
+        }
+        if (figures != nil) {
+            if ([figures count] == 32) {
+                [figures addEntriesFromDictionary:[self s3_figures]];
+            }
+            if ([figures count] == 48) {
+                [figures addEntriesFromDictionary:[self s4_figures]];
+            }
+            if ([figures count] == 64) {
+                [figures addEntriesFromDictionary:[self s5_figures]];
+            }
+            if ([figures count] == 80) {
+                [figures addEntriesFromDictionary:[self s6_figures]];
+            }
+            if ([figures count] == 96) {
+                [figures addEntriesFromDictionary:[self s7_figures]];
+            }
+            if ([figures count] == 112) {
+                [figures addEntriesFromDictionary:[self s8_figures]];
+            }
+            if ([figures count] == 128) {
+                [figures addEntriesFromDictionary:[self s9_figures]];
+            }
+            _figures = [[NSDictionary dictionaryWithDictionary:figures] retain];
+        }
+        else {
+            [self resetFigures];
+        }
     }
     else {
-      [self resetFigures];
+        [self resetFigures];
     }
-  }
-  else {
-    [self resetFigures];
-  }
 }
 
 

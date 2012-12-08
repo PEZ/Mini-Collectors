@@ -24,12 +24,19 @@ static MainViewController *_instance;
 }
 
 + (BOOL)isSeriesEnabled:(NSInteger)series {
-  NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-  return [prefs boolForKey:[NSString stringWithFormat:kIsSeriesProductUnlocked, series]];
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    BOOL isEnabled = NO;
+    for (NSString* product in kInAppPurchaseProductsUnlocked) {
+        if ([prefs boolForKey:product]) {
+            isEnabled = YES;
+            break;
+        }
+    }
+    return isEnabled;
 }
 
 + (BOOL)isContentUnlocked:(NSInteger)series {
-	return (series < 7 || [self isSeriesEnabled:series]);
+	return (series < kTotalSeries || [self isSeriesEnabled:series]);
 }
 
 - (void) authenticationChanged {
@@ -265,8 +272,11 @@ static MainViewController *_instance;
 	else if (pageIndex > 1 && pageIndex < 5) {
 		[self showBumpsButtonWithTag:pageIndex+1];
 	}
-	else {
+	else if (pageIndex < 7) {
         [self showInfoButtonWithTag:pageIndex+1];
+    }
+    else {
+        self.navigationItem.rightBarButtonItem = nil;
     }
 }
 

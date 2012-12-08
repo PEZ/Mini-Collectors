@@ -13,8 +13,8 @@
 #import "AppDelegate.h"
 
 #define MARGIN 5
-#define kHaveAskedForReview @"kHaveAskedForReview4"
-#define kAskForReviewThreshold 7
+#define kHaveAskedForReview @"kHaveAskedForReview8"
+#define kAskForReviewThreshold 10
 
 
 @implementation FigureViewController

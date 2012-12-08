@@ -15,12 +15,16 @@
 #define kInAppPurchaseSeries4UpgradeProductId @"com.pezius.minicollector.series4"
 #define kInAppPurchaseSeries5UpgradeProductId @"com.pezius.minicollector.series5"
 #define kInAppPurchaseSeries7UpgradeProductId @"com.pezius.minicollector.series7"
+#define kInAppPurchaseUnlockProductId @"com.pezius.minicollector.unlock"
 
-#define kInAppPurchaseSeriesProducts [NSArray arrayWithObjects:kInAppPurchaseSeries3UpgradeProductId, kInAppPurchaseSeries4UpgradeProductId, kInAppPurchaseSeries5UpgradeProductId, kInAppPurchaseSeries7UpgradeProductId, nil]
+#define kInAppPurchaseProducts [NSArray arrayWithObjects:kInAppPurchaseSeries3UpgradeProductId, kInAppPurchaseSeries4UpgradeProductId, kInAppPurchaseSeries5UpgradeProductId, kInAppPurchaseSeries7UpgradeProductId, kInAppPurchaseUnlockProductId, nil]
 #define kIsSeriesProductUnlocked @"isSeries%dProductUnlocked"
+#define kIsProductUnlocked @"isProductUnlocked"
 
 #define seriesKey(key, series) [NSString stringWithFormat:key, series]
 #define productIdKey(key, productId) [NSString stringWithFormat:key, productId]
+
+#define kInAppPurchaseProductsUnlocked [NSArray arrayWithObjects:seriesKey(kIsSeriesProductUnlocked, 3), seriesKey(kIsSeriesProductUnlocked, 4), seriesKey(kIsSeriesProductUnlocked, 5), seriesKey(kIsSeriesProductUnlocked, 7), kIsProductUnlocked, nil]
 
 @interface InAppPurchaseManager : NSObject <SKProductsRequestDelegate, SKPaymentTransactionObserver> {
   NSMutableDictionary *_seriesProducts;

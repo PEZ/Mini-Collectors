@@ -40,9 +40,9 @@ static InAppPurchaseManager *_instance;
       return kInAppPurchaseSeries7UpgradeProductId;
       break;
     default:
+      return kInAppPurchaseUnlockProductId;
       break;
   }
-  return nil;
 }
 
 + (uint)seriesForProductId:(NSString*)productId {
@@ -57,6 +57,10 @@ static InAppPurchaseManager *_instance;
 	}
 	else if ([productId isEqualToString:kInAppPurchaseSeries7UpgradeProductId]) {
       return 7;
+	}
+	else if ([productId isEqualToString:kInAppPurchaseUnlockProductId]) {
+        NSLog(@"seriesForProductId: %@", productId);
+        return 1000;
 	}
 	else {
 		return 0;
@@ -95,11 +99,7 @@ static InAppPurchaseManager *_instance;
 
 
 - (void)requestSeriesUpgradeProductData {
-  NSSet *productIdentifiers = [NSSet setWithObjects:kInAppPurchaseSeries3UpgradeProductId,
-                               kInAppPurchaseSeries4UpgradeProductId,
-                               kInAppPurchaseSeries5UpgradeProductId,
-                               kInAppPurchaseSeries7UpgradeProductId,
-                               nil];
+  NSSet *productIdentifiers = [NSSet setWithArray:kInAppPurchaseProducts];
   productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
   productsRequest.delegate = self;
   [productsRequest start];
@@ -114,7 +114,7 @@ static InAppPurchaseManager *_instance;
 // saves a record of the transaction by storing the receipt to disk
 //
 - (void)recordTransaction:(SKPaymentTransaction *)transaction {
-	for (NSString *pId in kInAppPurchaseSeriesProducts) {
+	for (NSString *pId in kInAppPurchaseProducts) {
 		if ([transaction.payment.productIdentifier isEqualToString:pId]) {
 			[[NSUserDefaults standardUserDefaults] setValue:transaction.transactionReceipt forKey:productIdKey(kInAppPurchaseManagerSeriesUpgradeTransactionReceipt, pId)];
 			[[NSUserDefaults standardUserDefaults] synchronize];
@@ -126,13 +126,16 @@ static InAppPurchaseManager *_instance;
 // enable series features
 //
 - (void)provideContent:(NSString *)productId {
-	for (NSString *pId in kInAppPurchaseSeriesProducts) {
+	for (NSString *pId in kInAppPurchaseProducts) {
 		uint series = [[self class] seriesForProductId:pId];
+        NSString* seriesKey = seriesKey(kIsSeriesProductUnlocked, series);
 		if ([productId isEqualToString:pId]) {
-			[[NSUserDefaults standardUserDefaults] setBool:YES forKey:seriesKey(kIsSeriesProductUnlocked, series)];
+            NSString* productIdKey = productIdKey(kInAppPurchaseManagerSeriesContentProvidedNotification, pId);
+			[[NSUserDefaults standardUserDefaults] setBool:YES forKey:seriesKey];
+			[[NSUserDefaults standardUserDefaults] setBool:YES forKey:kIsProductUnlocked];
 			[[NSUserDefaults standardUserDefaults] synchronize];
-			[[NSNotificationCenter defaultCenter] postNotificationName:productIdKey(kInAppPurchaseManagerSeriesContentProvidedNotification, pId)
-																													object:self];
+			[[NSNotificationCenter defaultCenter] postNotificationName:productIdKey
+                                                                object:self];
 		}
 	}
 }

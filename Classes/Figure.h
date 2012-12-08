@@ -8,7 +8,7 @@
 
 #import <Three20UI/Three20UI.h>
 
-#define kTotalSeries 7
+#define kTotalSeries 9
 
 @interface Figure : NSObject <NSCoding> {
   int _series;

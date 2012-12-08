@@ -39,16 +39,16 @@ static NSMutableDictionary *_purchaseInfoLabels;
 }
 
 - (void)dismiss {
-  [self dismissModalViewControllerAnimated:YES];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 + (void)createPurchaseButtons {
 	if (_purchaseButtons == nil) {
 		_purchaseButtons = [[NSMutableDictionary dictionaryWithCapacity:2] retain];
-		for (NSString *productId in kInAppPurchaseSeriesProducts) {
+		for (NSString *productId in kInAppPurchaseProducts) {
 			[_purchaseButtons setObject:[[TTButton buttonWithStyle:@"defaultButton:"
-																											 title:@"Unlock"] retain]
-													 forKey:productId];
+                                                             title:@"Unlock"] retain]
+                                 forKey:productId];
 		}
 	}
 }
@@ -56,10 +56,9 @@ static NSMutableDictionary *_purchaseInfoLabels;
 + (void)createPurchaseInfoLabels {
 	if (_purchaseInfoLabels == nil) {
 		_purchaseInfoLabels = [[NSMutableDictionary dictionaryWithCapacity:2] retain];
-		for (NSString *productId in kInAppPurchaseSeriesProducts) {
-			[_purchaseInfoLabels setObject:[[[TTLabel alloc] initWithText:[NSString stringWithFormat:@"Series %d support",
-                                                                     [InAppPurchaseManager seriesForProductId:productId]]] retain]
-                              forKey:productId];
+		for (NSString *productId in kInAppPurchaseProducts) {
+			[_purchaseInfoLabels setObject:[[[TTLabel alloc] initWithText:[NSString stringWithFormat:@"Unlock"]] retain]
+                                    forKey:productId];
 		}
 	}
 }
@@ -182,7 +181,7 @@ static NSMutableDictionary *_purchaseInfoLabels;
 +(void)purchaseProductFetched {
 	[self createPurchaseButtons];
 	[self createPurchaseInfoLabels];
-	for (NSString *productId in kInAppPurchaseSeriesProducts) {
+	for (NSString *productId in kInAppPurchaseProducts) {
 		SKProduct *product = [[[InAppPurchaseManager getInstance] seriesProducts] objectForKey:productId];
 		TTButton *button = [_purchaseButtons objectForKey:productId];
 		[button setTitle:[NSString stringWithFormat:@"%@", [product localizedPrice]]

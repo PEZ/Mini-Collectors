@@ -13,33 +13,36 @@
 @implementation TTPageControl (TTPageControl_SeriesDots)
 
 - (UIColor*)colorForPage:(NSInteger)page {
-  float alpha = (page == _currentPage) ? 1.0 : 0.4;
-  switch (page) {
-    case 0:
-      return RGBACOLOR(255, 200, 0, alpha);
-      break;
-    case 1:
-      return RGBACOLOR(1, 129, 200, alpha);
-      break;
-    case 2:
-      return RGBACOLOR(150, 200, 50, alpha);
-      break;
-    case 3:
-      return RGBACOLOR(255, 150, 50, alpha);
-      break;
-    case 4:
-      return RGBACOLOR(0, 175, 205, alpha);
-      break;      
-    case 5:
-      return RGBACOLOR(225, 225, 225, alpha);
-      break;      
-    case 6:
-      return RGBACOLOR(221, 40, 31, alpha);
-      break;      
-    default:
-      return nil;
-      break;
-  }
+    float alpha = (page == _currentPage) ? 1.0 : 0.4;
+    switch (page) {
+        case 0:
+            return RGBACOLOR(255, 200, 0, alpha);
+            break;
+        case 1:
+            return RGBACOLOR(1, 129, 200, alpha);
+            break;
+        case 2:
+            return RGBACOLOR(150, 200, 50, alpha);
+            break;
+        case 3:
+            return RGBACOLOR(255, 150, 50, alpha);
+            break;
+        case 4:
+            return RGBACOLOR(0, 175, 205, alpha);
+            break;
+        case 5:
+            return RGBACOLOR(225, 225, 225, alpha);
+            break;
+        case 6:
+            return RGBACOLOR(221, 40, 31, alpha);
+            break;
+        case 7:
+            return RGBACOLOR(31, 31, 31, alpha);
+            break;
+        default:
+            return nil;
+            break;
+    }
 }
 
 - (TTStyle*)dotStyleForPage:(NSInteger)page {
